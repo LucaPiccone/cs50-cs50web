@@ -10,15 +10,19 @@ int main(void)
     int n = get_pyramid_height();
 
     // Print # everytime i or j is less then n.
-    for (int y=0; y < n; y++)
+    for (int y = 0; y < n; y++)
     {
         for (int x = 0; x < n; x++)
-        
-        // Pyramid conditions.
-        if ( y + x < n - 1 )
-        printf(" ");
-        else
-        printf("#");
+
+            // Pyramid conditions.
+            if (y + x < n - 1)
+               
+            printf(" ");
+
+            else
+            
+            printf("#");
+
         printf("\n");
     }
 }
