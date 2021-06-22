@@ -16,13 +16,13 @@ int main(void)
 
             // Pyramid conditions.
             if (y + x < n - 1)
-               
-            printf(" ");
-
+            {   
+                printf(" ");
+            }
             else
-            
-            printf("#");
-
+            {
+                printf("#");
+            }
         printf("\n");
     }
 }
