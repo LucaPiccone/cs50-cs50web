@@ -3,10 +3,13 @@
 
 int main(void)
 {
+    //Get user number.
     long credit = get_long("Number: ");
-
-    if ( credit / 1000000000000 % 10 == 4)
+    
+    //Determine Credit Card Number. 
+    if (credit / 1000000000000 % 10 == 4)
     {
+        //VALID or INVALID VISA.
         long vm = credit % 10;
         long vl = credit / 10 % 10 * 2;
         long vk = credit / 100 % 10;
@@ -21,7 +24,8 @@ int main(void)
         long vb = credit / 100000000000 % 10 * 2;
         long va = credit / 1000000000000 % 10;
 
-        int product = (vl / 10 % 10) + (vl % 10) + (vj % 10) + (vj / 10 % 10) + (vh % 10) + (vh / 10 % 10) + (vf % 10) + (vf / 10 % 10) + (vd % 10) + (vd / 10 % 10) + (vb % 10) + (vb / 10 % 10);
+        int product = (vl / 10 % 10) + (vl % 10) + (vj % 10) + (vj / 10 % 10) + (vh % 10) + (vh / 10 % 10) + (vf % 10) + (vf / 10 % 10) + 
+                      (vd % 10) + (vd / 10 % 10) + (vb % 10) + (vb / 10 % 10);
 
         int sum = product + vm + vk + vi + vg + ve + vc + va;
 
@@ -34,9 +38,11 @@ int main(void)
             printf("INVALID\n");
         }
     }
-
+    
+    //Determine Credit Card Number.
     else if (credit / 1000000000000000 % 10 == 4)
     {
+        //VALID or INVALID VISA.
         long vp = credit % 10;
         long vo = credit / 10 % 10 * 2;
         long vn = credit / 100 % 10;
@@ -54,7 +60,8 @@ int main(void)
         long vb = credit / 100000000000000 % 10;
         long va = credit / 1000000000000000 % 10 * 2;
 
-        int product = (vo / 10 % 10) + (vo % 10) + (vm % 10) + (vm / 10 % 10) + (vk % 10) + (vk / 10 % 10) + (vi % 10) + (vi / 10 % 10) + (vg % 10) + (vg / 10 % 10) + (ve % 10) + (ve / 10 % 10) + (vc % 10) + (vc / 10 % 10) + (va % 10) + (va / 10 % 10);
+        int product = (vo / 10 % 10) + (vo % 10) + (vm % 10) + (vm / 10 % 10) + (vk % 10) + (vk / 10 % 10) + (vi % 10) + (vi / 10 % 10) + 
+                      (vg % 10) + (vg / 10 % 10) + (ve % 10) + (ve / 10 % 10) + (vc % 10) + (vc / 10 % 10) + (va % 10) + (va / 10 % 10);
 
         int sum = product + vp + vn + vl + vj + vh + vf + vd + vb;
 
@@ -68,8 +75,10 @@ int main(void)
         }
     }
 
+    //Determine Credit Card Number.
     else if (credit / 10000000000000 % 100 == 37)
     {
+        //VALID or INVALID AMEX.
         long ap = credit % 10;
         long ao = credit / 10 % 10 * 2;
         long an = credit / 100 % 10;
@@ -87,7 +96,8 @@ int main(void)
         long ab = credit / 100000000000000 % 10;
 
 
-        int product = (ao % 10) + (ao / 10 % 10) + (am % 10) + (am / 10 % 10) + (ak % 10) + (ak / 10 % 10) + (ai % 10) + (ai / 10 % 10) + (ag % 10) + (ag / 10 % 10) + (ae % 10) + (ae / 10 % 10) + (ac % 10) + (ac / 10 % 10);
+        int product = (ao % 10) + (ao / 10 % 10) + (am % 10) + (am / 10 % 10) + (ak % 10) + (ak / 10 % 10) + (ai % 10) + (ai / 10 % 10) + 
+                      (ag % 10) + (ag / 10 % 10) + (ae % 10) + (ae / 10 % 10) + (ac % 10) + (ac / 10 % 10);
 
         int sum = product + ap + an + al + aj + ah + af + ad + ab;
 
@@ -101,8 +111,10 @@ int main(void)
         }
     }
 
+    //Determine Credit Card Number.
     else if (credit / 10000000000000 % 100 == 34)
     {
+        //VAILD or INVALID AMEX.
         long ap = credit % 10;
         long ao = credit / 10 % 10 * 2;
         long an = credit / 100 % 10;
@@ -120,7 +132,8 @@ int main(void)
         long ab = credit / 100000000000000 % 10;
 
 
-        int product = (ao % 10) + (ao / 10 % 10) + (am % 10) + (am / 10 % 10) + (ak % 10) + (ak / 10 % 10) + (ai % 10) + (ai / 10 % 10) + (ag % 10) + (ag / 10 % 10) + (ae % 10) + (ae / 10 % 10) + (ac % 10) + (ac / 10 % 10);
+        int product = (ao % 10) + (ao / 10 % 10) + (am % 10) + (am / 10 % 10) + (ak % 10) + (ak / 10 % 10) + (ai % 10) + (ai / 10 % 10) + 
+                      (ag % 10) + (ag / 10 % 10) + (ae % 10) + (ae / 10 % 10) + (ac % 10) + (ac / 10 % 10);
 
         int sum = product + ap + an + al + aj + ah + af + ad + ab;
 
@@ -134,8 +147,10 @@ int main(void)
         }
     }
 
+    //Determine Credit Card Number.
     else if (credit / 100000000000000 % 100 == 51)
     {
+        //VAILD or INVALID MASTERCARD.
         long p = credit % 10;
         long o = credit / 10 % 10 * 2;
         long n = credit / 100 % 10;
@@ -153,7 +168,8 @@ int main(void)
         long b = credit / 100000000000000 % 10;
         long a = credit / 1000000000000000 % 10 * 2;
 
-        int product = (o/ 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
+        int product = (o / 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + 
+                      (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
 
         int sum = product + p + n + l + j + h + f + d + b;
 
@@ -167,8 +183,10 @@ int main(void)
         }
     }
 
+    //Determine Credit Card Number.
     else if (credit / 100000000000000 % 100 == 52)
     {
+        //VAILD or INVALID MASTERCARD.
         long p = credit % 10;
         long o = credit / 10 % 10 * 2;
         long n = credit / 100 % 10;
@@ -186,7 +204,8 @@ int main(void)
         long b = credit / 100000000000000 % 10;
         long a = credit / 1000000000000000 % 10 * 2;
 
-        int product = (o/ 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
+        int product = (o / 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + 
+                      (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
 
         int sum = product + p + n + l + j + h + f + d + b;
 
@@ -200,8 +219,10 @@ int main(void)
         }
     }
 
+    //Determine Credit Card Number.
     else if (credit / 100000000000000 % 100 == 53)
     {
+        //VAILD or INVALID MASTERCARD.
         long p = credit % 10;
         long o = credit / 10 % 10 * 2;
         long n = credit / 100 % 10;
@@ -219,7 +240,8 @@ int main(void)
         long b = credit / 100000000000000 % 10;
         long a = credit / 1000000000000000 % 10 * 2;
 
-        int product = (o/ 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
+        int product = (o / 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + 
+                      (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
 
         int sum = product + p + n + l + j + h + f + d + b;
 
@@ -233,8 +255,10 @@ int main(void)
         }
     }
 
+    //Determine Credit Card Number.
     else if (credit / 100000000000000 % 100 == 54)
     {
+        //VAILD or INVALID MASTERCARD.
         long p = credit % 10;
         long o = credit / 10 % 10 * 2;
         long n = credit / 100 % 10;
@@ -252,7 +276,8 @@ int main(void)
         long b = credit / 100000000000000 % 10;
         long a = credit / 1000000000000000 % 10 * 2;
 
-        int product = (o/ 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
+        int product = (o / 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + 
+                      (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
 
         int sum = product + p + n + l + j + h + f + d + b;
 
@@ -266,8 +291,10 @@ int main(void)
         }
     }
 
+    //Determine Credit Card Number.
     else if (credit / 100000000000000 % 100 == 55)
     {
+        //VAILD or INVALID MASTERCARD.
         long p = credit % 10;
         long o = credit / 10 % 10 * 2;
         long n = credit / 100 % 10;
@@ -285,7 +312,8 @@ int main(void)
         long b = credit / 100000000000000 % 10;
         long a = credit / 1000000000000000 % 10 * 2;
 
-        int product = (o/ 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
+        int product = (o / 10 % 10) + (o % 10) + (m % 10) + (m / 10 % 10) + (k % 10) + (k / 10 % 10) + (i % 10) + (i / 10 % 10) + (g % 10) + 
+                      (g / 10 % 10) + (e % 10) + (e / 10 % 10) + (c / 10 % 10) + (c % 10) + (a / 10 % 10) + (a % 10);
 
         int sum = product + p + n + l + j + h + f + d + b;
 
@@ -298,6 +326,8 @@ int main(void)
             printf("INVALID\n");
         }
     }
+    
+    //Determine Credit Card Number.
     else
     {
         printf("INVALID\n");
