@@ -1,6 +1,5 @@
 #include <cs50.h>
 #include <stdio.h>
-
 // Declare new function at top of page.
 int get_pyramid_height(void);
 
@@ -14,13 +13,21 @@ int main(void)
 
         //Pyramid condtions
         if (y+x < n-1)
-        printf(" ");
+        {
+            printf(" ");
+        }
         else if (y+n+2 < x)
-        printf(" ");
+        {
+            printf(" ");
+        }
         else if (x == n ||x == n+1)
-        printf(" ");
+        {
+            printf(" ");
+        }
         else
-        printf("#");
+        {
+            printf("#");
+        }
         printf("\n");
     }
 }
