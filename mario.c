@@ -1,52 +1,47 @@
-#include <stdio.h>
 #include <cs50.h>
-
-int pyramid_height(void);
-
+#include <stdio.h>
+// Declare new function at top of page.
+int get_pyramid_height(void);
 
 int main(void)
 {
-    const int n = pyramid_height();
-    int width = n * 2 + 2;
-
-    for (int y = 0; y <= n - 1; y++)
+    //Prompt user for height of pyramid.
+    int n = get_pyramid_height();
+    for (int y = 0; y < n; y++)
     {
-        for (int x = 0; x <= width; x++)
+        for (int x = 0; x < n * 2 + 2; x++)
+
+        //Pyramid condtions
+        if (y + x < n - 1)
         {
-            if (y + n + 3 < x)
-            {
-                printf("%c", ' ');
-            }
-            else if (x == n + 1 || x == n + 2)
-            {
-                printf("%c", ' ');
-            }
-            else if ( x + y > n - 1)
-            {
-                printf("%c", '#');
-            }
-
-            else if (x < y)
-            {
-                printf("%c", ' ');
-            }
-
-            else
-            {
-                printf("%c", ' ');
-            }
+            printf(".");
+        }
+        else if (y + n + 2 < x)
+        {
+            printf(".");
+        }
+        else if (x == n || x == n + 1)
+        {
+            printf(".");
+        }
+        else
+        {
+            printf("#");
         }
         printf("\n");
     }
 }
 
-int pyramid_height(void)
+// Create new function.
+int get_pyramid_height(void)
+
+    // Function will return input to user if n is less than 1 or greator than 8
 {
     int n;
     do
     {
-        n = get_int("Pyramid height: ");
+        n = get_int("Pyramid Height? ");
     }
-    while (n < 1 || n > 8);
-    return (n);
+        while (n < 1 || n > 8);
+        return n;
 }
