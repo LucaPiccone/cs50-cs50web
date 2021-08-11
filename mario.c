@@ -12,22 +12,22 @@ int main(void)
         for (int x = 0; x < n * 2 + 2; x++)
         {
             //Pyramid condtions
-            if (y + x < n - 1)
-            {
-                printf(" ");
-            }
-            else if (y + n + 2 < x)
-            {
-                printf(" ");
-            }
-            else if (x == n || x == n + 1)
-            {
-                printf(" ");
-            }
-            else
-            {
-                printf("#");
-            }
+                if (y + x < n - 1)
+                {
+                    printf(" ");
+                }
+                else if (y + n + 2 < x)
+                {
+                    printf(" ");
+                }
+                else if (x == n || x == n + 1)
+                {
+                    printf(" ");
+                }
+                else
+                {
+                    printf("#");
+                }
         }
     printf("\n");
     }
@@ -44,5 +44,5 @@ int get_pyramid_height(void)
         n = get_int("Pyramid Height? ");
     }
         while (n < 1 || n > 8);
-        return n;
+        return (n - 1);
 }
