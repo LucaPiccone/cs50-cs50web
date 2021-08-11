@@ -10,25 +10,26 @@ int main(void)
     for (int y = 0; y < n; y++)
     {
         for (int x = 0; x < n * 2 + 2; x++)
-
-        //Pyramid condtions
-        if (y + x < n - 1)
         {
-            printf(" ");
+            //Pyramid condtions
+            if (y + x < n - 1)
+            {
+                printf(" ");
+            }
+            else if (y + n + 2 < x)
+            {
+                printf(" ");
+            }
+            else if (x == n || x == n + 1)
+            {
+                printf(" ");
+            }
+            else
+            {
+                printf("#");
+            }
         }
-        else if (y + n + 2 < x)
-        {
-            printf(" ");
-        }
-        else if (x == n || x == n + 1)
-        {
-            printf(" ");
-        }
-        else
-        {
-            printf("#");
-        }
-        printf("\n");
+    printf("\n");
     }
 }
 
