@@ -18,7 +18,7 @@ int main(void)
             }
             else if (y + n + 2 < x)
             {
-                printf(" ");
+                ;
             }
             else if (y + x < n - 1)
             {
