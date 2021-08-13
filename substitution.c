@@ -79,43 +79,43 @@ int keyCheck(int length, string word)
 {
     int n = strlen(word);
 
-    if (n != KEYLENGTH)
+    if (n != KEYLENGTH)                                         // If argv[1] does not consist of 26 characters return an error.
     {
         printf("Error, The Key Must Contain 26 Characters.\n");
         return 1;
     }
     else
     {
-        for (int i = 0; i < KEYLENGTH; i++)
+        for (int i = 0; i < KEYLENGTH; i++)                     
         {
-            if (word[i] < 'A' || word[i] > 'z')
+            if (word[i] < 'A' || word[i] > 'z')                 // If argv[1][i] is not a character return and error.
             {
                 printf("Error, The Key Must Contain Only Alphabetical Characters.\n");
                 return 1;
             }
-            else if (word[i] > 'Z' && word[i] < 'a')
+            else if (word[i] > 'Z' && word[i] < 'a')            // If argv[1][i] is not a character return and error.
             {
                 printf("Error, The Key Must Contain Only Alphabetical Characters.\n");
                 return 1;
             }
-            else
+            else                                                // Count for duplicate characters in agrv[1].
             {
                 int cc = 0;
                 for (int j = 0; j < KEYLENGTH; j++)
                 {
-                    if (word[i] == word[j])
+                    if (word[i] == word[j])                     // Check for the same character.
                     {
                         cc += 1;
                     }
-                    else if (word[i] == word[j] - 32)
+                    else if (word[i] == word[j] - 32)           // Check for duplicating characters across capitalized letters
                     {
                         cc += 1;
                     }
-                    else if (word[i] == word[j] + 32)
+                    else if (word[i] == word[j] + 32)           // Check for duplicating characters across lowercase letters.
                     {
                         cc += 1;
                     }
-                    if (cc > 1)
+                    if (cc > 1)                                 // If they're duplicate characters return an error.
                     {
                         printf("Error, Key Can not Contain Duplicating Chars.\n");
                         return 1;
