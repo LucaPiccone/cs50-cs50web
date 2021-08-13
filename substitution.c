@@ -60,10 +60,9 @@ int main(int argc, string argv[])
             finalcipher[i] = cipher[i];
         }
 
-        printf("%c", finalcipher[i]);
+        printf("ciphertext: %c", finalcipher[i]);
         i++;
     }
-    printf("\n");
 
 }
 
@@ -107,14 +106,3 @@ int checkKey(int length, string word)
     }
     return 0;
 }
-
-/*
-key dcbe (in this case d = a)
-a   b   c   d   e
-65  66  67  68  69
-
-plaintext: bee ({66, 69, 69})
-
-
-
-*/
