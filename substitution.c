@@ -2,33 +2,41 @@
 #include <cs50.h>
 #include <ctype.h>
 #include <string.h>
+
 //Constants.
 const int KEYLENGTH = 26;
-const int COMMAND_LINE_ARGUMENTS = 2;
 
 //Prototypes.
-int checkKey(int length, string word);
+int keyCheck(int length, string word);
 
 int main(int argc, string argv[])
 {
-    int length = argc;
+    // Assign Command Line Arguments to Var Key.
     string key = argv[1];
-
-    //Call Function.
-    int check = checkKey(length, key);
-    if (check == 1)
+    int commands = argc;
+    // If Command Line Arguments Count Does Not Equal 2, Return False
+    if (argc != 2)
+    {
+        printf("Error, Two Command Line Arguments Requried.\n");
+        return 1;
+    }
+    // Assign Function KeyCheck to a Var.
+    int confirmKey = keyCheck(commands, key);
+    if (confirmKey == 1)
     {
         return 1;
     }
-
-    //User Input of Plaintext.
+    // Get User Input for plaintext:
     string plaintext = get_string("Plaintext: ");
+    printf("Ciphertext: ");
 
+    //List Variables for cipher.
     int i = 0;
     int n = strlen(plaintext);
     int cipher[n];
     int finalcipher[n];
-    while (i < n)
+    // Cipher Text
+     while (i < n)
     {
         if (isupper(plaintext[i]))
         {
@@ -60,49 +68,62 @@ int main(int argc, string argv[])
             finalcipher[i] = cipher[i];
         }
 
-        printf("ciphertext: %c", finalcipher[i]);
+        printf("%c", finalcipher[i]);
         i++;
     }
-
+    printf("\n");
+    return 0;
 }
 
-
-int checkKey(int length, string word)
+int keyCheck(int length, string word)
 {
-    int wordlength = strlen(word);
+    int n = strlen(word);
 
-    if (length != COMMAND_LINE_ARGUMENTS)                                   // Accept a single command line argument, the key to use for the substitution
+    if (n != KEYLENGTH)
     {
-        printf( "Error, only two command line arguements required.\n " );        // print an error message and return 1 for programs exectued without any command-line arguments
+        printf("Error, The Key Must Contain 26 Characters.\n");
         return 1;
     }
     else
     {
-        if ( wordlength != KEYLENGTH)
+        for (int i = 0; i < KEYLENGTH; i++)
         {
-            printf("Error the key must contain 26 Characters.\n");   // Print an error message for programs executed without all / only 26 alphabetical characters
-            return 1;
-        }
-        else
-        {
-            for (int i = 0; i < KEYLENGTH; i++)
+            if (word[i] < 'A' || word[i] > 'z')
             {
-                if (word[i] < 'A' || word[i] > 'z')                         // print an error message for a program executed with invalid characters.
+                printf("Error, The Key Must Contain Only Alphabetical Characters.\n");
+                return 1;
+            }
+            else if (word[i] > 'Z' && word[i] < 'a')
+            {
+                printf("Error, The Key Must Contain Only Alphabetical Characters.\n");
+                return 1;
+            }
+            else
+            {
+                int cc = 0;
+                for (int j = 0; j < KEYLENGTH; j++)
                 {
-                    printf("Key must consist of alpabetical characters only.\n");
-                    return 1;
-                }
-                else if (word[i] > 'Z' && word[i] < 'a' )
-                {
-                    printf("Key must consist of alphabetical characters only.\n");
-                    return 1;
-                }
-                else
-                {
-                    ;
+                    if (word[i] == word[j])
+                    {
+                        cc += 1;
+                    }
+                    else if (word[i] == word[j] - 32)
+                    {
+                        cc += 1;
+                    }
+                    else if (word[i] == word[j] + 32)
+                    {
+                        cc += 1;
+                    }
+                    if (cc > 1)
+                    {
+                        printf("Error, Key Can not Contain Duplicating Chars.\n");
+                        return 1;
+                    }
                 }
             }
         }
     }
+
     return 0;
 }
