@@ -27,8 +27,8 @@ int main(int argc, string argv[])
         return 1;
     }
     // Get User Input for plaintext:
-    string plaintext = get_string("Plaintext: ");
-    printf("Ciphertext: ");
+    string plaintext = get_string("plaintext: ");
+    printf("ciphertext: ");
 
     //List Variables for cipher.
     int i = 0;
