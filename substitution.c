@@ -36,43 +36,43 @@ int main(int argc, string argv[])
     int cipher[n];
     int finalcipher[n];
     // Cipher Text
-     while (i < n)
+    while (i < n)
     {
-        if (isupper(plaintext[i]))
+        if (isupper(plaintext[i]))                              // Check For Uppercase in Plaintext
         {
-            cipher[i] = plaintext[i] - 'A';
-            if (islower(key[cipher[i]]))
+            cipher[i] = plaintext[i] - 'A';                     // Find The Location of Plaintext Character in the Alphabet
+            if (islower(key[cipher[i]]))                        // If Key's Location of Plaintexts Locations in the key is Lowercase
             {
-                finalcipher[i] = key[cipher[i]] - 'a' + 'A';
+                finalcipher[i] = key[cipher[i]] - 'a' + 'A';    // Assign it to finalcipher[i] as Uppercase to match plaintext[i] Uppercase
             }
-            else
+            else                                                // Else Assign finalcipher[i] to key's Character
             {
                 finalcipher[i] = key[cipher[i]];
             }
         }
-        else if (islower(plaintext[i]))
+        else if (islower(plaintext[i]))                         // If Plaintext[i] is lowercase
         {
-            cipher[i] = plaintext[i] - 'a';
-            if (isupper(key[cipher[i]]))
+            cipher[i] = plaintext[i] - 'a';                     // Find The Location of Plaintext's Character in the Alphabet
+            if (isupper(key[cipher[i]]))                        // If Key's Location of Plaintext's Location in the key is Uppercase
             {
-                finalcipher[i] = key[cipher[i]] - 'A' + 'a';
+                finalcipher[i] = key[cipher[i]] - 'A' + 'a';    // Assign it to finalcipher[i] as a Lowercase to match plaintext[i] Lowercase
             }
-            else
+            else                                                // Else Assign finalcipher[i] to key's Character.
             {
                 finalcipher[i] = key[cipher[i]];
             }
         }
-        else
+        else                                                    // If Plaintext[i] is not a Character
         {
             cipher[i] = plaintext[i];
-            finalcipher[i] = cipher[i];
+            finalcipher[i] = cipher[i];                         // Assign plaintext[i] to finalcipher[i]
         }
 
-        printf("%c", finalcipher[i]);
-        i++;
+        printf("%c", finalcipher[i]);                           // print each character if finalcipher [i]
+        i++;                                                    // increment i for the while loop;
     }
-    printf("\n");
-    return 0;
+    printf("\n");                                               // print a new line at the end of finalcipher.
+    return 0;                                                   // If all works well, return 0.
 }
 
 int keyCheck(int length, string word)
