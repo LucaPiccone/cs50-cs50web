@@ -1,0 +1,55 @@
+sort1 uses: TODO
+
+How do you know?: Comparing the real times using file 'sort1' versus files 'sort2' and 'sort3' I concluded, it was the longest when sorting random and reversed number files and the second longest to sort already sorted files
+    Random:                                         
+        5000:   real    0m0.064s    bubble sort
+        10000:  real    0m0.455s    bubble sort
+        50000:  real    0m16.231s   bubble sort
+        
+    reveresed:                                      
+        5000:   real    0m0.120s    bubble sort
+        10000:  real    0m0.292s    bubble sort
+        50000:  real    0m11.721s   bubble sort
+        
+    Sorted:                                         
+        5000:   real    0m0.024s    bubble sort
+        10000:  real    0m0.099s    bubble sort
+        50000:  real    0m2.557s    bubble sort
+
+sort2 uses: TODO
+
+How do you know?: Comparing the real times using file 'sort2' versus files 'sort1' and 'sort3' I concluded, it was the fastest in sorting all types of files.
+    Random: 
+        5000:   real    0m0.009s    merge sort
+        10000:  real    0m0.024s    merge sort
+        50000:  real    0m2.262a    merge sort
+        
+    Reversed: 
+        5000:   real    0m0.010s    merge sort
+        10000:  real    0m0.027s    merge sort
+        50000:  real    0m2.228s    merge sort
+        
+    Sorted: 
+        5000:   real    0m0.011s    merge sort
+        10000:  real    0m0.024s    merge sort
+        50000:  real    0m1.797s    merge sort 
+
+sort3 uses: TODO
+
+How do you know?: Comparing the real times using the file 'sort3' versus files 'sort1' and 'sort2' I concluded, it took the second longest to sort random and reverse files and the longest to sort already sorted files.
+
+    Random: 
+        5000:   real    0m0.045s    selection sort
+        10000:  real    0m0.204s    selection sort
+        50000:  real    0m8.204s    selection sort
+        
+    Revered: 
+        5000:   real    0m0.107s    selection sort
+        10000:  real    0m0.255s    selection sort
+        50000:  real    0m7.355s    selection sort
+        
+    Sorted: 
+        5000:   real    0m0.043s    selection sort
+        10000:  real    0m0.224s    selection sort
+        50000:  real    0m6.851s    selection sort
+    
