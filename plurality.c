@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // Max number of candidates
 #define MAX 9
@@ -77,24 +78,53 @@ bool vote(string name)
     return false;
 }
 
+int swap(int x, int y)
+{
+    int temp = 0;
+    if (x < y)
+    {
+        x = temp;
+        y = x;
+        temp = y;
+    }
+    return 0;
+}
+
+
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-    for (int i = 0; i < candidate_count; i++)
+    int n = candidate_count;
+
+    string names[n];
+    
+    int points[n];
+    for (int c = 0; c < n; c++)
     {
-        for (int j =0; j < i; j++)
+        points[c] = candidates[c].votes;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
         {
-            if (candidates[i].votes > candidates[j].votes)
+            int temp = 0;
+            if (points[j] > points[j + 1])
             {
-                printf("%s\n", candidates[i].name);
-            }
-            else if (candidates[i].votes < candidates[j].votes)
-            {
-                printf("%s\n", candidates[j].name);
+                temp = points[j];
+                points[j] = points[j + 1];
+                points[j + 1] = temp;
             }
         }
-
     }
-    return;
-}
+    
+    int winner = points[n - 1];
 
+    for (int i = 0; i < n; i++)
+    {
+        if (winner == candidates[i].votes)
+        {
+            printf("%s\n", candidates[i].name);
+        }
+    }
+}
