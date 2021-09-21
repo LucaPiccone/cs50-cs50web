@@ -81,7 +81,7 @@ int main(int argc, string argv[])
             }
         }
 
-    // DELETE THIS - Stored preferences - ORIGINAL
+    // DELETE THIS - Print 2d array Stored preferences
     // for (int s = 0; s < voter_count; s++)
     // {
     //     for (int t = 0; t < candidate_count; t++)
@@ -153,9 +153,10 @@ bool vote(int voter, int rank, string name)
     // Compare name with candidates.name options
     for (int i = 0; i < candidate_count; i++)
     {
+        // if the voters name matches one of the candidates.
         if (strcmp(name, candidates[i].name) == 0)
         {
-            // for voter 1; if rank 1 == candidate[i].name, return true, therefore store i inside [1][1] or else strcmp for voter 1 fails   
+            // for voter 1; if rank 1 == candidate[i].name, return true, therefore store i inside [1][1] or else strcmp fails return false.   
             preferences[voter][rank] = i;
             return true;
         }
@@ -166,11 +167,11 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
-    // If 
     for (int i = 0; i < voter_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
-        {
+        {   
+            // Increase candidates votes by 1 if they're the rankers first preference.
             if (preferences[i][0] == j)
             {
                 candidates[j].votes += 1;
@@ -189,6 +190,7 @@ bool print_winner(void)
     int points[n];
     for (int i = 0; i < n; i++)
     {
+        // If candidate is not eliminated copy candidates votes into the points array.
         if (candidates[i].eliminated == false)
             points[i] = candidates[i].votes;
     }
@@ -197,6 +199,7 @@ bool print_winner(void)
     {
         for (int j = i + 1; j < n; j++)
         {
+            // Selection sort the points array from smallest to biggest.
             if (points[i] < points[j])
                 continue;
             else
@@ -209,10 +212,10 @@ bool print_winner(void)
     int winner;
     for (int i = 0; i < n; i++)
     {
+        // If candidates vote is more then half the voters. Print winner. 
         if (candidates[i].votes > (v - 1) / 2)
         {
-            if (points[n-1] != points[n-2])
-            winner = points[n - 1];
+           winner = points[n - 1];
         }
     }
 
@@ -227,6 +230,7 @@ bool print_winner(void)
     return false;
 }
 
+// A swap function for sorting algorithms.
 void swap(int *x, int *y)
 {
     int temporary = *x;
@@ -241,14 +245,15 @@ int find_min(void)
     int points[n];
     for (int i = 0; i < n; i++)
     {
+        // Copy all candidates votes into a points array
         points[i] = candidates[i].votes;
-
     }
 
     for (int i = 0; i < n; i++)
     {
         for (int j = i + 1; j < n; j++)
         {
+            // Selection sort the points array from smallest to biggest
             if (points[i] < points[j])
                 continue;
             else
@@ -261,6 +266,7 @@ int find_min(void)
     int min;
     for (int i = 0; i < candidate_count; i++)
     {
+        // If the candidate is not eliminated already. Store the smallest number of votes a candidate has in min.
         if (candidates[i].eliminated == false)
         {
             min = points[i];
@@ -275,29 +281,43 @@ int find_min(void)
 bool is_tie(int min)
 {
     // TODO
-    int n = candidate_count;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
-        if (candidates[i].votes == min)
+        for (int j = i + 1; j < candidate_count; j++)
         {
-            candidates[i].eliminated = true;
-        }
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        if (candidates[i].votes != min)
-        {
-            for (int j = 0; j < n; j++)
+            if (candidates[i].votes == candidates[j].votes)
             {
-                if (candidates[i].votes == candidates[j].votes)
-                {
-                    if (j != i)
-                    return true;
-                }
+                return true;
             }
         }
     }
+    
+    // int n = candidate_count;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     // If the candidates votes match the minimun number of votes, eliminate them.
+    //     if (candidates[i].votes == min)
+    //     {
+    //         candidates[i].eliminated = true;
+    //     }
+    // }
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     // If the candidates votes is not minimum
+    //     if (candidates[i].votes != min)
+    //     {
+    //         for (int j = 0; j < n; j++)
+    //         {   
+    //             // 
+    //             if (candidates[i].votes == candidates[j].votes)
+    //             {
+    //                 if (j != i)
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    // }
     return false;
 }
 
@@ -306,6 +326,7 @@ void eliminate(int min)
 {
     for (int i = 0; i < candidate_count; i++)
     {
+        // If candidates votes is the minimum number of voters eliminate candidate.
         if (candidates[i].votes == min)
         {
             candidates[i].eliminated = true;
