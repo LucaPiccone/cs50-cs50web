@@ -81,15 +81,15 @@ int main(int argc, string argv[])
             }
         }
 
-    // Testing preferences array do delete!!
-    for (int s = 0; s < voter_count; s++)
-    {
-        for (int t = 0; t < candidate_count; t++)
-        {
-            printf("%i", preferences[s][t]);
-        }
-        printf("\n");
-    }
+    // DELETE THIS - Stored preferences - ORIGINAL
+    // for (int s = 0; s < voter_count; s++)
+    // {
+    //     for (int t = 0; t < candidate_count; t++)
+    //     {
+    //         printf("%i", preferences[s][t]);
+    //     }
+    //     printf("\n");
+    // }
 
         printf("\n");
     }
@@ -100,11 +100,11 @@ int main(int argc, string argv[])
         // Calculate votes given remaining candidates
         tabulate();
 
-        // DELETE THIS
-        for (int j = 0; j < candidate_count; j++)
-        {
-             printf("%i\n", candidates[j].votes);
-        }
+        // DELETE THIS - PRINT EACH CANDIDATES.VOTES
+        // for (int j = 0; j < candidate_count; j++)
+        // {
+        //      printf("%i\n", candidates[j].votes);
+        // }
 
         // Check if election has been won
         bool won = print_winner();
@@ -112,14 +112,14 @@ int main(int argc, string argv[])
         {
             break;
         }
-        
+
 
         // Eliminate last-place candidates
         int min = find_min();
-        
-        // DELETE THIS
-        printf("This is min: %i\n", min);
-        
+
+        // DELETE THIS - PRINT THE MIN CANDIDATES.VOTES
+        // printf("This is min: %i\n", min);
+
         bool tie = is_tie(min);
 
         // If tie, everyone wins
@@ -150,21 +150,23 @@ int main(int argc, string argv[])
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
 {
-    // TODO
-        for (int i = 0; i < candidate_count; i++)
+    // Compare name with candidates.name options
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (strcmp(name, candidates[i].name) == 0)
         {
-            if (strcmp(name, candidates[i].name) == 0)
-            {
-                preferences[voter][rank] = i;
-                return true;
-            }
+            // for voter 1; if rank 1 == candidate[i].name, return true, therefore store i inside [1][1] or else strcmp for voter 1 fails   
+            preferences[voter][rank] = i;
+            return true;
         }
+    }
     return false;
 }
 
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
+    // If 
     for (int i = 0; i < voter_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
@@ -183,6 +185,7 @@ bool print_winner(void)
 {
     // TODO
     int n = candidate_count;
+    int v = voter_count;
     int points[n];
     for (int i = 0; i < n; i++)
     {
@@ -206,7 +209,7 @@ bool print_winner(void)
     int winner;
     for (int i = 0; i < n; i++)
     {
-        if (candidates[i].votes > (n - 1) / 2)
+        if (candidates[i].votes > (v - 1) / 2)
         {
             if (points[n-1] != points[n-2])
             winner = points[n - 1];
@@ -254,7 +257,7 @@ int find_min(void)
             }
         }
     }
-    
+
     int min;
     for (int i = 0; i < candidate_count; i++)
     {
@@ -264,7 +267,7 @@ int find_min(void)
             return min;
         }
     }
-    
+
     return 0;
 }
 
@@ -280,8 +283,8 @@ bool is_tie(int min)
             candidates[i].eliminated = true;
         }
     }
-    
-    for (int i = 0; i < candidate_count; i++)
+
+    for (int i = 0; i < n; i++)
     {
         if (candidates[i].votes != min)
         {
@@ -291,7 +294,7 @@ bool is_tie(int min)
                 {
                     if (j != i)
                     return true;
-                }   
+                }
             }
         }
     }
