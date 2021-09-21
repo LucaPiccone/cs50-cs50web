@@ -246,7 +246,8 @@ int find_min(void)
     for (int i = 0; i < n; i++)
     {
         // Copy all candidates votes into a points array
-        points[i] = candidates[i].votes;
+        if (candidates[i].eliminated == false)
+            points[i] = candidates[i].votes;
     }
 
     for (int i = 0; i < n; i++)
