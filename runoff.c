@@ -155,11 +155,14 @@ bool vote(int voter, int rank, string name)
     for (int i = 0; i < candidate_count; i++)
     {
         // if the voters name matches one of the candidates.
-        if (strcmp(name, candidates[i].name) == 0)
+        if (candidates[i].eliminated == 0)
         {
-            // for voter 1; if rank 1 == candidate[i].name, return true, therefore store i inside [1][1] or else strcmp fails return false.   
-            preferences[voter][rank] = i;
-            return true;
+            if (strcmp(name, candidates[i].name) == 0)
+            {
+                // for voter 1; if rank 1 == candidate[i].name, return true, therefore store i inside [1][1] or else strcmp fails return false.   
+                preferences[voter][rank] = i;
+                return true;
+            }   
         }
     }
     return false;
@@ -172,9 +175,22 @@ void tabulate(void)
     {
         for (int j = 0; j < candidate_count; j++)
         {   
-            if (preferences[i][0] == j && candidates[j].eliminated == false)
+            if (preferences[i][0] == j)
             {
-                candidates[j].votes += 1;   
+                if (candidates[j].eliminated == false)
+                {
+                    candidates[j].votes += 1;     
+                }
+                else
+                {
+                    for (int k = 0; k < candidate_count; k++)
+                    {
+                        if (preferences[i][1] == k && candidates[k].eliminated == false)
+                        {
+                        candidates[k].votes += 1;
+                        }
+                    }
+                }
             }
         }
     }
@@ -188,7 +204,8 @@ bool print_winner(void)
     
     int n = candidate_count;
     int v = voter_count;
-    float mid = roundf((v / 2));
+    float mid = (v / 2.0);
+    
     // Delete this
     // printf("This is mid: %f\n", mid);
     
@@ -198,7 +215,7 @@ bool print_winner(void)
         if (candidates[i].votes > mid)
         {
             // Candidate wins.
-            printf("%s", candidates[i].name);
+            printf("%s\n", candidates[i].name);
             return true;
         }
     }
@@ -252,31 +269,64 @@ int find_min(void)
 bool is_tie(int min)
 {
     // TODO
-    int n = candidate_count;
-    int points[n];
-    for (int i = 0; i < n; i++)
+    int check_tie = 0;
+    for (int i = 0; i < candidate_count; i++)
     {
-        // Copy all candidates votes into a points array
-        points[i] = candidates[i].votes;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = i + 1; j < n; j++)
+        if (candidates[i].votes == min)
         {
-            // Selection sort the points array from smallest to biggest
-            if (points[i] > points[j])
-                swap(&points[i], &points[j]);
+            check_tie += 1;
         }
+        if (check_tie == candidate_count)
+        {
+            return true;
+        }
+        else
+            continue;
     }
+    // int n = candidate_count;
+    // int points[n];
+    // for (int i = 0; i < n; i++)
+    // {
+    //     // Copy all candidates votes into a points array
+    //     points[i] = candidates[i].votes;
+    //     printf("Before: %i", points[i]);
+    // }
+    // printf("\n");
+
+    // for (int i = 0; i < n - 1; i++)
+    // {
+    //     for (int j = i + 1; j < n; j++)
+    //     {
+    //         // Selection sort the points array from smallest to biggest
+    //         if (points[i] > points[j])
+    //             swap(&points[i], &points[j]);
+    //         else
+    //             continue;
+    //     }
+    // }
     
-    for (int i = 0; i < n - 1; i++)
-    {
-            if (points[i] == points[n - 1])
-            {
-                return true;
-            }
-    }
+    // // test
+    // for (int i = 0; i < candidate_count; i++)
+    // {
+    //     printf("After %i", points[i]);
+    // }
+    // printf("\n");
+    
+    // int tie;
+    // for (int i = 0; i < n - 1; i++)
+    // {
+    //     if (candidates[i].votes != min)
+    //     {
+    //         tie = candidates[i].votes;
+    //         for (int j = i + 1; j < n; j++)
+    //         {
+    //             if (tie == candidates[j].votes)
+    //             {
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    // }
     return false;
 }
 
