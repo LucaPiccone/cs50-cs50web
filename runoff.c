@@ -159,10 +159,10 @@ bool vote(int voter, int rank, string name)
         {
             if (strcmp(name, candidates[i].name) == 0)
             {
-                // for voter 1; if rank 1 == candidate[i].name, return true, therefore store i inside [1][1] or else strcmp fails return false.   
+                // for voter 1; if rank 1 == candidate[i].name, return true, therefore store i inside [1][1] or else strcmp fails return false.
                 preferences[voter][rank] = i;
                 return true;
-            }   
+            }
         }
     }
     return false;
@@ -174,12 +174,12 @@ void tabulate(void)
     for (int i = 0; i < voter_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
-        {   
+        {
             if (preferences[i][0] == j)
             {
                 if (candidates[j].eliminated == false)
                 {
-                    candidates[j].votes += 1;     
+                    candidates[j].votes += 1;
                 }
                 else
                 {
@@ -201,14 +201,14 @@ void tabulate(void)
 bool print_winner(void)
 {
     // TODO
-    
+
     int n = candidate_count;
     int v = voter_count;
     float mid = (v / 2.0);
-    
+
     // Delete this
     // printf("This is mid: %f\n", mid);
-    
+
     for (int i = 0; i < n; i++)
     {
         // If a candidate has more than 50% of votes
@@ -260,6 +260,10 @@ int find_min(void)
             min = points[i];
             return min;
         }
+        else 
+        {
+            continue;
+        }
     }
 
     return 0;
@@ -304,14 +308,14 @@ bool is_tie(int min)
     //             continue;
     //     }
     // }
-    
+
     // // test
     // for (int i = 0; i < candidate_count; i++)
     // {
     //     printf("After %i", points[i]);
     // }
     // printf("\n");
-    
+
     // int tie;
     // for (int i = 0; i < n - 1; i++)
     // {
