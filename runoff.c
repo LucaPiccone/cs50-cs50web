@@ -82,15 +82,15 @@ int main(int argc, string argv[])
             }
         }
 
-    // DELETE THIS - Print 2d array Stored preferences
-    for (int s = 0; s < voter_count; s++)
-    {
-        for (int t = 0; t < candidate_count; t++)
-        {
-            printf("%i", preferences[s][t]);
-        }
-        printf("\n");
-    }
+        // TEST THIS - Print 2d array Stored preferences
+        // for (int s = 0; s < voter_count; s++)
+        // {
+        //     for (int t = 0; t < candidate_count; t++)
+        //     {
+        //         printf("%i", preferences[s][t]);
+        //     }
+        //     printf("\n");
+        // }
 
         printf("\n");
     }
@@ -101,11 +101,11 @@ int main(int argc, string argv[])
         // Calculate votes given remaining candidates
         tabulate();
 
-        // DELETE THIS - PRINT EACH CANDIDATES.VOTES
-        for (int j = 0; j < candidate_count; j++)
-        {
-             printf("%i\n", candidates[j].votes);
-        }
+        // TEST - PRINT EACH CANDIDATES.VOTES
+        // for (int j = 0; j < candidate_count; j++)
+        // {
+        //      printf("%i\n", candidates[j].votes);
+        // }
 
         // Check if election has been won
         bool won = print_winner();
@@ -118,8 +118,8 @@ int main(int argc, string argv[])
         // Eliminate last-place candidates
         int min = find_min();
 
-        // DELETE THIS - PRINT THE MIN CANDIDATES.VOTES
-        printf("This is min: %i\n", min);
+        // TEST - PRINT THE MIN CANDIDATES.VOTES
+        // printf("This is min: %i\n", min);
 
         bool tie = is_tie(min);
 
@@ -187,7 +187,7 @@ void tabulate(void)
                     {
                         if (preferences[i][1] == k && candidates[k].eliminated == false)
                         {
-                        candidates[k].votes += 1;
+                            candidates[k].votes += 1;
                         }
                     }
                 }
@@ -206,7 +206,7 @@ bool print_winner(void)
     int v = voter_count;
     float mid = (v / 2.0);
 
-    // Delete this
+    // TEST this
     // printf("This is mid: %f\n", mid);
 
     for (int i = 0; i < n; i++)
@@ -247,23 +247,27 @@ int find_min(void)
         {
             // Selection sort the points array from smallest to biggest
             if (points[i] > points[j])
+            {
                 swap(&points[i], &points[j]);
+            }
         }
     }
     
     // TEST 
-    for (int i = 0; i < candidate_count; i++)
-    {
-        printf("Min array: %i", points[i]);
-    }
+    // for (int i = 0; i < candidate_count; i++)
+    // {
+    //     printf("Min array: %i", points[i]);
+    // }
     
     int min;
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
         {
+            // check if smalled number is the same of candidates[i].votes
             if (points[i] == candidates[j].votes)
             {
+                // Check if the candidate is not already eliminated
                 if (candidates[j].eliminated == false)
                 {
                     min = candidates[j].votes;
@@ -272,21 +276,6 @@ int find_min(void)
             }   
         }
     }
-
-    // for (int i = 0; i < candidate_count; i++)
-    // {
-    //     // If the candidate is not eliminated already. Store the smallest number of votes a candidate has in min.
-    //     if (candidates[i].eliminated == false)
-    //     {
-    //         min = points[i];
-    //         return min;
-    //     }
-    //     else 
-    //     {
-    //         continue;
-    //     }
-    // }
-
     return 0;
 }
 
@@ -297,16 +286,16 @@ bool is_tie(int min)
     int check_tie = 0;
     for (int i = 0; i < candidate_count; i++)
     {
+        // if candidates[i].votes is the same as min, add one to check_tie
         if (candidates[i].votes == min)
         {
             check_tie += 1;
         }
+        // if check tie is the same number of all candidates.
         if (check_tie == candidate_count)
         {
             return true;
         }
-        else
-            continue;
     }
     
     return false;
@@ -321,6 +310,7 @@ void eliminate(int min)
         if (candidates[i].votes == min)
         {
             candidates[i].eliminated = true;
+            // TEST - If candidate was successfully eliminated.
             // if (candidates[i].eliminated == true)
             // {
             //     printf("Candidate %s was elimanted\n", candidates[i].name);
