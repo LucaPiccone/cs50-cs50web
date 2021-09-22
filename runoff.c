@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 // Max voters and candidates
 #define MAX_VOTERS 100
@@ -171,10 +172,9 @@ void tabulate(void)
     {
         for (int j = 0; j < candidate_count; j++)
         {   
-            // Increase candidates votes by 1 if they're the rankers first preference.
-            if (preferences[i][0] == j)
+            if (preferences[i][0] == j && candidates[j].eliminated == false)
             {
-                candidates[j].votes += 1;
+                candidates[j].votes += 1;   
             }
         }
     }
@@ -185,45 +185,20 @@ void tabulate(void)
 bool print_winner(void)
 {
     // TODO
+    
     int n = candidate_count;
     int v = voter_count;
-    int points[n];
+    float mid = roundf((v / 2));
+    // Delete this
+    // printf("This is mid: %f\n", mid);
+    
     for (int i = 0; i < n; i++)
     {
-        // If candidate is not eliminated copy candidates votes into the points array.
-        if (candidates[i].eliminated == false)
-            points[i] = candidates[i].votes;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = i + 1; j < n; j++)
+        // If a candidate has more than 50% of votes
+        if (candidates[i].votes > mid)
         {
-            // Selection sort the points array from smallest to biggest.
-            if (points[i] < points[j])
-                continue;
-            else
-            {
-                swap(&points[i], &points[j]);
-            }
-        }
-    }
-
-    int winner;
-    for (int i = 0; i < n; i++)
-    {
-        // If candidates vote is more then half the voters. Print winner. 
-        if (candidates[i].votes > (v - 1) / 2)
-        {
-           winner = points[n - 1];
-        }
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        if (winner == candidates[i].votes)
-        {
-            printf("%s\n", candidates[i].name);
+            // Candidate wins.
+            printf("%s", candidates[i].name);
             return true;
         }
     }
@@ -246,8 +221,7 @@ int find_min(void)
     for (int i = 0; i < n; i++)
     {
         // Copy all candidates votes into a points array
-        if (candidates[i].eliminated == false)
-            points[i] = candidates[i].votes;
+        points[i] = candidates[i].votes;
     }
 
     for (int i = 0; i < n; i++)
@@ -255,12 +229,8 @@ int find_min(void)
         for (int j = i + 1; j < n; j++)
         {
             // Selection sort the points array from smallest to biggest
-            if (points[i] < points[j])
-                continue;
-            else
-            {
+            if (points[i] > points[j])
                 swap(&points[i], &points[j]);
-            }
         }
     }
 
@@ -282,43 +252,31 @@ int find_min(void)
 bool is_tie(int min)
 {
     // TODO
-    for (int i = 0; i < candidate_count; i++)
+    int n = candidate_count;
+    int points[n];
+    for (int i = 0; i < n; i++)
     {
-        for (int j = i + 1; j < candidate_count; j++)
+        // Copy all candidates votes into a points array
+        points[i] = candidates[i].votes;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
         {
-            if (candidates[i].votes == candidates[j].votes)
-            {
-                return true;
-            }
+            // Selection sort the points array from smallest to biggest
+            if (points[i] > points[j])
+                swap(&points[i], &points[j]);
         }
     }
     
-    // int n = candidate_count;
-    // for (int i = 0; i < n; i++)
-    // {
-    //     // If the candidates votes match the minimun number of votes, eliminate them.
-    //     if (candidates[i].votes == min)
-    //     {
-    //         candidates[i].eliminated = true;
-    //     }
-    // }
-
-    // for (int i = 0; i < n; i++)
-    // {
-    //     // If the candidates votes is not minimum
-    //     if (candidates[i].votes != min)
-    //     {
-    //         for (int j = 0; j < n; j++)
-    //         {   
-    //             // 
-    //             if (candidates[i].votes == candidates[j].votes)
-    //             {
-    //                 if (j != i)
-    //                 return true;
-    //             }
-    //         }
-    //     }
-    // }
+    for (int i = 0; i < n - 1; i++)
+    {
+            if (points[i] == points[n - 1])
+            {
+                return true;
+            }
+    }
     return false;
 }
 
@@ -331,6 +289,10 @@ void eliminate(int min)
         if (candidates[i].votes == min)
         {
             candidates[i].eliminated = true;
+            // if (candidates[i].eliminated == true)
+            // {
+            //     printf("Candidate %s was elimanted\n", candidates[i].name);
+            // }
         }
     }
     return;
