@@ -47,9 +47,9 @@ int main(int argc, char *argv[])
     BYTE *p = &header[44];
 
     // This is the last location of memory storing the header of the audio file
-    printf("%p\n", p);
+    //printf("%p\n", p);
     // first postion. 
-    printf("%p\n", &header);
+    //printf("%p\n", &header);
 
     // TODO: Read samples from input file and write updated data to output file - Samples, 16 Byte
     twoBYTE buffer;
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     for (int i = 0; fread(&buffer, sizeof(twoBYTE), 1, input); i++)
     {
         twoBYTE *P = &buffer;
-        *P = *P * 2;
+        *P = *P * factor;
         
         fwrite(&buffer, sizeof(twoBYTE), 1, output);
     }
