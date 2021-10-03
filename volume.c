@@ -37,35 +37,33 @@ int main(int argc, char *argv[])
 
     float factor = atof(argv[3]);
 
-    // Bytes = 352844
-    // TODO: Copy header from input file to output file - Header, first 44 Bytes
-    BYTE header[44];
+    printf("%f\n", 4 * factor);
 
-    fread(header, sizeof(BYTE), 44, input);
-    fwrite(header, sizeof(BYTE), 44, output);
+    // TODO: Copy header from input file to output file - Header, first 44 Bytes
+    BYTE header[HEADER_SIZE];
+
+    fread(header, HEADER_SIZE, 1, input);
+    fwrite(header, HEADER_SIZE, 1, output);
 
     BYTE *p = &header[44];
 
     // This is the last location of memory storing the header of the audio file
     //printf("%p\n", p);
-    // first postion. 
+    // first postion.
     //printf("%p\n", &header);
 
     // TODO: Read samples from input file and write updated data to output file - Samples, 16 Byte
     twoBYTE buffer;
-    
+
     for (int i = 0; fread(&buffer, sizeof(twoBYTE), 1, input); i++)
     {
-        twoBYTE *P = &buffer;
-        *P = *P * factor;
-        
+        //twoBYTE *P = &buffer;
+
+        buffer *= factor;
+
         fwrite(&buffer, sizeof(twoBYTE), 1, output);
     }
-    
-    
 
-    //free(buffer);
-    //free(s);
     // Close files
     fclose(input);
     fclose(output);
