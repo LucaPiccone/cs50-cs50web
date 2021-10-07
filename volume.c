@@ -8,7 +8,7 @@
 const int HEADER_SIZE = 44;
 
 typedef uint8_t BYTE;
-typedef uint16_t twoBYTE;
+typedef int16_t TWOBYTES;
 
 int main(int argc, char *argv[])
 {
@@ -37,34 +37,44 @@ int main(int argc, char *argv[])
 
     float factor = atof(argv[3]);
 
-    printf("%f\n", 4 * factor);
+    printf("%f\n", factor);
 
+    //Total bytes in the file 352844.
+    
     // TODO: Copy header from input file to output file - Header, first 44 Bytes
     BYTE header[HEADER_SIZE];
 
     fread(header, HEADER_SIZE, 1, input);
     fwrite(header, HEADER_SIZE, 1, output);
 
-    BYTE *p = &header[44];
+    printf("%p\n", &header[0]);
+    printf("%p\n", &header[44]);
 
-    // This is the last location of memory storing the header of the audio file
-    //printf("%p\n", p);
-    // first postion.
-    //printf("%p\n", &header);
 
-    // TODO: Read samples from input file and write updated data to output file - Samples, 16 Byte
-    twoBYTE buffer;
+    // TODO: Read samples from input file and write updated data to output file - Samples, 16 Byte - 17400 - 352800
+    TWOBYTES buffer;
+    int i = 0;
 
-    for (int i = 0; fread(&buffer, sizeof(twoBYTE), 1, input); i++)
+    while(fread(&buffer, sizeof(TWOBYTES), 1, input))
     {
-        //twoBYTE *P = &buffer;
-
-        buffer *= factor;
-
-        fwrite(&buffer, sizeof(twoBYTE), 1, output);
+        TWOBYTES *pt;
+        
+        pt = &buffer;
+        
+        *pt = *pt * factor;
+        fwrite(&buffer, sizeof(TWOBYTES), 1, output);
+        
+        i++;
+    
     }
+    
+    printf("I: %i\n", i);
+
 
     // Close files
     fclose(input);
     fclose(output);
+
+    return 0;
+
 }
