@@ -47,15 +47,17 @@ int main(int argc, char *argv[])
     fread(header, HEADER_SIZE, 1, input);
     fwrite(header, HEADER_SIZE, 1, output);
 
-    printf("%p\n", &header[0]);
-    printf("%p\n", &header[44]);
+    // printf("%p\n", &header[0]);
+    // printf("%p\n", &header[44]);
 
 
     // TODO: Read samples from input file and write updated data to output file - Samples, 16 Byte - 17400 - 352800
+    // Declare TWOBYTE as a signed int16
     TWOBYTES buffer;
-    int i = 0;
+    
+    // int i = 0;
 
-    while(fread(&buffer, sizeof(TWOBYTES), 1, input))
+    while (fread(&buffer, sizeof(TWOBYTES), 1, input))
     {
         TWOBYTES *pt;
         
@@ -64,7 +66,7 @@ int main(int argc, char *argv[])
         *pt = *pt * factor;
         fwrite(&buffer, sizeof(TWOBYTES), 1, output);
         
-        i++;
+        //i++;
     
     }
     
