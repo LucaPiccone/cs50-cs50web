@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
 
     // TODO: Read samples from input file and write updated data to output file - Samples, 16 Byte - 17400 - 352800
-    // Declare TWOBYTE as a signed int16
+    // Declare TWOBYTE as a signed int16_t
     TWOBYTES buffer;
     
     // int i = 0;
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     
     }
     
-    printf("I: %i\n", i);
+    // printf("I: %i\n", i);
 
 
     // Close files
