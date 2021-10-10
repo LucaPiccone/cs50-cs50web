@@ -1,5 +1,6 @@
 #include "helpers.h"
 #include <stdio.h>
+#include <math.h>
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -8,11 +9,11 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            BYTE Blue = image[i][j].rgbtBlue;
-            BYTE Green = image[i][j].rgbtGreen;
-            BYTE Red = image[i][j].rgbtRed;
+            BYTE Blue = round(image[i][j].rgbtBlue);
+            BYTE Green = round(image[i][j].rgbtGreen);
+            BYTE Red = round(image[i][j].rgbtRed);
             
-            BYTE average = (Blue + Green + Red) / (float)3;
+            BYTE average = round(Blue + Green + Red) / 3;
             
             image[i][j].rgbtBlue = average;
             image[i][j].rgbtGreen = average;
