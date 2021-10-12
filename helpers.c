@@ -29,7 +29,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     for (int i = 0; i < height; i++)
     {
-        int n = width * 2;
+        int n = (width - 1) * 2;
         for (int j = 0; j < width; j++)
         {
             BYTE Blue = image[i][n].rgbtBlue;
