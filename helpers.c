@@ -27,11 +27,16 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    printf("%i\n", width);
     for (int i = 0; i < height; i++)
     {
-        int n = (width - 1) * 2;
+        int n = width;
         for (int j = 0; j < width; j++)
         {
+            BYTE blue_temp = image[i][j].rgbtBlue;
+            BYTE green_temp = image[i][j].rgbtGreen;
+            BYTE red_temp = image[i][j].rgbtRed;
+
             BYTE Blue = image[i][n].rgbtBlue;
             BYTE Green = image[i][n].rgbtGreen;
             BYTE Red = image[i][n].rgbtRed;
@@ -39,6 +44,10 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = Blue;
             image[i][j].rgbtGreen = Green;
             image[i][j].rgbtRed = Red;
+
+            image[i][n].rgbtBlue = blue_temp;
+            image[i][n].rgbtGreen = green_temp;
+            image[i][n].rgbtRed = red_temp;
 
             n--;
         }
