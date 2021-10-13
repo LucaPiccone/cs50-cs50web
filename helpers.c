@@ -30,7 +30,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     printf("%i\n", width);
     for (int i = 0; i < height; i++)
     {
-        int n = width;
+        int n = width - 1;
         for (int j = 0; j < width; j++)
         {
             BYTE blue_temp = image[i][j].rgbtBlue;
