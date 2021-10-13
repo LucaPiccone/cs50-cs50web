@@ -363,11 +363,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 BYTE green_B = image[i+1][j].rgbtGreen;
                 BYTE red_B = image[i+1][j].rgbtRed;
 
-                BYTE blue_total_average = (blue_TR + blue_T + blue_TL + blue_L + blue + blue_R + blue_BL + blue_B + blue_BR) / 9;
+                BYTE blue_total_average = round((blue_TR + blue_T + blue_TL + blue_L + blue + blue_R + blue_BL + blue_B + blue_BR) / 9.0);
 
-                BYTE green_total_average = (green_TR + green_T + green_TL + green_L + green + green_R + green_BL + green_B + green_BR) / 9;
+                BYTE green_total_average = round((green_TR + green_T + green_TL + green_L + green + green_R + green_BL + green_B + green_BR) / 9.0);
 
-                BYTE red_total_average = (red_TR + red_T + red_TL + red_L + red + red_R + red_BL + red_B + red_BR) / 9;
+                BYTE red_total_average = round((red_TR + red_T + red_TL + red_L + red + red_R + red_BL + red_B + red_BR) / 9.0);
 
                 image[i][j].rgbtBlue = blue_total_average;
                 image[i][j].rgbtGreen = green_total_average;
