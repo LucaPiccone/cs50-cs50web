@@ -105,9 +105,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_bottom_right = image_copy_green[i + 1][j + 1];
                     BYTE red_bottom_right = image_copy_red[i + 1][j + 1];
 
-                    BYTE blue_average = round((blue_right + blue_bottom + blue_bottom_right + blue) / 4.0);
-                    BYTE green_average = round((green_right + green_bottom + green_bottom_right + green) / 4.0);
-                    BYTE red_average = round((red_right + red_bottom + red_bottom_right + red) / 4.0);
+                    BYTE blue_average = round((blue_right + blue_bottom + blue_bottom_right + blue) / 4);
+                    BYTE green_average = round((green_right + green_bottom + green_bottom_right + green) / 4);
+                    BYTE red_average = round((red_right + red_bottom + red_bottom_right + red) / 4);
 
                     image[i][j].rgbtBlue = blue_average;
                     image[i][j].rgbtGreen = green_average;
@@ -132,9 +132,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_bottom_left = image_copy_green[i + 1][j - 1];
                     BYTE red_bottom_left = image_copy_red[i + 1][j - 1];
 
-                    BYTE blue_average = round((blue_left + blue_bottom + blue_bottom_left + blue) / 4.0);
-                    BYTE green_average = round((green_left + green_bottom + green_bottom_left + green) / 4.0);
-                    BYTE red_average = round((red_left + red_bottom + red_bottom_left + red) / 4.0);
+                    BYTE blue_average = round((blue_left + blue_bottom + blue_bottom_left + blue) / 4);
+                    BYTE green_average = round((green_left + green_bottom + green_bottom_left + green) / 4);
+                    BYTE red_average = round((red_left + red_bottom + red_bottom_left + red) / 4);
 
                     image[i][j].rgbtBlue = blue_average;
                     image[i][j].rgbtGreen = green_average;
@@ -167,9 +167,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_bottom_right = image_copy_green[i+1][j+1];
                     BYTE red_bottom_right = image_copy_red[i+1][j+1];
 
-                    BYTE blue_average = round((blue + blue_left + blue_right + blue_bottom_left + blue_bottom + blue_bottom_right) / 6.0);
-                    BYTE green_average = round((green + green_left + green_right + green_bottom_left + green_bottom + green_bottom_right) / 6.0);
-                    BYTE red_average = round((red + red_left + red_right + red_bottom_left + red_bottom + red_bottom_right) / 6.0);
+                    BYTE blue_average = round((blue + blue_left + blue_right + blue_bottom_left + blue_bottom + blue_bottom_right) / 6);
+                    BYTE green_average = round((green + green_left + green_right + green_bottom_left + green_bottom + green_bottom_right) / 6);
+                    BYTE red_average = round((red + red_left + red_right + red_bottom_left + red_bottom + red_bottom_right) / 6);
 
                     image[i][j].rgbtBlue = blue_average;
                     image[i][j].rgbtGreen = green_average;
@@ -198,9 +198,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_top_right = image_copy_green[i - 1][j + 1];
                     BYTE red_top_right = image_copy_red[i - 1][j + 1];
 
-                    BYTE blue_average = round((blue_right + blue_top + blue_top_right + blue) / 4.0);
-                    BYTE green_average = round((green_right + green_top + green_top_right + green) / 4.0);
-                    BYTE red_average = round((red_right + red_top + red_top_right + red) / 4.0);
+                    BYTE blue_average = round((blue_right + blue_top + blue_top_right + blue) / 4);
+                    BYTE green_average = round((green_right + green_top + green_top_right + green) / 4);
+                    BYTE red_average = round((red_right + red_top + red_top_right + red) / 4);
 
                     image[i][j].rgbtBlue = blue_average;
                     image[i][j].rgbtGreen = green_average;
@@ -225,9 +225,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_top_left = image_copy_green[i - 1][j - 1];
                     BYTE red_top_left = image_copy_red[i - 1][j - 1];
 
-                    BYTE blue_average = round((blue_left + blue_top + blue_top_left + blue) / 4.0);
-                    BYTE green_average = round((green_left + green_top + green_top_left + green) / 4.0);
-                    BYTE red_average = round((red_left + red_top + red_top_left + red) / 4.0);
+                    BYTE blue_average = round((blue_left + blue_top + blue_top_left + blue) / 4);
+                    BYTE green_average = round((green_left + green_top + green_top_left + green) / 4);
+                    BYTE red_average = round((red_left + red_top + red_top_left + red) / 4);
 
                     image[i][j].rgbtBlue = blue_average;
                     image[i][j].rgbtGreen = green_average;
@@ -260,9 +260,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_top_right = image_copy_green[i-1][j+1];
                     BYTE red_top_right = image_copy_red[i-1][j+1];
 
-                    BYTE blue_average = round((blue + blue_left + blue_right + blue_top_left + blue_top + blue_top_right) / 6.0);
-                    BYTE green_average = round((green + green_left + green_right + green_top_left + green_top + green_top_right) / 6.0);
-                    BYTE red_average = round((red + red_left + red_right + red_top_left + red_top + red_top_right) / 6.0);
+                    BYTE blue_average = round((blue + blue_left + blue_right + blue_top_left + blue_top + blue_top_right) / 6);
+                    BYTE green_average = round((green + green_left + green_right + green_top_left + green_top + green_top_right) / 6);
+                    BYTE red_average = round((red + red_left + red_right + red_top_left + red_top + red_top_right) / 6);
 
                     image[i][j].rgbtBlue = blue_average;
                     image[i][j].rgbtGreen = green_average;
@@ -299,9 +299,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_bottom_right = image_copy_green[i+1][j+1];
                     BYTE red_bottom_right = image_copy_red[i+1][j+1];
 
-                    BYTE blue_average = round((blue + blue_top + blue_bottom + blue_top_right + blue_right + blue_bottom_right) / 6.0);
-                    BYTE green_average = round((green + green_top + green_bottom + green_top_right + green_right + green_bottom_right) / 6.0);
-                    BYTE red_average = round((red + red_top + red_bottom + red_top_right + red_right + red_bottom_right) / 6.0);
+                    BYTE blue_average = round((blue + blue_top + blue_bottom + blue_top_right + blue_right + blue_bottom_right) / 6);
+                    BYTE green_average = round((green + green_top + green_bottom + green_top_right + green_right + green_bottom_right) / 6);
+                    BYTE red_average = round((red + red_top + red_bottom + red_top_right + red_right + red_bottom_right) / 6);
 
                     image[i][j].rgbtBlue = blue_average;
                     image[i][j].rgbtGreen = green_average;
@@ -337,9 +337,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_bottom_left = image_copy_green[i+1][j-1];
                     BYTE red_bottom_left = image_copy_red[i+1][j-1];
 
-                    BYTE blue_average = round((blue + blue_top + blue_bottom + blue_top_left + blue_left + blue_bottom_left) / 6.0);
-                    BYTE green_average = round((green + green_top + green_bottom + green_top_left + green_left + green_bottom_left) / 6.0);
-                    BYTE red_average = round((red + red_top + red_bottom + red_top_left + red_left + red_bottom_left) / 6.0);
+                    BYTE blue_average = round((blue + blue_top + blue_bottom + blue_top_left + blue_left + blue_bottom_left) / 6);
+                    BYTE green_average = round((green + green_top + green_bottom + green_top_left + green_left + green_bottom_left) / 6);
+                    BYTE red_average = round((red + red_top + red_bottom + red_top_left + red_left + red_bottom_left) / 6);
 
                     image[i][j].rgbtBlue = blue_average;
                     image[i][j].rgbtGreen = green_average;
