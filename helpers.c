@@ -94,8 +94,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE red = image_copy_red[i][j];
 
                     BYTE blue_right = image_copy_blue[i][j + 1];
-                    BYTE red_right = image_copy_green[i][j + 1];
-                    BYTE green_right = image_copy_red[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
                     BYTE blue_bottom = image_copy_blue[i + 1][j];
                     BYTE green_bottom = image_copy_green[i + 1][j];
@@ -187,8 +187,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE red = image_copy_red[i][j];
 
                     BYTE blue_right = image_copy_blue[i][j + 1];
-                    BYTE red_right = image_copy_green[i][j + 1];
-                    BYTE green_right = image_copy_red[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
                     BYTE blue_top = image_copy_blue[i - 1][j];
                     BYTE green_top = image_copy_green[i - 1][j];
