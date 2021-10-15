@@ -183,9 +183,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             BYTE green_bottom_right = image_copy_green[i+1][j+1];
             BYTE red_bottom_right = image_copy_red[i+1][j+1];
 
-            BYTE blue_average = (blue_top_left + blue_top + blue_top_right + blue_left + blue + blue_right + blue_bottom_left + blue_bottom + blue_bottom_right) / 9;
-            BYTE green_average = (green_top_left + green_top + green_top_right + green_left + green + green_right + green_bottom_left + green_bottom + green_bottom_right) / 9;
-            BYTE red_average = (red_top_left + red_top + red_top_right + red_left + red + red_right + red_bottom_left + red_bottom + red_bottom_right) / 9;
+            BYTE blue_average = round((blue_top_left + blue_top + blue_top_right + blue_left + blue + blue_right + blue_bottom_left + blue_bottom + blue_bottom_right) / 9.0);
+            BYTE green_average = round((green_top_left + green_top + green_top_right + green_left + green + green_right + green_bottom_left + green_bottom + green_bottom_right) / 9.0);
+            BYTE red_average = round((red_top_left + red_top + red_top_right + red_left + red + red_right + red_bottom_left + red_bottom + red_bottom_right) / 9.0);
 
             image[i][j].rgbtBlue = blue_average;
             image[i][j].rgbtGreen = green_average;
