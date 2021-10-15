@@ -1,6 +1,7 @@
 #include "helpers.h"
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -59,183 +60,140 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    int first_pixel_in_row = 0;
     int last_pixel_in_row = width - 1;
+
+    int first_row = 0;
     int last_row = height - 1;
+
+
+    BYTE image_copy_blue[height][width];
+    BYTE image_copy_green[height][width];
+    BYTE image_copy_red[height][width];
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            image_copy_blue[i][j] = image[i][j].rgbtBlue;
+            image_copy_green[i][j] = image[i][j].rgbtGreen;
+            image_copy_red[i][j] = image[i][j].rgbtRed;
+        }
+    }
 
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            // Target Pixel
-            BYTE blue = image[i][j].rgbtBlue;
-            BYTE green = image[i][j].rgbtGreen;
-            BYTE red = image[i][j].rgbtRed;
-
-            if (image[0][0].rgbtBlue)
+            if (i == first_row && j == first_pixel_in_row)
             {
-                // Top Left Pixel
-                BYTE blue_R = image[i][j+1].rgbtBlue;
-                BYTE green_R = image[i][j+1].rgbtGreen;
-                BYTE red_R = image[i][j+1].rgbtRed;
+                // Average pixel, pixel_bottom, pixel_right, pixel_bottom_right,
+                BYTE blue = image_copy_blue[i][j];
+                BYTE green = image_copy_green[i][j];
+                BYTE red = image_copy_red[i][j];
 
-                BYTE blue_BR = image[i+1][j+1].rgbtBlue;
-                BYTE green_BR = image[i+1][j+1].rgbtGreen;
-                BYTE red_BR = image[i+1][j+1].rgbtRed;
+                BYTE blue_bottom = image_copy_blue[i+1][j];
+                BYTE green_bottom = image_copy_green[i+1][j];
+                BYTE red_bottom = image_copy_red[i+1][j];
 
-                BYTE blue_B = image[i+1][j].rgbtBlue;
-                BYTE green_B = image[i+1][j].rgbtGreen;
-                BYTE red_B = image[i+1][j].rgbtRed;
+                BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
+                BYTE green_bottom_right = image_copy_green[i+1][j+1];
+                BYTE red_bottom_right = image_copy_red[i+1][j+1];
 
-                BYTE blue_total_average = (blue_R + blue_BR + blue_B + blue) / 4;
-                BYTE green_total_average = (green_R + green_BR + green_B + green) / 4;
-                BYTE red_total_average = (red_R + red_BR + red_B + red) / 4;
-
-                image[i][j].rgbtBlue = blue_total_average;
-                image[i][j].rgbtGreen = green_total_average;
-                image[i][j].rgbtRed = red_total_average;
+                BYTE blue_right = image_copy_blue[i][j+1];
+                BYTE green_right = image_copy_green[i][j+1];
+                BYTE red_right = image_copy_red[i][j+1];
 
             }
-            else if(image[0][last_pixel_in_row].rgbtBlue)
+            else if (i == first_row && j == last_pixel_in_row)
             {
-                // Top Right pixel
-                BYTE blue_L = image[i][j-1].rgbtBlue;
-                BYTE green_L = image[i][j-1].rgbtGreen;
-                BYTE red_L = image[i][j-1].rgbtRed;
+                // Average pixel, pixel_bottom, pixel_left, pixel_bottom_left,
+                BYTE blue = image_copy_blue[i][j];
+                BYTE green = image_copy_green[i][j];
+                BYTE red = image_copy_red[i][j];
 
-                BYTE blue_BL = image[i+1][j-1].rgbtBlue;
-                BYTE green_BL = image[i+1][j-1].rgbtGreen;
-                BYTE red_BL = image[i+1][j-1].rgbtRed;
+                BYTE blue_bottom = image_copy_blue[i+1][j];
+                BYTE green_bottom = image_copy_green[i+1][j];
+                BYTE red_bottom = image_copy_red[i+1][j];
 
-                BYTE blue_B = image[i+1][j].rgbtBlue;
-                BYTE green_B = image[i+1][j].rgbtGreen;
-                BYTE red_B = image[i+1][j].rgbtRed;
+                BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
+                BYTE green_bottom_left = image_copy_green[i+1][j-1];
+                BYTE red_bottom_left = image_copy_red[i+1][j-1];
 
-                BYTE blue_total_average = (blue_L + blue_BL + blue_B + blue) / 4;
-                BYTE green_total_average = (green_L + green_BL + green_B + green) / 4;
-                BYTE red_total_average = (red_L + red_BL + red_B + red) / 4;
-
-                image[i][j].rgbtBlue = blue_total_average;
-                image[i][j].rgbtGreen = green_total_average;
-                image[i][j].rgbtRed = red_total_average;
+                BYTE blue_left = image_copy_blue[i][j-1];
+                BYTE green_left = image_copy_green[i][j-1];
+                BYTE red_left = image_copy_red[i][j-1];
             }
-            else if(image[last_row][last_pixel_in_row].rgbtBlue)
+            else if (i == last_row && j == first_pixel_in_row)
             {
-                // Bottom Right Pixel
-                BYTE blue_T = image[i-1][j].rgbtBlue;
-                BYTE green_T = image[i-1][j].rgbtGreen;
-                BYTE red_T = image[i-1][j].rgbtRed;
-
-                BYTE blue_TL = image[i-1][j-1].rgbtBlue;
-                BYTE green_TL = image[i-1][j-1].rgbtGreen;
-                BYTE red_TL = image[i-1][j-1].rgbtRed;
-
-                BYTE blue_L = image[i][j-1].rgbtBlue;
-                BYTE green_L = image[i][j-1].rgbtGreen;
-                BYTE red_L = image[i][j-1].rgbtRed;
-
-                BYTE blue_total_average = (blue_L + blue_TL + blue_T + blue) / 4;
-                BYTE green_total_average = (green_L + green_TL + green_T + green) / 4;
-                BYTE red_total_average = (red_L + red_TL + red_T + red) / 4;
-
-                image[i][j].rgbtBlue = blue_total_average;
-                image[i][j].rgbtGreen = green_total_average;
-                image[i][j].rgbtRed = red_total_average;
-            }
-            else if (image[last_row][0].rgbtBlue)
-            {
-                // Bottom Left Pixel
-                BYTE blue_T = image[i-1][j].rgbtBlue;
-                BYTE green_T = image[i-1][j].rgbtGreen;
-                BYTE red_T = image[i-1][j].rgbtRed;
-
-                BYTE blue_TR = image[i-1][j+1].rgbtBlue;
-                BYTE green_TR = image[i-1][j+1].rgbtGreen;
-                BYTE red_TR = image[i-1][j+1].rgbtRed;
-
-                BYTE blue_R = image[i][j+1].rgbtBlue;
-                BYTE green_R = image[i][j+1].rgbtGreen;
-                BYTE red_R = image[i][j+1].rgbtRed;
-
-                BYTE blue_total_average = (blue_R + blue_TR + blue_T + blue) / 4;
-                BYTE green_total_average = (green_R + green_TR + green_T + green) / 4;
-                BYTE red_total_average = (red_R + red_TR + red_T + red) / 4;
-
-                image[i][j].rgbtBlue = blue_total_average;
-                image[i][j].rgbtGreen = green_total_average;
-                image[i][j].rgbtRed = red_total_average;
-            }
-            else if (image[0][j].rgbtBlue)
-            {
-                // TOP ROW
                 continue;
             }
-            else if (image[last_row][j].rgbtBlue)
+            else if (i == last_row && j == last_pixel_in_row)
             {
-                // BOTTOM ROW
+               continue;
+            }
+            else if (i == first_row)
+            {
                 continue;
             }
-            else if (image[j][0].rgbtBlue)
+            else if (i == last_row)
             {
-                // FIRST COLUMN
                 continue;
             }
-            else if (image[j][last_pixel_in_row].rgbtBlue)
+            else if (j == first_pixel_in_row)
             {
-                // LAST COLUMN
                 continue;
             }
-            else
+            else if (j == last_pixel_in_row)
             {
-                // Left Pixel
-                BYTE blue_L = image[i][j-1].rgbtBlue;
-                BYTE green_L = image[i][j-1].rgbtGreen;
-                BYTE red_L = image[i][j-1].rgbtRed;
-
-                // Right Pixel
-                BYTE blue_R = image[i][j+1].rgbtBlue;
-                BYTE green_R = image[i][j+1].rgbtGreen;
-                BYTE red_R = image[i][j+1].rgbtRed;
-
-                // Top left of target pixel
-                BYTE blue_TL = image[i-1][j-1].rgbtBlue;
-                BYTE green_TL = image[i-1][j-1].rgbtGreen;
-                BYTE red_TL = image[i-1][j-1].rgbtRed;
-
-                // Top of target pixel
-                BYTE blue_T = image[i-1][j].rgbtBlue;
-                BYTE green_T = image[i-1][j].rgbtGreen;
-                BYTE red_T = image[i-1][j].rgbtRed;
-
-                // Top right of target pixel
-                BYTE blue_TR = image[i-1][j+1].rgbtBlue;
-                BYTE green_TR = image[i-1][j+1].rgbtGreen;
-                BYTE red_TR = image[i-1][j+1].rgbtRed;
-
-                // Bottom left of target pixel
-                BYTE blue_BL = image[i+1][j-1].rgbtBlue;
-                BYTE green_BL = image[i+1][j-1].rgbtGreen;
-                BYTE red_BL = image[i+1][j-1].rgbtRed;
-
-                // Bottom of target pixel
-                BYTE blue_B = image[i+1][j].rgbtBlue;
-                BYTE green_B = image[i+1][j].rgbtGreen;
-                BYTE red_B = image[i+1][j].rgbtRed;
-
-                // Bottom right of target pixel
-                BYTE blue_BR = image[i+1][j+1].rgbtBlue;
-                BYTE green_BR = image[i+1][j+1].rgbtGreen;
-                BYTE red_BR = image[i+1][j+1].rgbtRed;
-
-                BYTE blue_total_average = round((blue + blue_TR + blue_T + blue_TL + blue_L + blue_R + blue_BL + blue_B + blue_BR) / 9.0);
-                BYTE green_total_average = round((green + green_TL + green_T + green_TR + green_L + green_R + green_BL + green_B + green_BR) / 9.0);
-                BYTE red_total_average = round((red + red_TL + red_T + red_TR + red_L + red_R + red_BL + red_B + red_BR) / 9.0);
-
-                image[i][j].rgbtBlue = blue_total_average;
-                image[i][j].rgbtGreen = green_total_average;
-                image[i][j].rgbtRed = red_total_average;
+                continue;
             }
+            BYTE blue_top_left =  image_copy_blue[i-1][j-1];
+            BYTE green_top_left = image_copy_green[i-1][j-1];
+            BYTE red_top_left = image_copy_red[i-1][j-1];
+
+            BYTE blue_top = image_copy_blue[i-1][j];
+            BYTE green_top = image_copy_green[i-1][j];
+            BYTE red_top = image_copy_red[i-1][j];
+
+            BYTE blue_top_right = image_copy_blue[i-1][j+1];
+            BYTE green_top_right = image_copy_green[i-1][j+1];
+            BYTE red_top_right = image_copy_red[i-1][j+1];
+
+            BYTE blue_left = image_copy_blue[i][j-1];
+            BYTE green_left = image_copy_green[i][j-1];
+            BYTE red_left = image_copy_red[i][j-1];
+
+            BYTE blue = image_copy_blue[i][j];
+            BYTE green = image_copy_green[i][j];
+            BYTE red = image_copy_red[i][j];
+
+            BYTE blue_right = image_copy_blue[i][j+1];
+            BYTE green_right = image_copy_green[i][j+1];
+            BYTE red_right = image_copy_red[i][j+1];
+
+            BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
+            BYTE green_bottom_left = image_copy_green[i+1][j-1];
+            BYTE red_bottom_left = image_copy_red[i+1][j-1];
+
+            BYTE blue_bottom = image_copy_blue[i+1][j];
+            BYTE green_bottom = image_copy_green[i+1][j];
+            BYTE red_bottom = image_copy_red[i+1][j];
+
+            BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
+            BYTE green_bottom_right = image_copy_green[i+1][j+1];
+            BYTE red_bottom_right = image_copy_red[i+1][j+1];
+
+            BYTE blue_average = (blue_top_left + blue_top + blue_top_right + blue_left + blue + blue_right + blue_bottom_left + blue_bottom + blue_bottom_right) / 9;
+            BYTE green_average = (green_top_left + green_top + green_top_right + green_left + green + green_right + green_bottom_left + green_bottom + green_bottom_right) / 9;
+            BYTE red_average = (red_top_left + red_top + red_top_right + red_left + red + red_right + red_bottom_left + red_bottom + red_bottom_right) / 9;
+
+            image[i][j].rgbtBlue = blue_average;
+            image[i][j].rgbtGreen = green_average;
+            image[i][j].rgbtRed = red_average;
         }
     }
+
+
     return;
 }
 
