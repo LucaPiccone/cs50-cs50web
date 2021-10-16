@@ -402,310 +402,375 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    // int first_pixel_in_row = 0;
-    // int last_pixel_in_row = width - 1;
+    int first_pixel_in_row = 0;
+    int last_pixel_in_row = width - 1;
 
-    // int first_row = 0;
-    // int last_row = height - 1;
+    int first_row = 0;
+    int last_row = height - 1;
 
-    // BYTE PIXEL_BLACK = 0.0;
+    BYTE PIXEL_BLACK = 0.0;
 
-    // BYTE image_copy_blue[height][width];
-    // BYTE image_copy_green[height][width];
-    // BYTE image_copy_red[height][width];
-    // for (int i = 0; i < height; i++)
-    // {
-    //     for (int j = 0; j < width; j++)
-    //     {
-    //         image_copy_blue[i][j] = image[i][j].rgbtBlue;
-    //         image_copy_green[i][j] = image[i][j].rgbtGreen;
-    //         image_copy_red[i][j] = image[i][j].rgbtRed;
-    //     }
-    // }
+    BYTE image_copy_blue[height][width];
+    BYTE image_copy_green[height][width];
+    BYTE image_copy_red[height][width];
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            image_copy_blue[i][j] = image[i][j].rgbtBlue;
+            image_copy_green[i][j] = image[i][j].rgbtGreen;
+            image_copy_red[i][j] = image[i][j].rgbtRed;
+        }
+    }
 
-    // for (int i = 0; i < height; i++)
-    // {
-    //     for (int j = 0; j < width; j++)
-    //     {
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
 
-    //         if (i == first_row)
-    //         {
-    //             if (j == first_pixel_in_row)
-    //             {
-    //                 // TOP LEFT PIXEL
-    //                 // 5 replace with PIXEL_BLACK - bottom_left, left, top_left, top, top_right
-    //                 // 
-                    
-    //                 BYTE gx_gy_blue_top_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_top_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_top_left = PIXEL_BLACK;
+            if (i == first_row)
+            {
+                if (j == first_pixel_in_row)
+                {
+                    // TOP LEFT PIXEL
+                    // 5 replace with PIXEL_BLACK - bottom_left, left, top_left, top, top_right
+                    //
 
-    //                 BYTE gx_gy_blue_top = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_top = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_top = PIXEL_BLACK;
+                    BYTE gx_gy_blue_top_left = PIXEL_BLACK;
+                    BYTE gx_gy_green_top_left = PIXEL_BLACK;
+                    BYTE gx_gy_red_top_left = PIXEL_BLACK;
 
-    //                 BYTE gx_gy_blue_top_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_top_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_top_right = PIXEL_BLACK;
+                    BYTE gx_gy_blue_top = PIXEL_BLACK;
+                    BYTE gx_gy_green_top = PIXEL_BLACK;
+                    BYTE gx_gy_red_top = PIXEL_BLACK;
 
-    //                 BYTE gx_gy_blue_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_left = PIXEL_BLACK;
+                    BYTE gx_gy_blue_top_right = PIXEL_BLACK;
+                    BYTE gx_gy_green_top_right = PIXEL_BLACK;
+                    BYTE gx_gy_red_top_right = PIXEL_BLACK;
 
-    //                 BYTE gx_blue = image_copy_blue[i][j] *
-    //                 BYTE gx_green = image_copy_green[i][j] *
-    //                 BYTE gx_red = image_copy_green[i][j] *
-                    
-    //                 BYTE gy_blue = image_copy_blue[i][j] *
-    //                 BYTE gy_green = image_copy_green[i][j] *
-    //                 BYTE gy_red = image_copy_green[i][j] *
+                    BYTE gx_gy_blue_left = PIXEL_BLACK;
+                    BYTE gx_gy_green_left = PIXEL_BLACK;
+                    BYTE gx_gy_red_left = PIXEL_BLACK;
 
-    //                 BYTE gx_blue_right = image_copy_blue[i][j] *
-    //                 BYTE gx_green_right = image_copy_green[i][j] *
-    //                 BYTE gx_red_right = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_right = image_copy_blue[i][j] *
-    //                 BYTE gy_green_right = image_copy_green[i][j] *
-    //                 BYTE gy_red_right = image_copy_red[i][j] *
+                    BYTE gx_blue = image_copy_blue[i][j];
+                    BYTE gx_green = image_copy_green[i][j];
+                    BYTE gx_red = image_copy_green[i][j];
 
-    //                 BYTE gx_gy_blue_bottom_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_bottom_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_bottom_left = PIXEL_BLACK;
+                    BYTE gy_blue = image_copy_blue[i][j];
+                    BYTE gy_green = image_copy_green[i][j];
+                    BYTE gy_red = image_copy_green[i][j];
 
-    //                 BYTE gx_blue_bottom = image_copy_blue[i][j] *
-    //                 BYTE gx_green_bottom = image_copy_green[i][j] * 
-    //                 BYTE gx_red_bottom = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_bottom = image_copy_blue[i][j] *
-    //                 BYTE gy_green_bottom = image_copy_green[i][j] * 
-    //                 BYTE gy_red_bottom = image_copy_red[i][j] *
+                    BYTE gx_blue_right = image_copy_blue[i][j+1];
+                    BYTE gx_green_right = image_copy_green[i][j+1];
+                    BYTE gx_red_right = image_copy_red[i][j+1];
 
-    //                 BYTE gx_blue_bottom_right = image_copy_blue[i][j] *
-    //                 BYTE gx_green_bottom_right = image_copy_green[i][j] *
-    //                 BYTE gx_red_bottom_right = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_bottom_right = image_copy_blue[i][j] *
-    //                 BYTE gy_green_bottom_right = image_copy_green[i][j] *
-    //                 BYTE gy_red_bottom_right = image_copy_red[i][j] *
-    //             }
+                    BYTE gy_blue_right = image_copy_blue[i][j+1];
+                    BYTE gy_green_right = image_copy_green[i][j+1];
+                    BYTE gy_red_right = image_copy_red[i][j+1];
 
-    //             else if (j == last_pixel_in_row)
-    //             {
-    //                 // TOP RIGHT PIXEL
-    //                 // 5 pixels black, top_left, top, top_right, right, bottom_right 
-                    
-    //                 BYTE gx_gy_blue_top_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_top_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_top_left = PIXEL_BLACK;
+                    BYTE gx_gy_blue_bottom_left = PIXEL_BLACK;
+                    BYTE gx_gy_green_bottom_left = PIXEL_BLACK;
+                    BYTE gx_gy_red_bottom_left = PIXEL_BLACK;
 
-    //                 BYTE gx_gy_blue_top = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_top = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_top = PIXEL_BLACK;
+                    BYTE gx_blue_bottom = image_copy_blue[i+1][j];
+                    BYTE gx_green_bottom = image_copy_green[i+1][j];
+                    BYTE gx_red_bottom = image_copy_red[i+1][j];
 
-    //                 BYTE gx_gy_blue_top_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_top_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_top_right = PIXEL_BLACK;
+                    BYTE gy_blue_bottom = image_copy_blue[i+1][j];
+                    BYTE gy_green_bottom = image_copy_green[i+1][j];
+                    BYTE gy_red_bottom = image_copy_red[i+1][j];
 
-    //                 BYTE gx_blue_left = image_copy_blue[i][j] *
-    //                 BYTE gx_green_left = image_copy_green[i][j] *
-    //                 BYTE gx_red_left = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_left = image_copy_blue[i][j] *
-    //                 BYTE gy_green_left = image_copy_green[i][j] *
-    //                 BYTE gy_red_left = image_copy_red[i][j] *
+                    BYTE gx_blue_bottom_right = image_copy_blue[i+1][j+1];
+                    BYTE gx_green_bottom_right = image_copy_green[i+1][j+1];
+                    BYTE gx_red_bottom_right = image_copy_red[i+1][j+1];
 
-    //                 BYTE gx_blue = image_copy_blue[i][j] *
-    //                 BYTE gx_green = image_copy_green[i][j] *
-    //                 BYTE gx_red = image_copy_green[i][j] *
-                    
-    //                 BYTE gy_blue = image_copy_blue[i][j] *
-    //                 BYTE gy_green = image_copy_green[i][j] *
-    //                 BYTE gy_red = image_copy_green[i][j] *
+                    BYTE gy_blue_bottom_right = image_copy_blue[i+1][j+1];
+                    BYTE gy_green_bottom_right = image_copy_green[i+1][j+1];
+                    BYTE gy_red_bottom_right = image_copy_red[i+1][j+1];
 
-    //                 BYTE gx_gy_blue_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_right = PIXEL_BLACK;
-                    
-    //                 BYTE gx_blue_bottom_left = image_copy_blue[i][j] *
-    //                 BYTE gx_gy_green_bottom_left = image_copy_green[i][j] *
-    //                 BYTE gx_gy_red_bottom_left = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_bottom_left = image_copy_blue[i][j] *
-    //                 BYTE gy_gy_green_bottom_left = image_copy_green[i][j] *
-    //                 BYTE gy_gy_red_bottom_left = image_copy_red[i][j] *
+                    BYTE blue_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * gx_blue_right) + (1.0 * gx_blue_bottom_right));
+                    BYTE green_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * gx_green_right) + (1.0 * gx_green_bottom_right));
+                    BYTE red_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * gx_red_right) + (1.0 * gx_red_bottom_right));
 
-    //                 BYTE gx_blue_bottom = image_copy_blue[i][j] *
-    //                 BYTE gx_green_bottom = image_copy_green[i][j] * 
-    //                 BYTE gx_red_bottom = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_bottom = image_copy_blue[i][j] *
-    //                 BYTE gy_green_bottom = image_copy_green[i][j] * 
-    //                 BYTE gy_red_bottom = image_copy_red[i][j] *
+                    BYTE blue_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * gy_blue_bottom) + (1.0 * gy_blue_bottom_right));
+                    BYTE green_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * gy_green_bottom) + (1.0 * gy_red_bottom_right));
+                    BYTE red_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * gy_red_bottom) + (1.0 * gy_red_bottom_right));
 
-    //                 BYTE gx_gy_blue_bottom_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_bottom_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_bottom_right = PIXEL_BLACK;
-    //             }
+                    BYTE blue_channel = sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2)));
+                    BYTE green_channel = sqrt((pow(green_gx, 2)) + (pow(green_gy, 2)));
+                    BYTE red_channel = sqrt((pow(red_gx, 2)) + (pow(red_gy, 2)));
 
-    //             else
-    //             {
-    //                 // TOP ROW
-    //                 // 6 pixels with color 
-    //                 // 3 pixels black, top_right, top, top_left 
-                    
-    //             }
+                    image[i][j].rgbtBlue = blue_channel;
+                    image[i][j].rgbtGreen = green_channel;
+                    image[i][j].rgbtRed = red_channel;
 
-    //         }
+                }
 
-    //         else if (i == last_row)
-    //         {
-    //             if (j == first_pixel_in_row)
-    //             {
-    //                 // BOTTOM LEFT PIXEL
-    //                 // 5 pixels all black: top_left, left, bottom_left, bottom, bottom_right
-    //                 // 4 pixles with color. 
-                    
-    //                 BYTE gx_gy_blue_top_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_top_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_top_left = PIXEL_BLACK;
+                else if (j == last_pixel_in_row)
+                {
+                    // TOP RIGHT PIXEL
+                    // 5 pixels black, top_left, top, top_right, right, bottom_right
 
-    //                 BYTE gx_blue_top = image_copy_blue[i][j] *
-    //                 BYTE gx_green_top = image_copy_green[i][j] *
-    //                 BYTE gx_red_top = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_top = image_copy_blue[i][j] *
-    //                 BYTE gy_green_top = image_copy_green[i][j] *
-    //                 BYTE gy_red_top = image_copy_red[i][j] *
+                    BYTE gx_gy_blue_top_left = PIXEL_BLACK;
+                    BYTE gx_gy_green_top_left = PIXEL_BLACK;
+                    BYTE gx_gy_red_top_left = PIXEL_BLACK;
 
-    //                 BYTE gx_blue_top_right = image_copy_blue[i][j] *
-    //                 BYTE gx_green_top_right = image_copy_green[i][j] *
-    //                 BYTE gx_red_top_right = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_top_right = image_copy_blue[i][j] *
-    //                 BYTE gy_green_top_right = image_copy_green[i][j] *
-    //                 BYTE gy_red_top_right = image_copy_red[i][j] *
+                    BYTE gx_gy_blue_top = PIXEL_BLACK;
+                    BYTE gx_gy_green_top = PIXEL_BLACK;
+                    BYTE gx_gy_red_top = PIXEL_BLACK;
 
-    //                 BYTE gx_gy_blue_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_left = PIXEL_BLACK;
+                    BYTE gx_gy_blue_top_right = PIXEL_BLACK;
+                    BYTE gx_gy_green_top_right = PIXEL_BLACK;
+                    BYTE gx_gy_red_top_right = PIXEL_BLACK;
 
-    //                 BYTE gx_blue = image_copy_blue[i][j] *
-    //                 BYTE gx_green = image_copy_green[i][j] *
-    //                 BYTE gx_red = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue = image_copy_blue[i][j] *
-    //                 BYTE gy_green = image_copy_green[i][j] *
-    //                 BYTE gy_red = image_copy_red[i][j] *
+                    BYTE gx_blue_left = image_copy_blue[i][j-1];
+                    BYTE gx_green_left = image_copy_green[i][j-1];
+                    BYTE gx_red_left = image_copy_red[i][j-1];
 
-    //                 BYTE gx_blue_right = image_copy_blue[i][j] *
-    //                 BYTE gx_green_right = image_copy_green[i][j] *
-    //                 BYTE gx_red_right = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_right = image_copy_blue[i][j] *
-    //                 BYTE gy_green_right = image_copy_green[i][j] *
-    //                 BYTE gy_red_right = image_copy_red[i][j] *
-                    
-    //                 BYTE gx_blue_bottom_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_bottom_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_bottom_left = PIXEL_BLACK;
+                    BYTE gy_blue_left = image_copy_blue[i][j-1];
+                    BYTE gy_green_left = image_copy_green[i][j-1];
+                    BYTE gy_red_left = image_copy_red[i][j-1];
 
-    //                 BYTE gx_gy_blue_bottom = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_bottom = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_bottom = PIXEL_BLACK;
+                    BYTE gx_blue = image_copy_blue[i][j];
+                    BYTE gx_green = image_copy_green[i][j];
+                    BYTE gx_red = image_copy_green[i][j];
 
-    //                 BYTE gx_gy_blue_bottom_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_bottom_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_bottom_right = PIXEL_BLACK;
-    //             }
+                    BYTE gy_blue = image_copy_blue[i][j];
+                    BYTE gy_green = image_copy_green[i][j];
+                    BYTE gy_red = image_copy_green[i][j];
 
-    //             else if (j == last_pixel_in_row)
-    //             {
-    //                 // BOTTOM RIGHT PIXEl
-    //                 // 5 pixels all black - top_right, right, bottom_right, bottom, bottom_left
-    //                 // 4 pixels with color 
-                    
-    //                 BYTE gx_blue_top_left = image_copy_blue[i][j] *
-    //                 BYTE gx_green_top_left = image_copy_green[i][j] *
-    //                 BYTE gx_red_top_left = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_top_left = image_copy_blue[i][j] *
-    //                 BYTE gy_green_top_left = image_copy_green[i][j] *
-    //                 BYTE gy_red_top_left = image_copy_red[i][j] *
+                    BYTE gx_gy_blue_right = PIXEL_BLACK;
+                    BYTE gx_gy_green_right = PIXEL_BLACK;
+                    BYTE gx_gy_red_right = PIXEL_BLACK;
 
-    //                 BYTE gx_blue_top = image_copy_blue[i][j] *
-    //                 BYTE gx_green_top = image_copy_green[i][j] *
-    //                 BYTE gx_red_top = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_top = image_copy_blue[i][j] *
-    //                 BYTE gy_green_top = image_copy_green[i][j] *
-    //                 BYTE gy_red_top = image_copy_red[i][j] *
+                    BYTE gx_blue_bottom_left = image_copy_blue[i+1][j-1];
+                    BYTE gx_green_bottom_left = image_copy_green[i+1][j-1];
+                    BYTE gx_red_bottom_left = image_copy_red[i+1][j-1];
 
-    //                 BYTE gx_gy_blue_top_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_top_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_top_right = PIXEL_BLACK;
+                    BYTE gy_blue_bottom_left = image_copy_blue[i+1][j-1];
+                    BYTE gy_green_bottom_left = image_copy_green[i+1][j-1];
+                    BYTE gy_red_bottom_left = image_copy_red[i+1][j-1];
 
-    //                 BYTE gx_blue_left = image_copy_blue[i][j] *
-    //                 BYTE gx_green_left = image_copy_green[i][j] *
-    //                 BYTE gx_red_left = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue_left = image_copy_blue[i][j] *
-    //                 BYTE gy_green_left = image_copy_green[i][j] *
-    //                 BYTE gy_red_left = image_copy_red[i][j] *
+                    BYTE gx_blue_bottom = image_copy_blue[i+1][j];
+                    BYTE gx_green_bottom = image_copy_green[i+1][j];
+                    BYTE gx_red_bottom = image_copy_red[i+1][j];
 
-    //                 BYTE gx_blue = image_copy_blue[i][j] *
-    //                 BYTE gx_green = image_copy_green[i][j] *
-    //                 BYTE gx_red = image_copy_red[i][j] *
-                    
-    //                 BYTE gy_blue = image_copy_blue[i][j] *
-    //                 BYTE gy_green = image_copy_green[i][j] *
-    //                 BYTE gy_red = image_copy_red[i][j] *
+                    BYTE gy_blue_bottom = image_copy_blue[i+1][j];
+                    BYTE gy_green_bottom = image_copy_green[i+1][j];
+                    BYTE gy_red_bottom = image_copy_red[i+1][j];
 
-    //                 BYTE gx_gy_blue_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_right = PIXEL_BLACK;
-                    
-    //                 BYTE gx_blue_bottom_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_bottom_left = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_bottom_left = PIXEL_BLACK;
+                    BYTE gx_gy_blue_bottom_right = PIXEL_BLACK;
+                    BYTE gx_gy_green_bottom_right = PIXEL_BLACK;
+                    BYTE gx_gy_red_bottom_right = PIXEL_BLACK;
 
-    //                 BYTE gx_gy_blue_bottom = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_bottom = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_bottom = PIXEL_BLACK;
+                    BYTE blue_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * gx_blue_left) + (-1.0 * gx_blue_bottom_left) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+                    BYTE green_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * gx_green_left) + (-1.0 * gx_green_bottom_left) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+                    BYTE red_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * gx_red_left) + (-1.0 * gx_red_bottom_left) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
 
-    //                 BYTE gx_gy_blue_bottom_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_green_bottom_right = PIXEL_BLACK;
-    //                 BYTE gx_gy_red_bottom_right = PIXEL_BLACK;
-    //             }
+                    BYTE blue_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * gy_blue_bottom_left) + (2.0 * gy_blue_bottom) + (1.0 * PIXEL_BLACK));
+                    BYTE green_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * gy_green_bottom_left) + (2.0 * gy_green_bottom) + (1.0 * PIXEL_BLACK));
+                    BYTE red_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * gy_red_bottom_left) + (2.0 * gy_red_bottom) + (1.0 * PIXEL_BLACK));
 
-    //             else
-    //             {
-    //                 // BOTTOM ROW
+                    BYTE blue_channel = sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2)));
+                    BYTE green_channel = sqrt((pow(green_gx, 2)) + (pow(green_gy, 2)));
+                    BYTE red_channel = sqrt((pow(red_gx, 2)) + (pow(red_gy, 2)));
 
-    //             }
-    //         }
+                    image[i][j].rgbtBlue = blue_channel;
+                    image[i][j].rgbtGreen = green_channel;
+                    image[i][j].rgbtRed = red_channel;
+                }
 
-    //         else if (j == first_pixel_in_row)
-    //         {
-    //             if (i != first_row || i != last_row)
-    //             {
-    //                 // FIRST COLUMN
-    //             }
-    //         }
+                else
+                {
+                    // TOP ROW
+                    // 6 pixels with color
+                    // 3 pixels black, top_right, top, top_left
 
-    //         else if (j == last_pixel_in_row)
-    //         {
-    //             if (i != first_row || i != last_row)
-    //             {
-    //                 // LAST COLUMN
-    //             }
-    //         }
+                }
 
-    //         else
-    //         {
-    //             // MAIN PIXELS
-    //         }
-    //     }
-    // }
+            }
+
+            else if (i == last_row)
+            {
+                if (j == first_pixel_in_row)
+                {
+                    // BOTTOM LEFT PIXEL
+                    // 5 pixels all black: top_left, left, bottom_left, bottom, bottom_right
+                    // 4 pixles with color.
+
+                    BYTE gx_gy_blue_top_left = PIXEL_BLACK;
+                    BYTE gx_gy_green_top_left = PIXEL_BLACK;
+                    BYTE gx_gy_red_top_left = PIXEL_BLACK;
+
+                    BYTE gx_blue_top = image_copy_blue[i-1][j];
+                    BYTE gx_green_top = image_copy_green[i-1][j];
+                    BYTE gx_red_top = image_copy_red[i-1][j];
+
+                    BYTE gy_blue_top = image_copy_blue[i-1][j];
+                    BYTE gy_green_top = image_copy_green[i-1][j];
+                    BYTE gy_red_top = image_copy_red[i-1][j];
+
+                    BYTE gx_blue_top_right = image_copy_blue[i-1][j+1];
+                    BYTE gx_green_top_right = image_copy_green[i-1][j+1];
+                    BYTE gx_red_top_right = image_copy_red[i-1][j+1];
+
+                    BYTE gy_blue_top_right = image_copy_blue[i-1][j+1];
+                    BYTE gy_green_top_right = image_copy_green[i-1][j+1];
+                    BYTE gy_red_top_right = image_copy_red[i-1][j+1];
+
+                    BYTE gx_gy_blue_left = PIXEL_BLACK;
+                    BYTE gx_gy_green_left = PIXEL_BLACK;
+                    BYTE gx_gy_red_left = PIXEL_BLACK;
+
+                    BYTE gx_blue = image_copy_blue[i][j];
+                    BYTE gx_green = image_copy_green[i][j];
+                    BYTE gx_red = image_copy_red[i][j];
+
+                    BYTE gy_blue = image_copy_blue[i][j];
+                    BYTE gy_green = image_copy_green[i][j];
+                    BYTE gy_red = image_copy_red[i][j];
+
+                    BYTE gx_blue_right = image_copy_blue[i][j+1];
+                    BYTE gx_green_right = image_copy_green[i][j+1];
+                    BYTE gx_red_right = image_copy_red[i][j+1];
+
+                    BYTE gy_blue_right = image_copy_blue[i][j+1];
+                    BYTE gy_green_right = image_copy_green[i][j+1];
+                    BYTE gy_red_right = image_copy_red[i][j+1];
+
+                    BYTE gx_blue_bottom_left = PIXEL_BLACK;
+                    BYTE gx_gy_green_bottom_left = PIXEL_BLACK;
+                    BYTE gx_gy_red_bottom_left = PIXEL_BLACK;
+
+                    BYTE gx_gy_blue_bottom = PIXEL_BLACK;
+                    BYTE gx_gy_green_bottom = PIXEL_BLACK;
+                    BYTE gx_gy_red_bottom = PIXEL_BLACK;
+
+                    BYTE gx_gy_blue_bottom_right = PIXEL_BLACK;
+                    BYTE gx_gy_green_bottom_right = PIXEL_BLACK;
+                    BYTE gx_gy_red_bottom_right = PIXEL_BLACK;
+
+                    BYTE blue_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * gx_blue_top_right) + (2.0 * gx_blue_right) + (1.0 * PIXEL_BLACK));
+                    BYTE green_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * gx_green_top_right) + (2.0 * gx_green_right) + (1.0 * PIXEL_BLACK));
+                    BYTE red_gx = round((-1.0 * PIXEL_BLACK) + (-2.0 * PIXEL_BLACK) + (-1.0 * PIXEL_BLACK) + (1.0 * gx_red_top_right) + (2.0 * gx_red_right) + (1.0 * PIXEL_BLACK));
+
+                    BYTE blue_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * gy_blue_top) + (-1.0 * gy_blue_top_right) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+                    BYTE green_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * gy_green_top) + (-1.0 * gy_green_top_right) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+                    BYTE red_gy = round((-1.0 * PIXEL_BLACK) + (-2.0 * gy_red_top) + (-1.0 * gy_red_top_right) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+
+                    BYTE blue_channel = sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2)));
+                    BYTE green_channel = sqrt((pow(green_gx, 2)) + (pow(green_gy, 2)));
+                    BYTE red_channel = sqrt((pow(red_gx, 2)) + (pow(red_gy, 2)));
+
+                    image[i][j].rgbtBlue = blue_channel;
+                    image[i][j].rgbtGreen = green_channel;
+                    image[i][j].rgbtRed = red_channel;
+                }
+
+                else if (j == last_pixel_in_row)
+                {
+                    // BOTTOM RIGHT PIXEl
+                    // 5 pixels all black - top_right, right, bottom_right, bottom, bottom_left
+                    // 4 pixels with color
+
+                    BYTE gx_blue_top_left = image_copy_blue[i-1][j-1];
+                    BYTE gx_green_top_left = image_copy_green[i-1][j-1];
+                    BYTE gx_red_top_left = image_copy_red[i-1][j-1];
+
+                    BYTE gy_blue_top_left = image_copy_blue[i-1][j-1];
+                    BYTE gy_green_top_left = image_copy_green[i-1][j-1];
+                    BYTE gy_red_top_left = image_copy_red[i-1][j-1];
+
+                    BYTE gx_blue_top = image_copy_blue[i-1][j];
+                    BYTE gx_green_top = image_copy_green[i-1][j];
+                    BYTE gx_red_top = image_copy_red[i-1][j];
+
+                    BYTE gy_blue_top = image_copy_blue[i-1][j];
+                    BYTE gy_green_top = image_copy_green[i-1][j];
+                    BYTE gy_red_top = image_copy_red[i-1][j];
+
+                    BYTE gx_gy_blue_top_right = PIXEL_BLACK;
+                    BYTE gx_gy_green_top_right = PIXEL_BLACK;
+                    BYTE gx_gy_red_top_right = PIXEL_BLACK;
+
+                    BYTE gx_blue_left = image_copy_blue[i][j-1];
+                    BYTE gx_green_left = image_copy_green[i][j-1];
+                    BYTE gx_red_left = image_copy_red[i][j-1];
+
+                    BYTE gy_blue_left = image_copy_blue[i][j-1];
+                    BYTE gy_green_left = image_copy_green[i][j-1];
+                    BYTE gy_red_left = image_copy_red[i][j-1];
+
+                    BYTE gx_blue = image_copy_blue[i][j];
+                    BYTE gx_green = image_copy_green[i][j];
+                    BYTE gx_red = image_copy_red[i][j];
+
+                    BYTE gy_blue = image_copy_blue[i][j];
+                    BYTE gy_green = image_copy_green[i][j];
+                    BYTE gy_red = image_copy_red[i][j];
+
+                    BYTE gx_gy_blue_right = PIXEL_BLACK;
+                    BYTE gx_gy_green_right = PIXEL_BLACK;
+                    BYTE gx_gy_red_right = PIXEL_BLACK;
+
+                    BYTE gx_blue_bottom_left = PIXEL_BLACK;
+                    BYTE gx_gy_green_bottom_left = PIXEL_BLACK;
+                    BYTE gx_gy_red_bottom_left = PIXEL_BLACK;
+
+                    BYTE gx_gy_blue_bottom = PIXEL_BLACK;
+                    BYTE gx_gy_green_bottom = PIXEL_BLACK;
+                    BYTE gx_gy_red_bottom = PIXEL_BLACK;
+
+                    BYTE gx_gy_blue_bottom_right = PIXEL_BLACK;
+                    BYTE gx_gy_green_bottom_right = PIXEL_BLACK;
+                    BYTE gx_gy_red_bottom_right = PIXEL_BLACK;
+
+                    BYTE blue_gx = round((-1.0 * gx_blue_top_left) + (-2.0 * gx_blue_left) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+                    BYTE green_gx = round((-1.0 * gx_green_top_left) + (-2.0 * gx_green_left) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+                    BYTE red_gx = round((-1.0 * gx_red_top_left) + (-2.0 * gx_red_left) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+
+                    BYTE blue_gy = round((-1.0 * gy_blue_top_left) + (-2.0 * gy_blue_top) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+                    BYTE green_gy = round((-1.0 * gy_green_top_left) + (-2.0 * gy_green_top) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+                    BYTE red_gy = round((-1.0 * gy_red_top_left) + (-2.0 * gy_red_top) + (-1.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK) + (2.0 * PIXEL_BLACK) + (1.0 * PIXEL_BLACK));
+
+                    BYTE blue_channel = sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2)));
+                    BYTE green_channel = sqrt((pow(green_gx, 2)) + (pow(green_gy, 2)));
+                    BYTE red_channel = sqrt((pow(red_gx, 2)) + (pow(red_gy, 2)));
+
+                    image[i][j].rgbtBlue = blue_channel;
+                    image[i][j].rgbtGreen = green_channel;
+                    image[i][j].rgbtRed = red_channel;
+                }
+
+                else
+                {
+                    // BOTTOM ROW
+
+                }
+            }
+
+            else if (j == first_pixel_in_row)
+            {
+                if (i != first_row || i != last_row)
+                {
+                    // FIRST COLUMN
+                }
+            }
+
+            else if (j == last_pixel_in_row)
+            {
+                if (i != first_row || i != last_row)
+                {
+                    // LAST COLUMN
+                }
+            }
+
+            else
+            {
+                // MAIN PIXELS
+            }
+        }
+    }
 
     return;
 }
