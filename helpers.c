@@ -447,17 +447,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_bottom_right = image_copy_green[i+1][j+1];
                     BYTE red_bottom_right = image_copy_red[i+1][j+1];
 
-                    BYTE blue_gx = round((2.0 * blue_right) + (1.0 * blue_bottom_right));
-                    BYTE green_gx = round((2.0 * green_right) + (1.0 * green_bottom_right));
-                    BYTE red_gx = round((2.0 * red_right) + (1.0 * red_bottom_right));
+                    BYTE blue_gx = (2.0 * blue_right) + (1.0 * blue_bottom_right);
+                    BYTE green_gx = (2.0 * green_right) + (1.0 * green_bottom_right);
+                    BYTE red_gx = (2.0 * red_right) + (1.0 * red_bottom_right);
 
-                    BYTE blue_gy = round((2.0 * blue_bottom) + (1.0 * blue_bottom_right));
-                    BYTE green_gy = round((2.0 * green_bottom) + (1.0 * green_bottom_right));
-                    BYTE red_gy = round((2.0 * red_bottom) + (1.0 * red_bottom_right));
+                    BYTE blue_gy = (2.0 * blue_bottom) + (1.0 * blue_bottom_right);
+                    BYTE green_gy = (2.0 * green_bottom) + (1.0 * green_bottom_right);
+                    BYTE red_gy = (2.0 * red_bottom) + (1.0 * red_bottom_right);
 
-                    BYTE blue_channel = sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2)));
-                    BYTE green_channel = sqrt((pow(green_gx, 2)) + (pow(green_gy, 2)));
-                    BYTE red_channel = sqrt((pow(red_gx, 2)) + (pow(red_gy, 2)));
+                    BYTE blue_channel = round(sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2))));
+                    BYTE green_channel = round(sqrt((pow(green_gx, 2)) + (pow(green_gy, 2))));
+                    BYTE red_channel = round(sqrt((pow(red_gx, 2)) + (pow(red_gy, 2))));
 
                     image[i][j].rgbtBlue = blue_channel;
                     image[i][j].rgbtGreen = green_channel;
@@ -482,17 +482,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_bottom = image_copy_green[i+1][j];
                     BYTE red_bottom = image_copy_red[i+1][j];
 
-                    BYTE blue_gx = round((-2.0 * blue_left) + (-1.0 * blue_bottom_left));
-                    BYTE green_gx = round((-2.0 * green_left) + (-1.0 * green_bottom_left));
-                    BYTE red_gx = round((-2.0 * red_left) + (-1.0 * red_bottom_left));
+                    BYTE blue_gx = (-2.0 * blue_left) + (-1.0 * blue_bottom_left);
+                    BYTE green_gx = (-2.0 * green_left) + (-1.0 * green_bottom_left);
+                    BYTE red_gx = (-2.0 * red_left) + (-1.0 * red_bottom_left);
 
-                    BYTE blue_gy = round((1.0 * blue_bottom_left) + (2.0 * blue_bottom));
-                    BYTE green_gy = round((1.0 * green_bottom_left) + (2.0 * green_bottom));
-                    BYTE red_gy = round((1.0 * red_bottom_left) + (2.0 * red_bottom));
+                    BYTE blue_gy = (1.0 * blue_bottom_left) + (2.0 * blue_bottom);
+                    BYTE green_gy = (1.0 * green_bottom_left) + (2.0 * green_bottom);
+                    BYTE red_gy = (1.0 * red_bottom_left) + (2.0 * red_bottom);
 
-                    BYTE blue_channel = sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2)));
-                    BYTE green_channel = sqrt((pow(green_gx, 2)) + (pow(green_gy, 2)));
-                    BYTE red_channel = sqrt((pow(red_gx, 2)) + (pow(red_gy, 2)));
+                    BYTE blue_channel = round(sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2))));
+                    BYTE green_channel = round(sqrt((pow(green_gx, 2)) + (pow(green_gy, 2))));
+                    BYTE red_channel = round(sqrt((pow(red_gx, 2)) + (pow(red_gy, 2))));
 
                     image[i][j].rgbtBlue = blue_channel;
                     image[i][j].rgbtGreen = green_channel;
@@ -528,17 +528,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_right = image_copy_green[i][j+1];
                     BYTE red_right = image_copy_red[i][j+1];
 
-                    BYTE blue_gx = round((1.0 * blue_top_right) + (2.0 * blue_right));
-                    BYTE green_gx = round((1.0 * green_top_right) + (2.0 * green_right));
-                    BYTE red_gx = round((1.0 * red_top_right) + (2.0 * red_right));
+                    BYTE blue_gx = (1.0 * blue_top_right) + (2.0 * blue_right);
+                    BYTE green_gx = (1.0 * green_top_right) + (2.0 * green_right);
+                    BYTE red_gx = (1.0 * red_top_right) + (2.0 * red_right);
 
-                    BYTE blue_gy = round((-2.0 * blue_top) + (-1.0 * blue_top_right));
-                    BYTE green_gy = round((-2.0 * green_top) + (-1.0 * green_top_right));
-                    BYTE red_gy = round((-2.0 * red_top) + (-1.0 * red_top_right));
+                    BYTE blue_gy = (-2.0 * blue_top) + (-1.0 * blue_top_right);
+                    BYTE green_gy = (-2.0 * green_top) + (-1.0 * green_top_right);
+                    BYTE red_gy = (-2.0 * red_top) + (-1.0 * red_top_right);
 
-                    BYTE blue_channel = sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2)));
-                    BYTE green_channel = sqrt((pow(green_gx, 2)) + (pow(green_gy, 2)));
-                    BYTE red_channel = sqrt((pow(red_gx, 2)) + (pow(red_gy, 2)));
+                    BYTE blue_channel = round(sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2))));
+                    BYTE green_channel = round(sqrt((pow(green_gx, 2)) + (pow(green_gy, 2))));
+                    BYTE red_channel = round(sqrt((pow(red_gx, 2)) + (pow(red_gy, 2))));
 
                     image[i][j].rgbtBlue = blue_channel;
                     image[i][j].rgbtGreen = green_channel;
@@ -563,17 +563,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green_left = image_copy_green[i][j-1];
                     BYTE red_left = image_copy_red[i][j-1];
 
-                    BYTE blue_gx = round((-1.0 * blue_top_left) + (-2.0 * blue_left));
-                    BYTE green_gx = round((-1.0 * green_top_left) + (-2.0 * green_left));
-                    BYTE red_gx = round((-1.0 * red_top_left) + (-2.0 * red_left));
+                    BYTE blue_gx = (-1.0 * blue_top_left) + (-2.0 * blue_left);
+                    BYTE green_gx = (-1.0 * green_top_left) + (-2.0 * green_left);
+                    BYTE red_gx = (-1.0 * red_top_left) + (-2.0 * red_left);
 
-                    BYTE blue_gy = round((-1.0 * blue_top_left) + (-2.0 * blue_top));
-                    BYTE green_gy = round((-1.0 * green_top_left) + (-2.0 * green_top));
-                    BYTE red_gy = round((-1.0 * red_top_left) + (-2.0 * red_top));
+                    BYTE blue_gy = (-1.0 * blue_top_left) + (-2.0 * blue_top);
+                    BYTE green_gy = (-1.0 * green_top_left) + (-2.0 * green_top);
+                    BYTE red_gy = (-1.0 * red_top_left) + (-2.0 * red_top);
 
-                    BYTE blue_channel = sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2)));
-                    BYTE green_channel = sqrt((pow(green_gx, 2)) + (pow(green_gy, 2)));
-                    BYTE red_channel = sqrt((pow(red_gx, 2)) + (pow(red_gy, 2)));
+                    BYTE blue_channel = round(sqrt((pow(blue_gx, 2)) + (pow(blue_gy, 2))));
+                    BYTE green_channel = round(sqrt((pow(green_gx, 2)) + (pow(green_gy, 2))));
+                    BYTE red_channel = round(sqrt((pow(red_gx, 2)) + (pow(red_gy, 2))));
 
                     image[i][j].rgbtBlue = blue_channel;
                     image[i][j].rgbtGreen = green_channel;
