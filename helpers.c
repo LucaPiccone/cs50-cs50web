@@ -522,35 +522,35 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 BYTE green_bottom_right = image_copy_green[i+1][j+1];
                 BYTE red_bottom_right = image_copy_red[i+1][j+1];
 
-                // BYTE blue_gx = (blue_top_left * -1) + (blue_top_right * 1) + (blue_left * -2) + (blue_right * 2) + (blue_bottom_left * -1) + (blue_bottom_right * 1);
-                // BYTE green_gx = (green_top_left * -1) + (green_top_right * 1) + (green_left * -2) + (green_right * 2) + (green_bottom_left * -1) + (green_bottom_right * 1);
+                BYTE blue_gx = (blue_top_left * -1) + (blue_top_right * 1) + (blue_left * -2) + (blue_right * 2) + (blue_bottom_left * -1) + (blue_bottom_right * 1);
+                BYTE green_gx = (green_top_left * -1) + (green_top_right * 1) + (green_left * -2) + (green_right * 2) + (green_bottom_left * -1) + (green_bottom_right * 1);
                 BYTE red_gx = (red_top_left * -1) + (red_top_right * 1) + (red_left * -2) + (red_right * 2) + (red_bottom_left * -1) + (red_bottom_right * 1);
 
-                // BYTE blue_gy = (blue_top_left * -1) + (blue_top * -2) + (blue_top_right * -1) + (blue_bottom_left * 1) + (blue_bottom * 2) + (blue_bottom_right * 1);
-                // BYTE green_gy = (green_top_left * 1) + (green_top * -2) + (green_top_right * -1) + (green_bottom_left * 1) + (green_bottom * 2) + (green_bottom_right * 1);
+                BYTE blue_gy = (blue_top_left * -1) + (blue_top * -2) + (blue_top_right * -1) + (blue_bottom_left * 1) + (blue_bottom * 2) + (blue_bottom_right * 1);
+                BYTE green_gy = (green_top_left * -1) + (green_top * -2) + (green_top_right * -1) + (green_bottom_left * 1) + (green_bottom * 2) + (green_bottom_right * 1);
                 BYTE red_gy = (red_top_left * -1) + (red_top * -2) + (red_top_right * -1) + (red_bottom_left * 1) + (red_bottom * 2) + (red_bottom_right * 1);
 
                 // square to make a positive number then sqrt to normalize
-                // BYTE blue_channel = sqrt(pow(blue_gx, 2)) + sqrt(pow(blue_gy, 2));
-                // BYTE green_channel = sqrt(pow(green_gx, 2)) + sqrt(pow(green_gy, 2));
+                BYTE blue_channel = sqrt(pow(blue_gx, 2)) + sqrt(pow(blue_gy, 2));
+                BYTE green_channel = sqrt(pow(green_gx, 2)) + sqrt(pow(green_gy, 2));
                 BYTE red_channel =  sqrt(pow(red_gx, 2)) + sqrt(pow(red_gy, 2));
 
-                // if (blue_channel > 255)
-                // {
-                //     image[i][j].rgbtBlue = 255;
-                // }
-                // else
-                // {
-                //     image[i][j].rgbtBlue = blue_channel;
-                // }
-                // if (green_channel > 255)
-                // {
-                //     image[i][j].rgbtGreen = 255;
-                // }
-                // else
-                // {
-                //     image[i][j].rgbtGreen = green_channel;
-                // }
+                if (blue_channel > 255)
+                {
+                    image[i][j].rgbtBlue = 255;
+                }
+                else
+                {
+                    image[i][j].rgbtBlue = blue_channel;
+                }
+                if (green_channel > 255)
+                {
+                    image[i][j].rgbtGreen = 255;
+                }
+                else
+                {
+                    image[i][j].rgbtGreen = green_channel;
+                }
                 if (red_channel > 255)
                 {
                     image[i][j].rgbtRed = 255;
