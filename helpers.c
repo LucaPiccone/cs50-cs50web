@@ -147,25 +147,25 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_left = image_copy_blue[i][j-1];
-                    BYTE green_left = image_copy_green[i][j-1];
-                    BYTE red_left = image_copy_red[i][j-1];
+                    BYTE blue_left = image_copy_blue[i][j - 1];
+                    BYTE green_left = image_copy_green[i][j - 1];
+                    BYTE red_left = image_copy_red[i][j - 1];
 
-                    BYTE blue_right = image_copy_blue[i][j+1];
-                    BYTE green_right = image_copy_green[i][j+1];
-                    BYTE red_right = image_copy_red[i][j+1];
+                    BYTE blue_right = image_copy_blue[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
-                    BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
-                    BYTE green_bottom_left = image_copy_green[i+1][j-1];
-                    BYTE red_bottom_left = image_copy_red[i+1][j-1];
+                    BYTE blue_bottom_left = image_copy_blue[i + 1][j - 1];
+                    BYTE green_bottom_left = image_copy_green[i + 1][j - 1];
+                    BYTE red_bottom_left = image_copy_red[i + 1][j - 1];
 
-                    BYTE blue_bottom = image_copy_blue[i+1][j];
-                    BYTE green_bottom = image_copy_green[i+1][j];
-                    BYTE red_bottom = image_copy_red[i+1][j];
+                    BYTE blue_bottom = image_copy_blue[i + 1][j];
+                    BYTE green_bottom = image_copy_green[i + 1][j];
+                    BYTE red_bottom = image_copy_red[i + 1][j];
 
-                    BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
-                    BYTE green_bottom_right = image_copy_green[i+1][j+1];
-                    BYTE red_bottom_right = image_copy_red[i+1][j+1];
+                    BYTE blue_bottom_right = image_copy_blue[i + 1][j + 1];
+                    BYTE green_bottom_right = image_copy_green[i + 1][j + 1];
+                    BYTE red_bottom_right = image_copy_red[i + 1][j + 1];
 
                     BYTE blue_average = round((blue + blue_left + blue_right + blue_bottom_left + blue_bottom + blue_bottom_right) / 6.0);
                     BYTE green_average = round((green + green_left + green_right + green_bottom_left + green_bottom + green_bottom_right) / 6.0);
@@ -240,25 +240,25 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_left = image_copy_blue[i][j-1];
-                    BYTE green_left = image_copy_green[i][j-1];
-                    BYTE red_left = image_copy_red[i][j-1];
+                    BYTE blue_left = image_copy_blue[i][j - 1];
+                    BYTE green_left = image_copy_green[i][j - 1];
+                    BYTE red_left = image_copy_red[i][j - 1];
 
-                    BYTE blue_right = image_copy_blue[i][j+1];
-                    BYTE green_right = image_copy_green[i][j+1];
-                    BYTE red_right = image_copy_red[i][j+1];
+                    BYTE blue_right = image_copy_blue[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
-                    BYTE blue_top_left =  image_copy_blue[i-1][j-1];
-                    BYTE green_top_left = image_copy_green[i-1][j-1];
-                    BYTE red_top_left = image_copy_red[i-1][j-1];
+                    BYTE blue_top_left =  image_copy_blue[i - 1][j - 1];
+                    BYTE green_top_left = image_copy_green[i - 1][j - 1];
+                    BYTE red_top_left = image_copy_red[i - 1][j - 1];
 
-                    BYTE blue_top = image_copy_blue[i-1][j];
-                    BYTE green_top = image_copy_green[i-1][j];
-                    BYTE red_top = image_copy_red[i-1][j];
+                    BYTE blue_top = image_copy_blue[i - 1][j];
+                    BYTE green_top = image_copy_green[i - 1][j];
+                    BYTE red_top = image_copy_red[i - 1][j];
 
-                    BYTE blue_top_right = image_copy_blue[i-1][j+1];
-                    BYTE green_top_right = image_copy_green[i-1][j+1];
-                    BYTE red_top_right = image_copy_red[i-1][j+1];
+                    BYTE blue_top_right = image_copy_blue[i - 1][j + 1];
+                    BYTE green_top_right = image_copy_green[i - 1][j + 1];
+                    BYTE red_top_right = image_copy_red[i - 1][j + 1];
 
                     BYTE blue_average = round((blue + blue_left + blue_right + blue_top_left + blue_top + blue_top_right) / 6.0);
                     BYTE green_average = round((green + green_left + green_right + green_top_left + green_top + green_top_right) / 6.0);
@@ -279,25 +279,25 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_top = image_copy_blue[i-1][j];
-                    BYTE green_top = image_copy_green[i-1][j];
-                    BYTE red_top = image_copy_red[i-1][j];
+                    BYTE blue_top = image_copy_blue[i - 1][j];
+                    BYTE green_top = image_copy_green[i - 1][j];
+                    BYTE red_top = image_copy_red[i - 1][j];
 
-                    BYTE blue_bottom = image_copy_blue[i+1][j];
-                    BYTE green_bottom = image_copy_green[i+1][j];
-                    BYTE red_bottom = image_copy_red[i+1][j];
+                    BYTE blue_bottom = image_copy_blue[i + 1][j];
+                    BYTE green_bottom = image_copy_green[i + 1][j];
+                    BYTE red_bottom = image_copy_red[i + 1][j];
 
-                    BYTE blue_top_right = image_copy_blue[i-1][j+1];
-                    BYTE green_top_right = image_copy_green[i-1][j+1];
-                    BYTE red_top_right = image_copy_red[i-1][j+1];
+                    BYTE blue_top_right = image_copy_blue[i - 1][j + 1];
+                    BYTE green_top_right = image_copy_green[i - 1][j + 1];
+                    BYTE red_top_right = image_copy_red[i - 1][j + 1];
 
-                    BYTE blue_right = image_copy_blue[i][j+1];
-                    BYTE green_right = image_copy_green[i][j+1];
-                    BYTE red_right = image_copy_red[i][j+1];
+                    BYTE blue_right = image_copy_blue[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
-                    BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
-                    BYTE green_bottom_right = image_copy_green[i+1][j+1];
-                    BYTE red_bottom_right = image_copy_red[i+1][j+1];
+                    BYTE blue_bottom_right = image_copy_blue[i + 1][j + 1];
+                    BYTE green_bottom_right = image_copy_green[i + 1][j + 1];
+                    BYTE red_bottom_right = image_copy_red[i + 1][j + 1];
 
                     BYTE blue_average = round((blue + blue_top + blue_bottom + blue_top_right + blue_right + blue_bottom_right) / 6.0);
                     BYTE green_average = round((green + green_top + green_bottom + green_top_right + green_right + green_bottom_right) / 6.0);
@@ -317,25 +317,25 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_top = image_copy_blue[i-1][j];
-                    BYTE green_top = image_copy_green[i-1][j];
-                    BYTE red_top = image_copy_red[i-1][j];
+                    BYTE blue_top = image_copy_blue[i - 1][j];
+                    BYTE green_top = image_copy_green[i - 1][j];
+                    BYTE red_top = image_copy_red[i - 1][j];
 
-                    BYTE blue_bottom = image_copy_blue[i+1][j];
-                    BYTE green_bottom = image_copy_green[i+1][j];
-                    BYTE red_bottom = image_copy_red[i+1][j];
+                    BYTE blue_bottom = image_copy_blue[i + 1][j];
+                    BYTE green_bottom = image_copy_green[i + 1][j];
+                    BYTE red_bottom = image_copy_red[i + 1][j];
 
-                    BYTE blue_top_left =  image_copy_blue[i-1][j-1];
-                    BYTE green_top_left = image_copy_green[i-1][j-1];
-                    BYTE red_top_left = image_copy_red[i-1][j-1];
+                    BYTE blue_top_left =  image_copy_blue[i - 1][j - 1];
+                    BYTE green_top_left = image_copy_green[i - 1][j - 1];
+                    BYTE red_top_left = image_copy_red[i - 1][j - 1];
 
-                    BYTE blue_left = image_copy_blue[i][j-1];
-                    BYTE green_left = image_copy_green[i][j-1];
-                    BYTE red_left = image_copy_red[i][j-1];
+                    BYTE blue_left = image_copy_blue[i][j - 1];
+                    BYTE green_left = image_copy_green[i][j - 1];
+                    BYTE red_left = image_copy_red[i][j - 1];
 
-                    BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
-                    BYTE green_bottom_left = image_copy_green[i+1][j-1];
-                    BYTE red_bottom_left = image_copy_red[i+1][j-1];
+                    BYTE blue_bottom_left = image_copy_blue[i + 1][j - 1];
+                    BYTE green_bottom_left = image_copy_green[i + 1][j - 1];
+                    BYTE red_bottom_left = image_copy_red[i + 1][j - 1];
 
                     BYTE blue_average = round((blue + blue_top + blue_bottom + blue_top_left + blue_left + blue_bottom_left) / 6.0);
                     BYTE green_average = round((green + green_top + green_bottom + green_top_left + green_left + green_bottom_left) / 6.0);
@@ -349,45 +349,50 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
             else
             {
-                BYTE blue_top_left =  image_copy_blue[i-1][j-1];
-                BYTE green_top_left = image_copy_green[i-1][j-1];
-                BYTE red_top_left = image_copy_red[i-1][j-1];
+                BYTE blue_top_left =  image_copy_blue[i - 1][j - 1];
+                BYTE green_top_left = image_copy_green[i - 1][j - 1];
+                BYTE red_top_left = image_copy_red[i - 1][j - 1];
 
-                BYTE blue_top = image_copy_blue[i-1][j];
-                BYTE green_top = image_copy_green[i-1][j];
-                BYTE red_top = image_copy_red[i-1][j];
+                BYTE blue_top = image_copy_blue[i - 1][j];
+                BYTE green_top = image_copy_green[i - 1][j];
+                BYTE red_top = image_copy_red[i - 1][j];
 
-                BYTE blue_top_right = image_copy_blue[i-1][j+1];
-                BYTE green_top_right = image_copy_green[i-1][j+1];
-                BYTE red_top_right = image_copy_red[i-1][j+1];
+                BYTE blue_top_right = image_copy_blue[i - 1][j + 1];
+                BYTE green_top_right = image_copy_green[i - 1][j + 1];
+                BYTE red_top_right = image_copy_red[i - 1][j + 1];
 
-                BYTE blue_left = image_copy_blue[i][j-1];
-                BYTE green_left = image_copy_green[i][j-1];
-                BYTE red_left = image_copy_red[i][j-1];
+                BYTE blue_left = image_copy_blue[i][j - 1];
+                BYTE green_left = image_copy_green[i][j - 1];
+                BYTE red_left = image_copy_red[i][j - 1];
 
                 BYTE blue = image_copy_blue[i][j];
                 BYTE green = image_copy_green[i][j];
                 BYTE red = image_copy_red[i][j];
 
-                BYTE blue_right = image_copy_blue[i][j+1];
-                BYTE green_right = image_copy_green[i][j+1];
-                BYTE red_right = image_copy_red[i][j+1];
+                BYTE blue_right = image_copy_blue[i][j + 1];
+                BYTE green_right = image_copy_green[i][j + 1];
+                BYTE red_right = image_copy_red[i][j + 1];
 
-                BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
-                BYTE green_bottom_left = image_copy_green[i+1][j-1];
-                BYTE red_bottom_left = image_copy_red[i+1][j-1];
+                BYTE blue_bottom_left = image_copy_blue[i + 1][j - 1];
+                BYTE green_bottom_left = image_copy_green[i + 1][j - 1];
+                BYTE red_bottom_left = image_copy_red[i + 1][j - 1];
 
-                BYTE blue_bottom = image_copy_blue[i+1][j];
-                BYTE green_bottom = image_copy_green[i+1][j];
-                BYTE red_bottom = image_copy_red[i+1][j];
+                BYTE blue_bottom = image_copy_blue[i + 1][j];
+                BYTE green_bottom = image_copy_green[i + 1][j];
+                BYTE red_bottom = image_copy_red[i + 1][j];
 
-                BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
-                BYTE green_bottom_right = image_copy_green[i+1][j+1];
-                BYTE red_bottom_right = image_copy_red[i+1][j+1];
+                BYTE blue_bottom_right = image_copy_blue[i + 1][j + 1];
+                BYTE green_bottom_right = image_copy_green[i + 1][j + 1];
+                BYTE red_bottom_right = image_copy_red[i + 1][j + 1];
 
-                BYTE blue_average = round((blue_top_left + blue_top + blue_top_right + blue_left + blue + blue_right + blue_bottom_left + blue_bottom + blue_bottom_right) / 9.0);
-                BYTE green_average = round((green_top_left + green_top + green_top_right + green_left + green + green_right + green_bottom_left + green_bottom + green_bottom_right) / 9.0);
-                BYTE red_average = round((red_top_left + red_top + red_top_right + red_left + red + red_right + red_bottom_left + red_bottom + red_bottom_right) / 9.0);
+                BYTE blue_average = round((blue_top_left + blue_top + blue_top_right + blue_left + blue + blue_right + blue_bottom_left +
+                                           blue_bottom + blue_bottom_right) / 9.0);
+
+                BYTE green_average = round((green_top_left + green_top + green_top_right + green_left + green + green_right + green_bottom_left +
+                                            green_bottom + green_bottom_right) / 9.0);
+
+                BYTE red_average = round((red_top_left + red_top + red_top_right + red_left + red + red_right + red_bottom_left +
+                                          red_bottom + red_bottom_right) / 9.0);
 
                 image[i][j].rgbtBlue = blue_average;
                 image[i][j].rgbtGreen = green_average;
@@ -402,14 +407,20 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    // We use integers to compute RGB BYTES over the value 255.
+    // We Create a copy of the original image to not interfere with modified pixels
+    
+    // To clarify which pixels
     int first_pixel_in_row = 0;
     int last_pixel_in_row = width - 1;
 
     int first_row = 0;
     int last_row = height - 1;
-
+    
+    // Black pixels are considered 0.
     BYTE PIXEL_BLACK = 0.0;
 
+    // Create copy of original pixel
     BYTE image_copy_blue[height][width];
     BYTE image_copy_green[height][width];
     BYTE image_copy_red[height][width];
@@ -422,7 +433,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             image_copy_red[i][j] = image[i][j].rgbtRed;
         }
     }
-
+    
+    // gx 
+    // -1 0 1
+    // -2 0 2
+    // -1 0 ;1
+    
+    // gy
+    // -1 -2 -1
+    //  0  0  0
+    //  1  2  1
+    // Loop over every individual pixel. use the duplicate image to calculate the convolutional matrix of gx and gy 
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -438,17 +459,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_right = image_copy_blue[i][j+1];
-                    BYTE green_right = image_copy_green[i][j+1];
-                    BYTE red_right = image_copy_red[i][j+1];
+                    BYTE blue_right = image_copy_blue[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
-                    BYTE blue_bottom = image_copy_blue[i+1][j];
-                    BYTE green_bottom = image_copy_green[i+1][j];
-                    BYTE red_bottom = image_copy_red[i+1][j];
+                    BYTE blue_bottom = image_copy_blue[i + 1][j];
+                    BYTE green_bottom = image_copy_green[i + 1][j];
+                    BYTE red_bottom = image_copy_red[i + 1][j];
 
-                    BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
-                    BYTE green_bottom_right = image_copy_green[i+1][j+1];
-                    BYTE red_bottom_right = image_copy_red[i+1][j+1];
+                    BYTE blue_bottom_right = image_copy_blue[i + 1][j + 1];
+                    BYTE green_bottom_right = image_copy_green[i + 1][j + 1];
+                    BYTE red_bottom_right = image_copy_red[i + 1][j + 1];
 
                     int blue_gx = (blue_right * 2) + (blue_bottom_right * 1);
                     int green_gx = (green_right * 2) + (green_bottom_right * 1);
@@ -496,23 +517,23 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 else if (j == last_pixel_in_row)
                 {
                     // TOP RIGHT PIXEL
-                    BYTE blue_left = image_copy_blue[i][j-1];
-                    BYTE green_left = image_copy_green[i][j-1];
-                    BYTE red_left = image_copy_red[i][j-1];
+                    BYTE blue_left = image_copy_blue[i][j - 1];
+                    BYTE green_left = image_copy_green[i][j - 1];
+                    BYTE red_left = image_copy_red[i][j - 1];
 
                     BYTE blue = image_copy_blue[i][j];
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
-                    BYTE green_bottom_left = image_copy_green[i+1][j-1];
-                    BYTE red_bottom_left = image_copy_red[i+1][j-1];
+                    BYTE blue_bottom_left = image_copy_blue[i + 1][j - 1];
+                    BYTE green_bottom_left = image_copy_green[i + 1][j - 1];
+                    BYTE red_bottom_left = image_copy_red[i + 1][j - 1];
 
-                    BYTE blue_bottom = image_copy_blue[i+1][j];
-                    BYTE green_bottom = image_copy_green[i+1][j];
-                    BYTE red_bottom = image_copy_red[i+1][j];
+                    BYTE blue_bottom = image_copy_blue[i + 1][j];
+                    BYTE green_bottom = image_copy_green[i + 1][j];
+                    BYTE red_bottom = image_copy_red[i + 1][j];
 
-                    int blue_gx = (blue_left * -2) +(blue_bottom_left * -1);
+                    int blue_gx = (blue_left * -2) + (blue_bottom_left * -1);
                     int green_gx = (green_left * -2) + (green_bottom_left * -1);
                     int red_gx = (red_left * -2) + (red_bottom_left * -1);
 
@@ -558,29 +579,29 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 else
                 {
                     // TOP ROW
-                    BYTE blue_left = image_copy_blue[i][j-1];
-                    BYTE green_left = image_copy_green[i][j-1];
-                    BYTE red_left = image_copy_red[i][j-1];
+                    BYTE blue_left = image_copy_blue[i][j - 1];
+                    BYTE green_left = image_copy_green[i][j - 1];
+                    BYTE red_left = image_copy_red[i][j - 1];
 
                     BYTE blue = image_copy_blue[i][j];
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_right = image_copy_blue[i][j+1];
-                    BYTE green_right = image_copy_green[i][j+1];
-                    BYTE red_right = image_copy_red[i][j+1];
+                    BYTE blue_right = image_copy_blue[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
-                    BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
-                    BYTE green_bottom_left = image_copy_green[i+1][j-1];
-                    BYTE red_bottom_left = image_copy_red[i+1][j-1];
+                    BYTE blue_bottom_left = image_copy_blue[i + 1][j - 1];
+                    BYTE green_bottom_left = image_copy_green[i + 1][j - 1];
+                    BYTE red_bottom_left = image_copy_red[i + 1][j - 1];
 
-                    BYTE blue_bottom = image_copy_blue[i+1][j];
-                    BYTE green_bottom = image_copy_green[i+1][j];
-                    BYTE red_bottom = image_copy_red[i+1][j];
+                    BYTE blue_bottom = image_copy_blue[i + 1][j];
+                    BYTE green_bottom = image_copy_green[i + 1][j];
+                    BYTE red_bottom = image_copy_red[i + 1][j];
 
-                    BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
-                    BYTE green_bottom_right = image_copy_green[i+1][j+1];
-                    BYTE red_bottom_right = image_copy_red[i+1][j+1];
+                    BYTE blue_bottom_right = image_copy_blue[i + 1][j + 1];
+                    BYTE green_bottom_right = image_copy_green[i + 1][j + 1];
+                    BYTE red_bottom_right = image_copy_red[i + 1][j + 1];
 
                     int blue_gx = (blue_left * -2) + (blue_right * 2) + (blue_bottom_left * -1) + (blue_bottom_right * 1);
                     int green_gx = (green_left * -2) + (green_right * 2) + (green_bottom_left * -1) + (green_bottom_right * 1);
@@ -632,21 +653,21 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     // BOTTOM LEFT PIXEL
 
-                    BYTE blue_top = image_copy_blue[i-1][j];
-                    BYTE green_top = image_copy_green[i-1][j];
-                    BYTE red_top = image_copy_red[i-1][j];
+                    BYTE blue_top = image_copy_blue[i - 1][j];
+                    BYTE green_top = image_copy_green[i - 1][j];
+                    BYTE red_top = image_copy_red[i - 1][j];
 
-                    BYTE blue_top_right = image_copy_blue[i-1][j+1];
-                    BYTE green_top_right = image_copy_green[i-1][j+1];
-                    BYTE red_top_right = image_copy_red[i-1][j+1];
+                    BYTE blue_top_right = image_copy_blue[i - 1][j + 1];
+                    BYTE green_top_right = image_copy_green[i - 1][j + 1];
+                    BYTE red_top_right = image_copy_red[i - 1][j + 1];
 
                     BYTE blue = image_copy_blue[i][j];
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_right = image_copy_blue[i][j+1];
-                    BYTE green_right = image_copy_green[i][j+1];
-                    BYTE red_right = image_copy_red[i][j+1];
+                    BYTE blue_right = image_copy_blue[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
                     int blue_gx = (blue_top_right * 1) + (blue_right * 2);
                     int green_gx = (green_top_right * 1) + (green_right * 2);
@@ -694,17 +715,17 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 else if (j == last_pixel_in_row)
                 {
                     // BOTTOM RIGHT PIXEl
-                    BYTE blue_top_left = image_copy_blue[i-1][j-1];
-                    BYTE green_top_left = image_copy_green[i-1][j-1];
-                    BYTE red_top_left = image_copy_red[i-1][j-1];
+                    BYTE blue_top_left = image_copy_blue[i - 1][j - 1];
+                    BYTE green_top_left = image_copy_green[i - 1][j - 1];
+                    BYTE red_top_left = image_copy_red[i - 1][j - 1];
 
-                    BYTE blue_top = image_copy_blue[i-1][j];
-                    BYTE green_top = image_copy_green[i-1][j];
-                    BYTE red_top = image_copy_red[i-1][j];
+                    BYTE blue_top = image_copy_blue[i - 1][j];
+                    BYTE green_top = image_copy_green[i - 1][j];
+                    BYTE red_top = image_copy_red[i - 1][j];
 
-                    BYTE blue_left = image_copy_blue[i][j-1];
-                    BYTE green_left = image_copy_green[i][j-1];
-                    BYTE red_left = image_copy_red[i][j-1];
+                    BYTE blue_left = image_copy_blue[i][j - 1];
+                    BYTE green_left = image_copy_green[i][j - 1];
+                    BYTE red_left = image_copy_red[i][j - 1];
 
                     BYTE blue = image_copy_blue[i][j];
                     BYTE green = image_copy_green[i][j];
@@ -756,29 +777,29 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 else
                 {
                     // BOTTOM ROW
-                    BYTE blue_top_left = image_copy_blue[i-1][j-1];
-                    BYTE green_top_left = image_copy_green[i-1][j-1];
-                    BYTE red_top_left = image_copy_red[i-1][j-1];
+                    BYTE blue_top_left = image_copy_blue[i - 1][j - 1];
+                    BYTE green_top_left = image_copy_green[i - 1][j - 1];
+                    BYTE red_top_left = image_copy_red[i - 1][j - 1];
 
-                    BYTE blue_top = image_copy_blue[i-1][j];
-                    BYTE green_top = image_copy_green[i-1][j];
-                    BYTE red_top = image_copy_red[i-1][j];
+                    BYTE blue_top = image_copy_blue[i - 1][j];
+                    BYTE green_top = image_copy_green[i - 1][j];
+                    BYTE red_top = image_copy_red[i - 1][j];
 
-                    BYTE blue_top_right = image_copy_blue[i-1][j+1];
-                    BYTE green_top_right = image_copy_green[i-1][j+1];
-                    BYTE red_top_right = image_copy_red[i-1][j+1];
+                    BYTE blue_top_right = image_copy_blue[i - 1][j + 1];
+                    BYTE green_top_right = image_copy_green[i - 1][j + 1];
+                    BYTE red_top_right = image_copy_red[i - 1][j + 1];
 
-                    BYTE blue_left = image_copy_blue[i][j-1];
-                    BYTE green_left = image_copy_green[i][j-1];
-                    BYTE red_left = image_copy_red[i][j-1];
+                    BYTE blue_left = image_copy_blue[i][j - 1];
+                    BYTE green_left = image_copy_green[i][j - 1];
+                    BYTE red_left = image_copy_red[i][j - 1];
 
                     BYTE blue = image_copy_blue[i][j];
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_right = image_copy_blue[i][j+1];
-                    BYTE green_right = image_copy_green[i][j+1];
-                    BYTE red_right = image_copy_red[i][j+1];
+                    BYTE blue_right = image_copy_blue[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
                     int blue_gx = (blue_top_left * -1) + (blue_top_right * 1) + (blue_left * -2) + (blue_right * 2);
                     int green_gx = (green_top_left * -1) + (green_top_right * 1) + (green_left * -2) + (green_right * 2);
@@ -830,29 +851,29 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     // FIRST COLUMN
 
-                    BYTE blue_top = image_copy_blue[i-1][j];
-                    BYTE green_top = image_copy_green[i-1][j];
-                    BYTE red_top = image_copy_red[i-1][j];
+                    BYTE blue_top = image_copy_blue[i - 1][j];
+                    BYTE green_top = image_copy_green[i - 1][j];
+                    BYTE red_top = image_copy_red[i - 1][j];
 
-                    BYTE blue_top_right = image_copy_blue[i-1][j+1];
-                    BYTE green_top_right = image_copy_green[i-1][j+1];
-                    BYTE red_top_right = image_copy_red[i-1][j+1];
+                    BYTE blue_top_right = image_copy_blue[i - 1][j + 1];
+                    BYTE green_top_right = image_copy_green[i - 1][j + 1];
+                    BYTE red_top_right = image_copy_red[i - 1][j + 1];
 
                     BYTE blue = image_copy_blue[i][j];
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_right = image_copy_blue[i][j+1];
-                    BYTE green_right = image_copy_green[i][j+1];
-                    BYTE red_right = image_copy_red[i][j+1];
+                    BYTE blue_right = image_copy_blue[i][j + 1];
+                    BYTE green_right = image_copy_green[i][j + 1];
+                    BYTE red_right = image_copy_red[i][j + 1];
 
-                    BYTE blue_bottom = image_copy_blue[i+1][j];
-                    BYTE green_bottom = image_copy_green[i+1][j];
-                    BYTE red_bottom = image_copy_red[i+1][j];
+                    BYTE blue_bottom = image_copy_blue[i + 1][j];
+                    BYTE green_bottom = image_copy_green[i + 1][j];
+                    BYTE red_bottom = image_copy_red[i + 1][j];
 
-                    BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
-                    BYTE green_bottom_right = image_copy_green[i+1][j+1];
-                    BYTE red_bottom_right = image_copy_red[i+1][j+1];
+                    BYTE blue_bottom_right = image_copy_blue[i + 1][j + 1];
+                    BYTE green_bottom_right = image_copy_green[i + 1][j + 1];
+                    BYTE red_bottom_right = image_copy_red[i + 1][j + 1];
 
                     int blue_gx = (blue_top_right * 1) + (blue_right * 2) + (blue_bottom_right * 1);
                     int green_gx = (green_top_right * 1) + (green_right * 2) + (green_bottom_right * 1);
@@ -903,31 +924,31 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 if (i != first_row || i != last_row)
                 {
                     // LAST COLUMN
-                    BYTE blue_top_left = image_copy_blue[i-1][j-1];
-                    BYTE green_top_left = image_copy_green[i-1][j-1];
-                    BYTE red_top_left = image_copy_red[i-1][j-1];
+                    BYTE blue_top_left = image_copy_blue[i - 1][j - 1];
+                    BYTE green_top_left = image_copy_green[i - 1][j - 1];
+                    BYTE red_top_left = image_copy_red[i - 1][j - 1];
 
-                    BYTE blue_top = image_copy_blue[i-1][j];
-                    BYTE green_top = image_copy_green[i-1][j];
-                    BYTE red_top = image_copy_red[i-1][j];
+                    BYTE blue_top = image_copy_blue[i - 1][j];
+                    BYTE green_top = image_copy_green[i - 1][j];
+                    BYTE red_top = image_copy_red[i - 1][j];
 
-                    BYTE blue_left = image_copy_blue[i][j-1];
-                    BYTE green_left = image_copy_green[i][j-1];
-                    BYTE red_left = image_copy_red[i][j-1];
+                    BYTE blue_left = image_copy_blue[i][j - 1];
+                    BYTE green_left = image_copy_green[i][j - 1];
+                    BYTE red_left = image_copy_red[i][j - 1];
 
                     BYTE blue = image_copy_blue[i][j];
                     BYTE green = image_copy_green[i][j];
                     BYTE red = image_copy_red[i][j];
 
-                    BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
-                    BYTE green_bottom_left = image_copy_green[i+1][j-1];
-                    BYTE red_bottom_left = image_copy_red[i+1][j-1];
+                    BYTE blue_bottom_left = image_copy_blue[i + 1][j - 1];
+                    BYTE green_bottom_left = image_copy_green[i + 1][j - 1];
+                    BYTE red_bottom_left = image_copy_red[i + 1][j - 1];
 
-                    BYTE blue_bottom = image_copy_blue[i+1][j];
-                    BYTE green_bottom = image_copy_green[i+1][j];
-                    BYTE red_bottom = image_copy_red[i+1][j];
+                    BYTE blue_bottom = image_copy_blue[i + 1][j];
+                    BYTE green_bottom = image_copy_green[i + 1][j];
+                    BYTE red_bottom = image_copy_red[i + 1][j];
 
-                    int blue_gx = (blue_top_left * -1) + (blue_left * -2) +  (blue_bottom_left * -1);
+                    int blue_gx = (blue_top_left * -1) + (blue_left * -2) + (blue_bottom_left * -1);
                     int green_gx = (green_top_left * -1) + (green_left * -2) + (green_bottom_left * -1);
                     int red_gx = (red_top_left * -1) + (red_left * -2) + (red_bottom_left * -1);
 
@@ -975,49 +996,59 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             {
                 // MAIN PIXELS
 
-                BYTE blue_top_left = image_copy_blue[i-1][j-1];
-                BYTE green_top_left = image_copy_green[i-1][j-1];
-                BYTE red_top_left = image_copy_red[i-1][j-1];
+                BYTE blue_top_left = image_copy_blue[i - 1][j - 1];
+                BYTE green_top_left = image_copy_green[i - 1][j - 1];
+                BYTE red_top_left = image_copy_red[i - 1][j - 1];
 
-                BYTE blue_top = image_copy_blue[i-1][j];
-                BYTE green_top = image_copy_green[i-1][j];
-                BYTE red_top = image_copy_red[i-1][j];
+                BYTE blue_top = image_copy_blue[i - 1][j];
+                BYTE green_top = image_copy_green[i - 1][j];
+                BYTE red_top = image_copy_red[i - 1][j];
 
-                BYTE blue_top_right = image_copy_blue[i-1][j+1];
-                BYTE green_top_right = image_copy_green[i-1][j+1];
-                BYTE red_top_right = image_copy_red[i-1][j+1];
+                BYTE blue_top_right = image_copy_blue[i - 1][j + 1];
+                BYTE green_top_right = image_copy_green[i - 1][j + 1];
+                BYTE red_top_right = image_copy_red[i - 1][j + 1];
 
-                BYTE blue_left = image_copy_blue[i][j-1];
-                BYTE green_left = image_copy_green[i][j-1];
-                BYTE red_left = image_copy_red[i][j-1];
+                BYTE blue_left = image_copy_blue[i][j - 1];
+                BYTE green_left = image_copy_green[i][j - 1];
+                BYTE red_left = image_copy_red[i][j - 1];
 
                 BYTE blue = image_copy_blue[i][j];
                 BYTE green = image_copy_green[i][j];
                 BYTE red = image_copy_red[i][j];
 
-                BYTE blue_right = image_copy_blue[i][j+1];
-                BYTE green_right = image_copy_green[i][j+1];
-                BYTE red_right = image_copy_red[i][j+1];
+                BYTE blue_right = image_copy_blue[i][j + 1];
+                BYTE green_right = image_copy_green[i][j + 1];
+                BYTE red_right = image_copy_red[i][j + 1];
 
-                BYTE blue_bottom_left = image_copy_blue[i+1][j-1];
-                BYTE green_bottom_left = image_copy_green[i+1][j-1];
-                BYTE red_bottom_left = image_copy_red[i+1][j-1];
+                BYTE blue_bottom_left = image_copy_blue[i + 1][j - 1];
+                BYTE green_bottom_left = image_copy_green[i + 1][j - 1];
+                BYTE red_bottom_left = image_copy_red[i + 1][j - 1];
 
-                BYTE blue_bottom = image_copy_blue[i+1][j];
-                BYTE green_bottom = image_copy_green[i+1][j];
-                BYTE red_bottom = image_copy_red[i+1][j];
+                BYTE blue_bottom = image_copy_blue[i + 1][j];
+                BYTE green_bottom = image_copy_green[i + 1][j];
+                BYTE red_bottom = image_copy_red[i + 1][j];
 
-                BYTE blue_bottom_right = image_copy_blue[i+1][j+1];
-                BYTE green_bottom_right = image_copy_green[i+1][j+1];
-                BYTE red_bottom_right = image_copy_red[i+1][j+1];
+                BYTE blue_bottom_right = image_copy_blue[i + 1][j + 1];
+                BYTE green_bottom_right = image_copy_green[i + 1][j + 1];
+                BYTE red_bottom_right = image_copy_red[i + 1][j + 1];
 
-                int blue_gx = (blue_top_left * -1) + (blue_top_right * 1) + (blue_left * -2) + (blue_right * 2) + (blue_bottom_left * -1) + (blue_bottom_right * 1);
-                int green_gx = (green_top_left * -1) + (green_top_right * 1) + (green_left * -2) + (green_right * 2) + (green_bottom_left * -1) + (green_bottom_right * 1);
-                int red_gx = (red_top_left * -1) + (red_top_right * 1) + (red_left * -2) + (red_right * 2) + (red_bottom_left * -1) + (red_bottom_right * 1);
+                int blue_gx = (blue_top_left * -1) + (blue_top_right * 1) + (blue_left * -2) + (blue_right * 2) + (blue_bottom_left * -1) +
+                              (blue_bottom_right * 1);
 
-                int blue_gy = (blue_top_left * -1) + (blue_top * -2) + (blue_top_right * -1) + (blue_bottom_left * 1) + (blue_bottom * 2) + (blue_bottom_right * 1);
-                int green_gy = (green_top_left * -1) + (green_top * -2) + (green_top_right * -1) + (green_bottom_left * 1) + (green_bottom * 2) + (green_bottom_right * 1);
-                int red_gy = (red_top_left * -1) + (red_top * -2) + (red_top_right * -1) + (red_bottom_left * 1) + (red_bottom * 2) + (red_bottom_right * 1);
+                int green_gx = (green_top_left * -1) + (green_top_right * 1) + (green_left * -2) + (green_right * 2) + (green_bottom_left * -1) +
+                               (green_bottom_right * 1);
+
+                int red_gx = (red_top_left * -1) + (red_top_right * 1) + (red_left * -2) + (red_right * 2) + (red_bottom_left * -1) +
+                             (red_bottom_right * 1);
+
+                int blue_gy = (blue_top_left * -1) + (blue_top * -2) + (blue_top_right * -1) + (blue_bottom_left * 1) + (blue_bottom * 2) +
+                              (blue_bottom_right * 1);
+
+                int green_gy = (green_top_left * -1) + (green_top * -2) + (green_top_right * -1) + (green_bottom_left * 1) + (green_bottom * 2) +
+                               (green_bottom_right * 1);
+
+                int red_gy = (red_top_left * -1) + (red_top * -2) + (red_top_right * -1) + (red_bottom_left * 1) + (red_bottom * 2) +
+                             (red_bottom_right * 1);
 
                 // square to make a positive number then sqrt to normalize
                 int blue_sum = blue_gx + blue_gy;
