@@ -463,9 +463,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     int green_sum = green_gx + green_gy;
                     int red_sum = red_gx + green_gy;
 
-                    int blue_channel = sqrt(pow(blue_sum, 2));
-                    int green_channel = sqrt(pow(green_sum, 2));
-                    int red_channel =  sqrt(pow(red_sum, 2));
+                    int blue_channel = sqrt(pow(blue_gx, 2) + pow(blue_gy, 2));
+                    int green_channel = sqrt(pow(green_gx, 2) + pow(green_gy, 2));
+                    int red_channel =  sqrt(pow(red_gx, 2) + pow(red_gy, 2));
 
                     if (blue_channel > 255)
                     {
@@ -525,9 +525,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     int green_sum = green_gx + green_gy;
                     int red_sum = red_gx + green_gy;
 
-                    int blue_channel = sqrt(pow(blue_sum, 2));
-                    int green_channel = sqrt(pow(green_sum, 2));
-                    int red_channel =  sqrt(pow(red_sum, 2));
+                    int blue_channel = sqrt(pow(blue_gx, 2) + pow(blue_gy, 2));
+                    int green_channel = sqrt(pow(green_gx, 2) + pow(green_gy, 2));
+                    int red_channel =  sqrt(pow(red_gx, 2) + pow(red_gy, 2));
 
                     if (blue_channel > 255)
                     {
@@ -595,9 +595,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     int green_sum = green_gx + green_gy;
                     int red_sum = red_gx + green_gy;
 
-                    int blue_channel = sqrt(pow(blue_sum, 2));
-                    int green_channel = sqrt(pow(green_sum, 2));
-                    int red_channel =  sqrt(pow(red_sum, 2));
+                    int blue_channel = sqrt(pow(blue_gx, 2) + pow(blue_gy, 2));
+                    int green_channel = sqrt(pow(green_gx, 2) + pow(green_gy, 2));
+                    int red_channel =  sqrt(pow(red_gx, 2) + pow(red_gy, 2));
 
                     if (blue_channel > 255)
                     {
@@ -661,9 +661,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     int green_sum = green_gx + green_gy;
                     int red_sum = red_gx + green_gy;
 
-                    int blue_channel = sqrt(pow(blue_sum, 2));
-                    int green_channel = sqrt(pow(green_sum, 2));
-                    int red_channel =  sqrt(pow(red_sum, 2));
+                    int blue_channel = sqrt(pow(blue_gx, 2) + pow(blue_gy, 2));
+                    int green_channel = sqrt(pow(green_gx, 2) + pow(green_gy, 2));
+                    int red_channel =  sqrt(pow(red_gx, 2) + pow(red_gy, 2));
 
                     if (blue_channel > 255)
                     {
@@ -723,9 +723,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     int green_sum = green_gx + green_gy;
                     int red_sum = red_gx + green_gy;
 
-                    int blue_channel = sqrt(pow(blue_sum, 2));
-                    int green_channel = sqrt(pow(green_sum, 2));
-                    int red_channel =  sqrt(pow(red_sum, 2));
+                    int blue_channel = sqrt(pow(blue_gx, 2) + pow(blue_gy, 2));
+                    int green_channel = sqrt(pow(green_gx, 2) + pow(green_gy, 2));
+                    int red_channel =  sqrt(pow(red_gx, 2) + pow(red_gy, 2));
 
                     if (blue_channel > 255)
                     {
@@ -793,9 +793,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     int green_sum = green_gx + green_gy;
                     int red_sum = red_gx + green_gy;
 
-                    int blue_channel = sqrt(pow(blue_sum, 2));
-                    int green_channel = sqrt(pow(green_sum, 2));
-                    int red_channel =  sqrt(pow(red_sum, 2));
+                    int blue_channel = sqrt(pow(blue_gx, 2) + pow(blue_gy, 2));
+                    int green_channel = sqrt(pow(green_gx, 2) + pow(green_gy, 2));
+                    int red_channel =  sqrt(pow(red_gx, 2) + pow(red_gy, 2));
 
                     if (blue_channel > 255)
                     {
@@ -867,9 +867,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     int green_sum = green_gx + green_gy;
                     int red_sum = red_gx + green_gy;
 
-                    int blue_channel = sqrt(pow(blue_sum, 2));
-                    int green_channel = sqrt(pow(green_sum, 2));
-                    int red_channel =  sqrt(pow(red_sum, 2));
+                    int blue_channel = sqrt(pow(blue_gx, 2) + pow(blue_gy, 2));
+                    int green_channel = sqrt(pow(green_gx, 2) + pow(green_gy, 2));
+                    int red_channel =  sqrt(pow(red_gx, 2) + pow(red_gy, 2));
 
                     if (blue_channel > 255)
                     {
@@ -940,9 +940,9 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     int green_sum = green_gx + green_gy;
                     int red_sum = red_gx + green_gy;
 
-                    int blue_channel = sqrt(pow(blue_sum, 2));
-                    int green_channel = sqrt(pow(green_sum, 2));
-                    int red_channel =  sqrt(pow(red_sum, 2));
+                    int blue_channel = sqrt(pow(blue_gx, 2) + pow(blue_gy, 2));
+                    int green_channel = sqrt(pow(green_gx, 2) + pow(green_gy, 2));
+                    int red_channel =  sqrt(pow(red_gx, 2) + pow(red_gy, 2));
 
                     if (blue_channel > 255)
                     {
