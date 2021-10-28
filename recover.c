@@ -55,16 +55,7 @@ int main(int argc, char *argv[])
         if (buffer[0] == 255 && buffer[1] == 216 && buffer[2] == 255 && (buffer[3] & 0xfe) == 224)
         {
             jpeg_count++;
-            if (jpeg_count == 1)
-            {
-                //first jpeg
-                fwrite(buffer, JPEG_SIZE, 1, outfile[jpeg_count-1]);
-            }
-            else
-            {
-                // not first jpeg
-                fwrite(buffer, JPEG_SIZE, 1, outfile[jpeg_count-1]);
-            }
+            fwrite(buffer, JPEG_SIZE, 1, outfile[jpeg_count-1]);
         }
         else
         {
