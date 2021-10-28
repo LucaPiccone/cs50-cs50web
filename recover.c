@@ -38,11 +38,11 @@ int main(int argc, char *argv[])
             i++;
             if (i <= 10)
             {
-                sprintf(jpeg[i-1], "00%i.jpeg", i-1);
+                sprintf(jpeg[i-1], "00%i.jpg", i-1);
             }
             else
             {
-                sprintf(jpeg[i-1], "0%i.jpeg", i-1);
+                sprintf(jpeg[i-1], "0%i.jpg", i-1);
             }
 
             if (i == 1)
