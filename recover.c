@@ -29,7 +29,14 @@ int main(int argc, char *argv[])
     FILE *outfile[50];
     for (int i = 0; i < 50; i++)
     {
-        sprintf(jpeg[i], "00%i.jpeg", i);
+        if (i < 10)
+        {
+            sprintf(jpeg[i], "00%i.jpeg", i);
+        }
+        else
+        {
+            sprintf(jpeg[i], "0%i.jpeg", i);
+        }
 
         outfile[i] = fopen(jpeg[i], "w");
         if (!outfile[i])
@@ -75,7 +82,7 @@ int main(int argc, char *argv[])
     {
         fclose(outfile[i]);
     }
-    
+
     fclose(infile);
 
 }
