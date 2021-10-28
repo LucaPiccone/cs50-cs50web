@@ -5,7 +5,7 @@
 typedef uint8_t BYTE;
 
 const int HEADER_SIZE = 4;
-const int JPEG_SIZE = 512;
+const int JPG_SIZE = 512;
 
 int main(int argc, char *argv[])
 {
@@ -24,42 +24,55 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    BYTE buffer[JPEG_SIZE];
+    // declare the variable to store bytes
+    BYTE buffer[JPG_SIZE];
 
+    // jpeg array stores the name of new files being generated
     char jpeg[50][12];
+
+    // This is a file pointer to the jpeg variable.
     FILE *outfile[50];
 
-    int jpeg_count = 0;
+    // i determine which jpg is being focused.
     int i = 0;
-    while(fread(buffer, JPEG_SIZE, 1, infile))
+
+    // Illiustrate through the forensic file in 512 B chuncks
+    while (fread(buffer, JPG_SIZE, 1, infile))
     {
+        // if the start of a jpg
         if (buffer[0] == 255 && buffer[1] == 216 && buffer[2] == 255 && (buffer[3] & 0xfe) == 224)
         {
+            // we found the first jpg
             i++;
+            // name the jpg according and store it in the jpeg array
             if (i <= 10)
             {
-                sprintf(jpeg[i-1], "00%i.jpg", i-1);
+                sprintf(jpeg[i - 1], "00%i.jpg", i - 1);
             }
             else
             {
-                sprintf(jpeg[i-1], "0%i.jpg", i-1);
+                sprintf(jpeg[i - 1], "0%i.jpg", i - 1);
             }
 
+            // if the first jpeg
             if (i == 1)
             {
-                // first jpeg
-                outfile[i-1] = fopen(jpeg[i-1], "w");
+                // open the file pointer array at index 0 and point it to the string stored in the jpeg variable at index 0
+                outfile[i - 1] = fopen(jpeg[i - 1], "w");
 
-                fwrite(buffer, JPEG_SIZE, 1, outfile[i-1]);
+                // write 512 B to the outfile
+                fwrite(buffer, JPG_SIZE, 1, outfile[i - 1]);
             }
+            // if not the first jpeg
             else
             {
-                // not first jpeg
                 //close last jpeg
-                fclose(outfile[i-2]);
-                outfile[i-1] = fopen(jpeg[i-1], "w");
+                fclose(outfile[i - 2]);
 
-                fwrite(buffer, JPEG_SIZE, 1, outfile[i-1]);
+                // open and write to the file pointer
+                outfile[i - 1] = fopen(jpeg[i - 1], "w");
+
+                fwrite(buffer, JPG_SIZE, 1, outfile[i - 1]);
             }
         }
         else
@@ -67,7 +80,7 @@ int main(int argc, char *argv[])
             // Already found jpeg
             if (i > 0)
             {
-                fwrite(buffer, JPEG_SIZE, 1, outfile[i-1]);
+                fwrite(buffer, JPG_SIZE, 1, outfile[i - 1]);
             }
         }
     }
