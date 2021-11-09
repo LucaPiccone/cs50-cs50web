@@ -65,6 +65,7 @@ person *create_family(int generations)
         p->alleles[1] = person->parents[1]->alleles[0];
 
     }
+    // only happens for grandparents when generations = 1
     else
     {
         // TODO: Set parent pointers to NULL
@@ -87,8 +88,9 @@ void free_family(person *p)
 {
     // TODO: Handle base case
     if (p == NULL)
+    {
         return;
-
+    }
     // TODO: Free parents
     else if (p->parents[1] != NULL && p->parents[0] != NULL)
     {
