@@ -41,7 +41,7 @@ person *create_family(int generations)
 {
     // TODO: Allocate memory for new person
     person *p = NULL;
-    person *person = malloc(sizeof(person));
+    person *person = malloc(sizeof(person) * 7);
     if (person == NULL)
     {
         printf("Error allocating memory for child");
@@ -51,6 +51,7 @@ person *create_family(int generations)
     person->parents[1] = NULL;
 
     p = person;
+    printf("%p\n", p);
 
     // Generation with parent data
     if (generations > 1)
@@ -58,8 +59,6 @@ person *create_family(int generations)
         // TODO: Recursively create blood type histories for parents
         p->parents[0] = create_family(generations - 1);
         p->parents[1] = create_family(generations - 1);
-
-
 
         // TODO: Randomly assign child alleles based on parents
         p->alleles[0] = person->parents[0]->alleles[0];
@@ -87,17 +86,20 @@ person *create_family(int generations)
 void free_family(person *p)
 {
     // TODO: Handle base case
-    free(p->parents[0]->parents[0]);
-    free(p->parents[0]->parents[1]);
-    free(p->parents[1]->parents[0]);
-    free(p->parents[1]->parents[1]);
-    free(p->parents[0]);
-    free(p->parents[1]);
-    free(p);
+    if (p == NULL)
+        return;
+
     // TODO: Free parents
+    else if (p->parents[1] != NULL && p->parents[0] != NULL)
+    {
+        person *mom = p->parents[0];
+        person *dad = p->parents[1];
+        free_family(mom);
+        free_family(dad);
 
+    }
     // TODO: Free child
-
+    free(p);
 }
 
 // Print each family member and their alleles.
