@@ -1,4 +1,4 @@
- // Implements a dictionary's functionality
+// Implements a dictionary's functionality
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,14 +18,16 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
+// Total word_count + 50% of word_count
 const unsigned int N = 216000;
 
 // Hash table
 node *table[N];
 
-// Dictionary word count
+// Dictionary word count -- returned in size
 int word_count = 0;
 
+// Declare a 8 byte int for hash
 typedef uint64_t EIGHT_BYTES;
 
 // Returns true if word is in dictionary, else false
@@ -38,16 +40,22 @@ bool check(const char *word)
     // printf("%i\n", index);
 
     if (table[index] == NULL)
+    {    
         return false;
-
+    }
+    
     node *tmp = table[index];
 
     while (strcasecmp(tmp->word, word) != 0)
     {
         if (tmp->next != NULL)
+        {
             tmp = tmp->next;
+        }
         else
+        {
             return false;
+        }
     }
 
     return true;
@@ -61,7 +69,8 @@ unsigned int hash(const char *word)
     // https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1a_hash
 
     int length = strlen(word) + 1;
-
+    
+    // Make a copy of word in all lowercase
     char copy[length];
     for (int i = 0; i < length; i++)
     {
@@ -136,7 +145,7 @@ bool unload(void)
     // TODO
     for (int i = 0; i < N; i++)
     {
-        while(table[i] != NULL)
+        while (table[i] != NULL)
         {
             node *tmp = table[i]->next;
             free(table[i]);
