@@ -89,6 +89,7 @@ def simulate_tournament(teams):
     # Create a copy of the list of teams and ratings
     copy_teams = teams
     winners = {}
+    
     # simulate round until two finalist remain
     while len(copy_teams) != 2:
         winners = copy_teams
