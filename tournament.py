@@ -22,10 +22,10 @@ def main():
         # for every row in reader append to teams[] the row. Basically, go into the file and append every row to the list of teams.
         for row in reader:
             teams.append(row)
-        
+
         # For every dictionary in the list of dictionaries
         for dictionarys in teams:
-            # for every key in the dictionary 
+            # for every key in the dictionary
             for keys in dictionarys:
                 # if dictionary[0], dictionary[1] can be converted to an int, convert it
                 try:
@@ -41,18 +41,18 @@ def main():
 
     counts = {}
     # TODO: Simulate N tournaments and keep track of win counts
-    
-    # For every dictionary in the list of dictionaies (teams)
+
+    # For every dictionary in the list of dictionaries (teams)
     for team in teams:
         # counts (key) = the team in the dictionary,
-        # counts (value) = 0 
+        # counts (value) = 0
         counts[team['team']] = 0
-        
+
     # For 0 - 999 simulate tournament and add 1 to count for the winner key.
     for i in range(N):
         winner = simulate_tournament(teams)
         counts[winner] += 1
-    
+
     # Print each team's chances of winning, according to simulation
     for team in sorted(counts, key=lambda team: counts[team], reverse=True):
         print(f"{team}: {counts[team] * 100 / N:.1f}% chance of winning")
@@ -83,10 +83,10 @@ def simulate_round(teams):
 def simulate_tournament(teams):
     """Simulate a tournament. Return name of winning team."""
     # TODO
-    # Count the number of teams 
+    # Count the number of teams
     number_of_teams = len(teams)
 
-    # Create a copy of the list of teams and ratings 
+    # Create a copy of the list of teams and ratings
     copy_teams = teams
 
     # simulate round until two finalist remain
@@ -97,7 +97,7 @@ def simulate_tournament(teams):
     # simulate the game of the two finalist
     winner = simulate_game(winners[0], winners[1])
 
-    # if true first team one else second team one 
+    # if true first team one else second team one
     if winner == True:
         first_place = winners[0]
     else:
