@@ -88,13 +88,17 @@ def simulate_tournament(teams):
 
     # Create a copy of the list of teams and ratings
     copy_teams = teams
-
+    winners = {}
     # simulate round until two finalist remain
     while len(copy_teams) != 2:
         winners = copy_teams
         copy_teams = simulate_round(winners)
 
     # simulate the game of the two finalist
+    if number_of_teams == 2:
+        winners[0] = copy_teams[0]
+        winners[1] = copy_teams[1]
+        
     winner = simulate_game(winners[0], winners[1])
 
     # if true first team one else second team one
