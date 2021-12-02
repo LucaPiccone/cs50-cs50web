@@ -5,7 +5,7 @@ OUT_WORD = 0
 
 text = get_string("Text: ")
 
-letters = words = sentences = cursor = 0;
+letters = words = sentences = cursor = 0
 
 length = len(text)
 
@@ -37,11 +37,12 @@ for i in range(length):
 # print(sentences)
     
 index = 0.0
-    
+# The Coleman-Liay formula determines the grade level of a peice of text.
 index = 0.0588 * (letters / words * 100.0) - 0.296 * (sentences / words * 100.0) - 15.8
     
 rounded = round(index, 0)
     
+# Determine what number round is and print the grade.
 for i in range(length):
     if (rounded == i):
         print(f"Grade {i}")
