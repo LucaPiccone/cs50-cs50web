@@ -2,6 +2,7 @@ from sys import argv
 import csv
 import copy
 
+
 def main():
     if len(argv) != 3:
         print("Usage: python dna.py database DNA")
@@ -16,7 +17,6 @@ def main():
 
         for row in reader:
             suspects.append(row)
-
 
     with open(DNA, "r") as evidence:
         for line in evidence:
@@ -74,22 +74,22 @@ def types_of_dna(suspects):
 def check_dna(sample, nucleotides):
     # Simply add a new elif for any additional nucleotide checks
     for dna in nucleotides:
-            if dna == 'AGATC':
-                nucleotides[dna] = count_dna(sample, dna)
-            elif dna == 'TTTTTTCT':
-                nucleotides[dna] = count_dna(sample, dna)
-            elif dna == 'AATG':
-                nucleotides[dna] = count_dna(sample, dna)
-            elif dna == 'TCTAG':
-                nucleotides[dna] = count_dna(sample, dna)
-            elif dna == 'GATA':
-                nucleotides[dna] = count_dna(sample, dna)
-            elif dna == 'TATC':
-                nucleotides[dna] = count_dna(sample, dna)
-            elif dna == 'GAAA':
-                nucleotides[dna] = count_dna(sample, dna)
-            elif dna == 'TCTG':
-                nucleotides[dna] = count_dna(sample, dna)
+        if dna == 'AGATC':
+            nucleotides[dna] = count_dna(sample, dna)
+        elif dna == 'TTTTTTCT':
+            nucleotides[dna] = count_dna(sample, dna)
+        elif dna == 'AATG':
+            nucleotides[dna] = count_dna(sample, dna)
+        elif dna == 'TCTAG':
+            nucleotides[dna] = count_dna(sample, dna)
+        elif dna == 'GATA':
+            nucleotides[dna] = count_dna(sample, dna)
+        elif dna == 'TATC':
+            nucleotides[dna] = count_dna(sample, dna)
+        elif dna == 'GAAA':
+            nucleotides[dna] = count_dna(sample, dna)
+        elif dna == 'TCTG':
+            nucleotides[dna] = count_dna(sample, dna)
 
     return nucleotides
 
