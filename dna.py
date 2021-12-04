@@ -55,7 +55,7 @@ def main():
             pass
 
     if found == "":
-        print("No matches")
+        print("No match")
 
 
 # This function returns a dictionary for all types of possible DNAs
