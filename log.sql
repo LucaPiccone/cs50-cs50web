@@ -79,3 +79,9 @@ SELECT full_name from airports WHERE id IN (SELECT destination_airport_id FROM f
 
 -- Heathrow Airport
 -- Logan International Airport
+
+SELECT id, name, transcript FROM interviews WHERE year = 2020 AND month = 7 AND day = 28 AND transcript LIKE "%courthouse%";
+-- Theif made a call 
+
+SELECT name FROM people WHERE phone_number IN (SELECT caller FROM phone_calls WHERE day = 28 AND month = 7 AND year = 2020 AND duration <= 1);
+-- ONLY RUSSEL MADE AN OUTGOING CALL
