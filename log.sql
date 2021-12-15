@@ -1,93 +1,72 @@
--- Keep a log of any SQL queries you execute as you solve the mystery.
--- july 28, 2020 at the chamberlin street courthouse
-.schema;
-.tables;
-.schema crime_scene_reports;
-SELECT * FROM crime_scene_reports LIMIT 5;
-SELECT description FROM crime_scene_reports WHERE year = 2020 AND month = 7 AND day = 28 AND street = "Chamberlin Street";
--- Duck was taken at 10:15am from the courthouse. Interviews were conducted with three witnesses who were present at the time. Each interviewee mentioned the courthouse
-.tables
-SELECT * FROM courthouse_security_logs WHERE year = 2020 AND month = 7 and day = 28;
--- mentions liscense plates and time of entrance / exit
-SELECT id, name, transcript FROM interviews WHERE year = 2020 AND month = 7 AND day = 28 AND transcript LIKE "%courthouse%";
--- Ruth - within 10 min the theft left courthouse
--- Eugene - Theif withdrew money from the ATM on fifer steet
--- Raymond - Planning to take flight the next day, partner bought tickets
-SELECT id, license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 25;
---id | license_plate
---260 | 5P2BI95
---261 | 94KL13X
---262 | 6P58WS2
---263 | 4328GD8
---264 | G412CB7
---265 | L93JTIZ
---266 | 322W7JE
---267 | 0NTHK55
-.schema
+.table
+.schema crime_scene_reports
+
+SELECT description FROM crime_scene_reports WHERE yar = 2020 AND day = 28 AND month = 7 AND street = "Chamberlin Street";
+
+-- Each interviewee mentions the court house 
+
+.table
+.schema interviews
+
+SELECT name, transcript FROM interviews WHERE year = 2020 AND month = 7 AND day = 28;
+--Ruth | Sometime within ten minutes of the theft, I saw the thief get into a car in the courthouse parking lot and drive away. If you have security footage from the courthouse --parking lot, you might want to look for cars that left the parking lot in that time frame.
+--Eugene | I don't know the thief's name, but it was someone I recognized. Earlier this morning, before I arrived at the courthouse, I was walking by the ATM on Fifer Street and saw --the thief there withdrawing some money.
+--Raymond | As the thief was leaving the courthouse, they called someone who talked to them for less than a minute. In the call, I heard the thief say that they were planning to take --the earliest flight out of Fiftyville tomorrow. The thief then asked the person on the other end of the phone to purchase the flight ticket.
+
+--RUTH 
+.table
+.schema courthouse_security_logs
+SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND  day = 28 AND hour = 10 AND activity = "exit" AND minute <= 25 AND minute >= 15;
+
+-- .schema
+
+SELECT name FROM people WHERE license_plate IN (SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND  day = 28 AND hour = 10 AND activity = "exit" AND minute <= 25 AND minute >= 15);
+
+-- Eugene
+.table
 .schema atm_transactions
-SELECT id, account_number, transaction_type FROM atm_transactions limit 5;
-SELECT id, account_number, atm_location, transaction_type FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw";
---id | atm_location | account_number
---246 | Fifer Street | 28500762
---264 | Fifer Street | 28296815
---266 | Fifer Street | 76054385
---267 | Fifer Street | 49610011
---269 | Fifer Street | 16153065
---288 | Fifer Street | 25506511
---313 | Fifer Street | 81061156
---336 | Fifer Street | 26013199
-SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw";
-SELECT * FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw");
-.schema
-SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw");
 
-SELECT * FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw"));
--- The list of people who withdrew money from the atm on fifth street july 28, 2020
+SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location = "Fifer Street" AND transaction_type = "withdraw";
 
-SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 25;
+-- .schema 
 
-SELECT * FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw")) AND license_plate IN (SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 25);
--- This is the list of people who withdrew money on fifth street on july 28 and left the court house 10 minutes after the duck was stolen.
+SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location = "Fifer Street" AND transaction_type = "withdraw");
 
-.schema
+-- .schmea
 
-SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE year = 2020 AND month = 7 AND day = 29);
-
-SELECT * FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw")) AND license_plate IN (SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 25) AND passport_number IN (SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE year = 2020 AND month = 7 AND day = 29));
-
-.schema
-
-SELECT caller FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28;
-
-SELECT * FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw")) AND license_plate IN (SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 25) AND passport_number IN (SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE year = 2020 AND month = 7 AND day = 29)) AND phone_number IN (SELECT caller FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28);
-
-SELECT receiver FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28;
-
-SELECT * FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location LIKE "%fifer%" AND transaction_type = "withdraw")) AND license_plate IN (SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND day = 28 AND hour = 10 AND minute >= 15 AND minute <= 25) AND passport_number IN (SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE year = 2020 AND month = 7 AND day = 29)) AND phone_number IN (SELECT receiver FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28);
--- Danielle and russel
--- phone_number = received and called on the same day of the robbery
--- passport_number = Were on a flight the day after the robbery
--- liscense plate = left the courthouse 10 min after the robbery
--- id = withdrew money from their bank account on the day of the robbery on fifer street.
+SELECT name FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location = "Fifer Street" AND transaction_type = "withdraw"));
 
 
-SELECT * FROM people WHERE name IN ("Danielle", "Russell");
-SELECT passport_number FROM people WHERE name IN ("Danielle", "Russell");
-
-SELECT full_name from airports WHERE id IN (SELECT destination_airport_id FROM flights WHERE origin_airport_id = 'Fiftyville Regional Airport' AND year = 2020 AND month = 7 AND day = 29 AND id IN (SELECT flight_id FROM passengers WHERE passport_number IN (SELECT passport_number FROM people WHERE name IN ("Danielle", "Russell"))));
+-- MIX RUTH AND EUGENES NAMES - 4 PEOPLE 
+SELECT name FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location = "Fifer Street" AND transaction_type = "withdraw")) AND license_plate IN (SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND  day = 28 AND hour = 10 AND activity = "exit" AND minute <= 25 AND minute >= 15);
 
 
--- Heathrow Airport
--- Logan International Airport
+-- Raymond 
+.table
+.schema phone_calls
 
-SELECT id, name, transcript FROM interviews WHERE year = 2020 AND month = 7 AND day = 28 AND transcript LIKE "%courthouse%";
--- Theif made a call 
+SELECT caller FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28 AND duration < 60;
 
-SELECT name FROM people WHERE phone_number IN (SELECT caller FROM phone_calls WHERE day = 28 AND month = 7 AND year = 2020);
--- ONLY RUSSEL MADE AN OUTGOING CALL
+-- 2 names 
+SELECT name FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location = "Fifer Street" AND transaction_type = "withdraw")) AND license_plate IN (SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND  day = 28 AND hour = 10 AND activity = "exit" AND minute <= 25 AND minute >= 15) AND phone_number IN (SELECT caller FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28 AND duration < 60);
 
-SELECT city from airports WHERE id IN (SELECT destination_airport_id FROM flights WHERE year = 2020 AND month = 7 AND day = 29 AND id IN (SELECT flight_id FROM passengers WHERE passport_number IN (SELECT passport_number FROM people WHERE name = "Russell")));
+SELECT passport_number FROM people where name IN ("Russell", "Ernest");
 
-SELECT name FROM people WHERE phone_number IN (SELECT receiver FROM phone_calls WHERE year = 2020 AND day = 28 AND month = 7 AND caller IN (SELECT phone_number FROM people WHERE 
-name));
--- PHILIP recieved a call from russell on the day of the crime 
+SELECT origin_airport_id FROM flights WHERE year = 2020 AND month = 7 AND day = 29 and hour = 8;
+
+-- earliest flight out of fiftyville was to london 
+SELECT city FROM airports WHERE id IN (SELECT destination_airport_id FROM flights WHERE year = 2020 AND month = 7 AND day = 29 and hour = 8);
+
+-- id of the flight 
+SELECT id FROM flights WHERE year = 2020 AND month = 7 AND day = 29 and hour = 8;
+
+SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE year = 2020 AND month = 7 AND day = 29 and hour = 8);
+
+Ernest took the earliest flight out of fiftyville
+SELECT name FROM people WHERE id IN (SELECT person_id FROM bank_accounts WHERE account_number IN (SELECT account_number FROM atm_transactions WHERE year = 2020 AND month = 7 AND day = 28 AND atm_location = "Fifer Street" AND transaction_type = "withdraw")) AND license_plate IN (SELECT license_plate FROM courthouse_security_logs WHERE year = 2020 AND month = 7 AND  day = 28 AND hour = 10 AND activity = "exit" AND minute <= 25 AND minute >= 15) AND phone_number IN (SELECT caller FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28 AND duration < 60) AND passport_number IN (SELECT passport_number FROM passengers WHERE flight_id IN (SELECT id FROM flights WHERE year = 2020 AND month = 7 AND day = 29 and hour = 8));
+
+
+-- Berthold bought the flight ticket for ernest to escape 
+SELECT phone_number FROM people WHERE name = "Ernest";
+SELECT receiver FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28 AND duration < 60 AND caller IN (SELECT phone_number FROM people WHERE name = "Ernest");
+SELECT name FROM people WHERE phone_number IN (SELECT receiver FROM phone_calls WHERE year = 2020 AND month = 7 AND day = 28 AND duration < 60 AND caller IN (SELECT phone_number FROM people WHERE name = "Ernest"));

@@ -1,3 +1,3 @@
-The THIEF is: Russelle
-The thief ESCAPED TO: Boston
-The ACCOMPLICE is: Philip
+The THIEF is: Ernest
+The thief ESCAPED TO: London
+The ACCOMPLICE is: Berthold
