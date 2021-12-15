@@ -85,3 +85,5 @@ SELECT id, name, transcript FROM interviews WHERE year = 2020 AND month = 7 AND 
 
 SELECT name FROM people WHERE phone_number IN (SELECT caller FROM phone_calls WHERE day = 28 AND month = 7 AND year = 2020 AND duration <= 1);
 -- ONLY RUSSEL MADE AN OUTGOING CALL
+
+SELECT city from airports WHERE id IN (SELECT destination_airport_id FROM flights WHERE year = 2020 AND month = 7 AND day = 29 AND id IN (SELECT flight_id FROM passengers WHERE passport_number IN (SELECT passport_number FROM people WHERE name = "Russell")));
