@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+
+            function listen() {
+                document.querySelector('#freeResponseSubmit').addEventListener('click', function(){
+                    let userAnswer = document.querySelector('#userAnswer').value;
+                    if (userAnswer.toLowerCase() == "khufu") {
+                        document.querySelector('#partTwoResponse').innerHTML = 'Correct!';
+                        document.querySelector('#userAnswer').style.color = 'green';
+                    }
+                    else {
+                        document.querySelector('#partTwoResponse').innerHTML = 'Incorrect';
+                        document.querySelector('#userAnswer').style.color = 'red'
+                    }
+                    document.querySelector('#userAnswer').reset()
+                })
+
+                let answerOne = document.querySelector('#ophidiophobia')
+                answerOne.addEventListener('click', function() {
+                    answerOne.style.backgroundColor = 'red';
+                    document.querySelector('#partOneResponse').innerHTML = 'Incorrect'
+                });
+
+                let answerTwo = document.querySelector('#chronophobia')
+                answerTwo.addEventListener('click', function() {
+                   answerTwo.style.backgroundColor = 'red';
+                   document.querySelector('#partOneResponse').innerHTML = 'Incorrect'
+                });
+
+                let answerThree = document.querySelector('#pteridophobia');
+                answerThree.addEventListener('click', function() {
+                    answerThree.style.backgroundColor = 'green';
+                    document.querySelector('#partOneResponse').innerHTML = 'Corrrect!'
+                })
+
+            }
+
+            document.addEventListener('DOMContentLoaded', listen)
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section align">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <!-- TODO: Add multiple choice question here -->
+                <h3 class="">What is the fear of ferns?</h3>
+                <button class=" btnColor bold" type="submit" id="ophidiophobia">Ophidiophobia</button>
+                <button class=" btnColor bold" id="chronophobia">Chronophobia</button>
+                <button class=" btnColor bold" id="pteridophobia">Pteridophobia</button>
+                <div id="partOneResponse"></div>
+            </div>
+
+            <div class="section align">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+
+                <!-- TODO: Add free response question here -->
+                <h3>What is the name of the Pharoah who commissioned the Great Pyramid of Giza?</h3>
+                <input type="text" id="userAnswer" autofocus autocomplete="off">
+                <button class="btnColor bold" type="submit" id="freeResponseSubmit">Confirm</button>
+                <div id="partTwoResponse"></div>
+            </div>
+
+        </div>
+    </body>
+</html>
+
+<!--
+    https://www.w3schools.com/jsref/jsref_tolowercase.asp
+    https://www.verywellmind.com/list-of-phobias-2795453
+    https://www.pbs.org/wgbh/nova/pyramid/explore/gizahistory.html
+-->
