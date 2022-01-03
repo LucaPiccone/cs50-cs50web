@@ -221,8 +221,6 @@ def quote():
             return apology("Invalid Symbol")
 
         print("-->",quote)
-        # quote['price'] = usd(quote['price'])
-        print("-->",quote)
         return render_template('quoted.html', quote=quote)
 
     else:
