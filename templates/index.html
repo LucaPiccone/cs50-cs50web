@@ -1,0 +1,33 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <div class="w-100 text-center">
+        <table class="w-100 text-left border-top border-bottom m-1">
+            <thead>
+                <tr>
+                    <th>symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            {% for stock in stocks %}
+            <tbody class="border-top hover">
+                <tr>
+                    <td>{{ stock["symbol"] }}</td>
+                    <td>{{ stock["stock"] }}</td>
+                    <td>{{ stock["quantity"] }}</td>
+                    <td>{{ stock["current_price"] }}</td>
+                    <th>{{ stock['total'] }}</th>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
