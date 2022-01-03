@@ -41,6 +41,7 @@ db = SQL("sqlite:///finance.db")
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
+
 @app.route("/")
 @login_required
 def index():
@@ -136,12 +137,15 @@ def buy():
 
         print(asset_symbol)
         # Insert the transaction into transactions table
-        db.execute('INSERT INTO transactions (stock, symbol, price, quantity, total_cost, date_time, transactions, user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)', stock_name, stock_symbol, stock_price, shares, total_cost, date_time, transaction, user_id)
+        db.execute('INSERT INTO transactions (stock, symbol, price, quantity, total_cost, date_time, transactions, user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)',
+                   stock_name, stock_symbol, stock_price, shares, total_cost, date_time, transaction, user_id)
 
         if asset_symbol == stock_symbol:
-            db.execute('UPDATE assets SET price = ?, quantity = ?, total_cost = ? WHERE user_id = ?', asset_price, asset_quantity, asset_total_cost, user_id)
+            db.execute('UPDATE assets SET price = ?, quantity = ?, total_cost = ? WHERE user_id = ?',
+                       asset_price, asset_quantity, asset_total_cost, user_id)
         else:
-            db.execute('INSERT INTO assets (stock, symbol, price, quantity, total_cost, user_id) VALUES(?, ?, ?, ?, ?, ?)', stock_name, stock_symbol, stock_price, shares, total_cost, user_id)
+            db.execute('INSERT INTO assets (stock, symbol, price, quantity, total_cost, user_id) VALUES(?, ?, ?, ?, ?, ?)',
+                       stock_name, stock_symbol, stock_price, shares, total_cost, user_id)
 
         db.execute('UPDATE users SET cash = ? WHERE id = ?', cash_balance, user_id)
 
@@ -220,13 +224,13 @@ def quote():
         if quote == None:
             return apology("Invalid Symbol")
 
-        print("-->",quote)
-        # quote['price'] = usd(quote['price'])
-        print("-->",quote)
+        # print("-->", quote)
+
         return render_template('quoted.html', quote=quote)
 
     else:
         return render_template("quote.html")
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -275,8 +279,6 @@ def sell():
     if request.method == "POST":
         date_time = str(datetime.datetime.now())
         symbol = request.form.get('symbol')
-
-
         try:
             shares = int(request.form.get('shares'))
             if shares < 1:
@@ -313,11 +315,14 @@ def sell():
         asset_quantity = asset[0]['quantity'] - shares
         asset_total_cost = round(asset[0]['total_cost'] - total_cost, 2)
 
-        db.execute('INSERT INTO transactions (stock, symbol, price, quantity, total_cost, date_time, transactions, user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)', stock_name, stock_symbol, stock_price, shares, total_cost, date_time, transaction, user_id)
+        db.execute('INSERT INTO transactions (stock, symbol, price, quantity, total_cost, date_time, transactions, user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)',
+                   stock_name, stock_symbol, stock_price, shares, total_cost, date_time, transaction, user_id)
+
         if asset_quantity == 0:
             db.execute('DELETE FROM assets WHERE user_id = ? AND symbol = ?', user_id, symbol)
         else:
-            db.execute('UPDATE assets SET price = ?, quantity = ?, total_cost = ? WHERE user_id = ? AND symbol = ?', asset_price, asset_quantity, asset_total_cost, user_id, stock_symbol)
+            db.execute('UPDATE assets SET price = ?, quantity = ?, total_cost = ? WHERE user_id = ? AND symbol = ?',
+                       asset_price, asset_quantity, asset_total_cost, user_id, stock_symbol)
 
         db.execute('UPDATE users SET cash = ? WHERE id = ?', cash_balance, user_id)
 
@@ -340,4 +345,6 @@ for code in default_exceptions:
 
 
 # import time
-# https://stackoverflow.com/questions/40358675/flask-get-local-time
+# https://docs.python.org/3/
+# https://www.sqlite.org/index.html
+# CS50
