@@ -1,0 +1,63 @@
+{% extends 'layout.html' %} 
+
+{% block main %}
+    <div class="cartContainer my-5 container">
+        <div class="list-group w-auto">
+          {% for product in products %}
+            <div class="list-group-item d-flex gap-3 py-3" aria-current="true">
+              <img src="{{ product['image'] }}" alt="twbs" width="50" height="50" class="rounded-circle flex-shrink-0">
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                
+                <div>
+                  <h6 class="mb-0">{{ product['name'] }}</h6>
+                </div>
+
+                <div>
+                  <small class="opacity-50 text-nowrap">{{ product['price'] }}/ea.</small>
+                  <small>
+                    <form action="/cart" method="post" class="handleQty">
+                      <input class="originalqty" hidden="hidden" name="originalqty" type="number" min="0" value="{{ product['qty'] }}">
+                      <input type="submit" hidden="hidden">
+                      <input class="itemQty" name="qty" type="number" min="0" onfocusout="submit()" value="{{ product['qty'] }}">
+                      
+                      <input class="itemid" hidden="hidden" name="id" type="text" value="{{ product['id'] }}">
+                    </form>
+                  </small>
+                </div>
+
+              </div>
+            </div>
+          {% endfor %}
+            <div style="background-color: #ffc107;" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                
+                <div class="div">
+
+                </div>
+      
+                <div class="div" style="display: flex;">
+                  <div>
+                    <h6 class="">Subtotal: &nbsp;</h6>
+                    <h6 class="">Tax: &nbsp; </h6>
+                    <h6 class="">Total: &nbsp; </h6>
+                  </div>
+  
+                  <div>
+                    <h6 class="opacity-50 text-nowrap">${{subtotal}}</h6>
+                    <h6 class="opacity-50 text-nowrap">${{tax}}</h6>
+                    <h6 class="opacity-50 text-nowrap">${{total}}</h6>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <form id="checkoutform" action="/checkout" method="post">
+              <button class="checkoutbtn btn btn-warning">
+                Check out
+              </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

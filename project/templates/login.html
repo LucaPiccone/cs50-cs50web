@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+    <div class="loginContainer my-5">
+        <form id="loginform" action="/login" method="post">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            {{error}}
+            <br>
+
+            <div class="form-floating">
+            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+            <label for="floatingInput">Email address</label>
+            </div>
+
+            <br>
+
+            <div class="form-floating mb-3">
+            <input name="password" type="password" class="password form-control" id="floatingPassword" placeholder="Password" required>
+            <label for="floatingPassword">Password</label>
+            </div>
+
+            <!-- <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+            </div> -->
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+           
+            <br></br>
+
+            <div class="forgotpassword">
+                <a href="/forgotpassword">Forgot Password?</a>
+            </div>
+
+            <div class="reg">
+                <a href="/register">Don't have an account? Register here.</a>
+            </div>
+            
+        </form>
+    </div>
+{% endblock %}

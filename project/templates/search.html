@@ -1,0 +1,38 @@
+<div class="searchSuggestion">
+    <div class="searchContainers">
+        {% for product in products %}
+            {% if product['brand'] %}
+            <form action="/search" method="post" id="searchform">
+                <div role="button" class="search">
+                    <input autocomplete="off" value="{{ product['brand'] }}" hidden id="searchInput" type="text" placeholder="Search" name="?">                    
+                    <button id="button" class="" type="submit">
+                        <span style="float: left;">
+                            {{product['brand']}}
+                        </span>
+                        <span style="color: rgb(167, 167, 167); float: right;">
+                            Company
+                        </span>
+                    </button>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+        {% for product in products %}
+            {% if product['name'] %}
+            <form action="/search" method="post" id="searchform">
+                <div role="button" onclick="document.forms['search-form']" class="search">
+                    <input autocomplete="off" value="{{ product['name'] }}" hidden id="searchInput" type="text" placeholder="Search" name="?">                    
+                    <button id="button" class=""  type="submit">
+                        <span style="float: left;">
+                            {{product['name']}}
+                        </span>
+                        <span style="color: rgb(167, 167, 167); float: right">
+                            Product
+                        </span>
+                    </button>
+                </div>
+            </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

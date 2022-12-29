@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+    <div class="registerContainer my-5">
+        <form id="registerform" action="/register" method="post">
+
+            <h1 class="h3 mb-3 fw-normal">Create an Account</h1>
+            
+            <div class="form-floating">
+                <input name="fname" type="text" class="form-control name" id="floatingFname" placeholder="name@example.com" required>
+                <label for="floatingFname">First name</label>
+            </div>
+
+            <br>
+            
+            <div class="form-floating">
+                <input name="lname" type="text" class="form-control name" id="floatingLame" placeholder="Password" required>
+                <label for="floatingLname">Last name</label>
+            </div>
+
+            <br>
+            
+            <div class="form-floating">
+                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Password" required>
+                <label for="floatingInput">Email</label>
+            </div>
+
+            <br>
+            
+            <div class="form-floating">
+                <input name="password" type="password" class="password form-control" id="floatingPassword" placeholder="Password" minlength="6" required>
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <br>
+            
+            <div class="form-floating">
+                <input name="cpassword" type="password" class="password form-control" id="floatingCPassword" placeholder="Confirm Password" required>
+                <label for="floatingCPassword">Confirm Password</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input name="checkbox" id="termsandconditions" type="checkbox" value="1"> <a href="" >Terms and Conditions</a>
+                </label>
+                <p id="demo"></p>
+            </div>
+
+            <p id="error" style="color: red;">{{ error }}</p>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            
+            <br></br>
+
+            <div class="div">
+                <a href="/login">Have an account? Log in.</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let registerform = document.querySelector('#registerform')
+        registerform.addEventListener('submit', (e) => {
+            let checkbox = document.querySelector('#termsandconditions')
+            let password = document.querySelector('#floatingPassword').value
+            let cpassword = document.querySelector('#floatingCPassword').value
+            if (!checkbox.checked)
+            {
+                e.preventDefault()
+                document.querySelector('#error').innerHTML = 'Please check the box'
+            }
+            else if (password !== cpassword)
+            {
+                e.preventDefault()
+                document.querySelector('#error').innerHTML = 'Passwords do not match'
+            }
+            else {
+                registerform.submit()
+            }
+        })
+    </script>
+{% endblock %}

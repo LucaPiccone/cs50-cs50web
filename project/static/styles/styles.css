@@ -1,0 +1,229 @@
+body {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 1.1em !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
+}
+
+nav, main, footer {
+    margin: 0 8px;
+}
+
+main {
+    flex:1;
+    min-height: 65vh;
+}
+
+
+/* -------------------- LAYOUT STYLES -------------------- */
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navLeft > a{
+    color: black;
+    text-decoration: none;
+    font-size: 0em;
+}
+
+.navLeft > a:hover {
+    color: black;
+}
+
+.navRight {
+    display: flex;
+    margin: auto 0;
+}
+
+.navLink > a {
+    margin: 0 0 0 19px;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: darkgray;
+    transition: 0.25s;
+}
+
+.navLink > a:hover {
+    color: black;
+}
+
+
+/* -------------------- SEARCH BAR STYLES -------------------- */
+.searchContainer {
+    position: absolute;
+    padding-top: 15px;
+    width: 100%;
+    pointer-events: none;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.searchWrapper {
+    width: 50%;
+    margin: auto;
+    pointer-events: auto;
+}
+
+.searchBox {
+    width: 60%;
+    margin: auto;
+}
+
+#searchSuggestions {
+    margin: 5px auto;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+#button {
+    background-color: transparent;
+    width: 100%;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+#button:hover {
+    background-color: rgb(232, 230, 230);
+}
+
+@media (max-width: 800px) {
+    .navContainer {
+        display: block;
+        text-align: center;
+    }
+    .navRight > .navLink {
+        text-align: center;
+        margin: auto;
+    }
+    .navLink > a {
+        text-align: center;
+    }
+    .searchBox {
+        width: 100%;
+    }
+}
+
+
+/* -------------------- FOOTER STYLES -------------------- */
+footer {
+    margin-top: 50px;
+    min-height:50px;
+    bottom: 0;
+}
+
+.footerWrapper {
+    text-align: center;
+}
+
+.copywrite {
+    text-align: center;
+}
+
+
+/* -------------------- INDEX STYLES -------------------- */
+#homeContainer {
+    top: 130px;
+    z-index: -1;
+    min-height: 194px;
+}
+
+.productsDisplay {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.productDisplay {
+    width: 100%;
+}
+
+.productsDisplay > a {
+    color: black;
+}
+
+.productsDisplay > a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.productPhoto > img {
+    width: 100%;
+    /* height: 455px; */
+}
+
+.productDisplay-1:hover {
+    background-color: rgba(0, 0, 0, 0.288) !important;
+}
+
+
+/* -------------------- PRODUCT PAGE STYLES -------------------- */
+.productContainer {
+    background-color: white;
+    color: black;
+    border: solid;
+}
+
+.productWrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.productrightside {
+    margin: 8px;
+    width: 100%;
+}
+
+.productdesc {
+    margin: 10px;
+    text-align: center;
+}
+
+#productQty {
+    border: 1px solid orange;
+    width: 75px;
+}
+
+.addtoCartBtn {
+    background-color: rgba(255, 166, 0, 0.881);
+    width: 80%;
+    height: 50px;
+}
+
+.addtoCartBtn:hover {
+    background-color: rgba(255, 166, 0, 0.939);
+}
+
+
+/* -------------------- CART STYLES -------------------- */
+.itemQty {
+    width: 60px;
+    height: 40px;
+}
+
+.checkoutbtn {
+    margin: 24px auto;
+    width: 100px;
+    height: 50px;
+}
+
+#checkoutform {
+    text-align: center;
+}
+
+
+/* -------------------- LOGIN STYLES -------------------- */
+.loginContainer, .registerContainer {
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    border-radius: 0;
+}
