@@ -1,3 +1,3 @@
-input()
+input = input()
 
 print(input.replace(' ', '...'))
