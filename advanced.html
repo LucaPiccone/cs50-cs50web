@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Mock Google</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        
+        <div class="advanced_nav_container">
+            <div class="left_nav">
+                <a href="./index.html">
+                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" height="30px" width="92px" alt="Google">
+                </a>
+            </div>
+            <div class="right_nav">
+                <a href="./images.html">Images</a>
+                <a href="./index.html">Google</a>
+            </div>
+        </div>
+
+        <div class="appbar">
+            <label>Advanced Search</label>
+        </div>
+
+        <div class="line_break"></div>
+        
+        <div class="advanced_main_container">
+
+            <form name="advanced_search" action="https://google.com/search" method="get">
+
+                <div class="grid_container">
+
+                    <div class="left_column" style="font-weight: 200">
+                        Find Pages With...
+                    </div>
+
+                    <div class="middle_column"></div>
+
+                    <div class="right_column" style="font-weight: bold; font-size: 1em; margin-left: 0;">
+                        To do this in the search box
+                    </div>
+
+                </div>
+
+                <div class="grid_container">
+
+                    <div class="left_column">
+                        All these words:
+                    </div>
+
+                    <div class="middle_column">
+                        <input type="text" name="as_q">
+                    </div>
+
+                    <div class="right_column">
+                        Type the important words: <span>tricolor rat terrier</span>
+                    </div>
+
+                </div>
+
+                <div class="grid_container">
+
+                    <div class="left_column">
+                        This exact word or phrase:
+                    </div>
+                    
+                    <div class="middle_column">
+                        <input type="text" name="as_epq">
+                    </div>
+
+                    <div class="right_column">
+                        Put exact words in quotes: <span>"rat" "terrier"</span>
+                    </div>
+
+                </div>
+
+                <div class="grid_container">
+
+                    <div class="left_column">
+                        Any of these words
+                    </div>
+                    
+                    <div class="middle_column">
+                        <input type="text" name="as_oq">
+                    </div>
+
+                    <div class="right_column">
+                        Type OR between ll the words you want: <span>miniture OR standard</span>
+                    </div>
+
+                </div>
+
+                <div class="grid_container">
+
+                    <div class="left_column">
+                        None of these words:
+                    </div>
+                    
+                    <div class="middle_column">
+                        <input type="text" name="as_eq">
+                    </div>
+
+                    <div class="right_column">
+                        Put a minus sign just before the words you don't want <span>-rodent, -"Jack Russel"</span>
+                    </div>
+
+                </div>
+
+                <div class="grid_container">
+
+                    <div class="left_column"></div>
+                    
+                    <div class="middle_column">
+                        <input for="advanced_search" type="submit" id="advanced_search_button" value="Advanced Search">
+                    </div>
+
+                    <div class="right_column"></div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+    </body>
+</html>
