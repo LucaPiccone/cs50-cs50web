@@ -1,0 +1,21 @@
+{%  extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block body %}
+    <h1>Create a new Wiki entry</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <h6 style="color: red;">{{ message }}</h6>
+        {% endfor %}
+    {% endif %}
+    <div class="create_form_container">
+        <form id="id_create_form" action="{% url 'encyclopedia:create' %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input class="btn btn-primary" id="id_submit_create_form" type="submit">
+        </form>
+    </div>
+{% endblock %}
