@@ -1,0 +1,128 @@
+{% if messages %}
+
+    {% for message in messages %} 
+        {% if message.tags %}
+            <div class="alert alert-danger alert-container">
+                {{message}}
+            </div> 
+       {% endif %}
+    {% endfor %}
+
+{% else %}
+    <div style="display: none;"> message</div>
+{% endif %}
+
+{% include 'auctions/layout.html' %}
+
+{% block body %}
+    <div class="listing_container p-2">
+       
+        <div class="listing_wrapper border  d-flex p-1">
+            <div class="left_listing">
+                <img src="{{ listing.image }}" height="265px" alt="">
+            </div>
+            <div class="right_listing row">
+                <div class="listing_title row-md-4 font-weight-bold"><h4>{{ listing.title }}</h4></div>
+                <div class="listing_description row-md-4 indent_text">{{ listing.description }}</div>
+                    {% if listing.in_watchlist == "Yes" %}
+                        <form action="{% url 'listing' listing_id=listing.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="listing_id" value="{{ listing.id }}">
+                            <button type="submit" name="remove_from_watchlist" value="remove_from_watchlist" class="btn btn-sm btn-danger mt-2">Remove from Watchlist</button>
+                        </form>
+                    {% else %}
+                        <form action="{% url 'watchlist' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="listing_id" value="{{ listing.id }}" name="" id="">
+                            <button name="add_to_watchlist" value="add_to_watchlist" value="add_to_watchlist" class="btn btn-sm btn-success mt-2 ">Add to Watchlist</button>
+                        </form>
+                    {% endif %}
+                <hr style="width: 85%;">
+                <h4>Price</h4>
+                <div class="current_price h5">
+                    {% if bid_count == 0 %}
+                        Bid Starting at: <span class="font-weight-bold">${{ listing.starting_bid_price }}</span>
+                    {% else %}
+                        Highest Bid: <span class="font-weight-bold">${{ highest_bid }}</span>
+                    {% endif %}
+                </div>
+                {% if listing.owner == 'no' and listing.auction_ended == False%}
+                <form action="{% url 'bid' listing_id=listing.id %}" method="POST" class="row-md-4">
+                    {% csrf_token %}
+                    <small class="form-text text-muted">The current # of bids is: {{ bid_count }}</small>
+                    <input type="number" placeholder="Bid" name="bid" step=".01">
+                    <button type="submit" class="btn btn-sm btn-primary small ml-1 mb-1">Place bid</button>
+                </form>
+                {% elif listing.auction_ended == True %}
+                <p class="font-weight-bold font-size h5">
+                    Auction ended: 
+                    {% if listing.winner == None %}
+                        No winner 
+                    {% elif listing.winner == user_logged_in %}
+                        You Won!
+                    {% else %}
+                        The Winner is {{ listing.winner }}
+                    {% endif %}
+                {% else %}
+                </p>
+                <form action="{% url 'end_auction' listing_id=listing.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger mt-2 small ml-1 mb-1">End Auction</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="detail_container border p-3 mt-2">
+            <h2>Details</h2>
+            <ul>
+                <li>Listed by {{ listed_by }}</li>
+                <li>
+                    Categories: 
+                    {% for category in categories %}
+                        {{ category }},
+                    {% endfor %}
+                </li>
+                <li>Brand: {{ listing.brand_id }}</li>
+                <li>Starting Price: {{ listing.starting_bid_price }}</li>
+            </ul>
+        </div>
+
+        <div class="review_container border p-3 mt-2">
+            <h2>Comments</h2>
+            {% if reviews %}
+                {% for review in reviews %} 
+                <div class="review_wrapper border mt-1 p-1">
+                        <div class="d-flex align-items-center m-2">
+                            {{ review.user_id }}
+                            {% with ''|center:review.rating as range %}
+                                {% for _ in range %}
+                                    <img class="ml-1" src="https://static.vecteezy.com/system/resources/previews/027/296/798/original/gold-star-glitter-on-transparent-background-free-png.png" height="15px" width="15px">
+                                {% endfor %}
+                            {% endwith %}
+                        </div>       
+                        <p class="indent_text">{{review.content }} </p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="review_wrapper border mt-1 p-1">
+                    <p class="indent_text">No reviews have been made</p>
+                </div>
+            {% endif %}
+            <h4 class="text-center mt-2">Write a review</h4>
+            <div class="class_comment_form text-center">
+
+                <form class="form-group container class_write_review" action="{% url 'comment' listing_id=listing.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="number" name="rating" placeholder="Rating" class="form-control mt-1 review_rating" min="0" max="5">
+                    <textarea type="text" name="comment" placeholder="Write your review here" class="form-control mt-1 review_comment"></textarea>
+                    <button class="btn btn-sm btn-primary mt-1" class="form-control">Post a comment</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+<!--https://django.cowhite.com/blog/numeric-for-loop-in-django-templates/-->

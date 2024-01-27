@@ -1,0 +1,17 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <h2 class="text-center">Post a Listing</h2>
+    <div class="create_container card container bg-light">
+        <div class="card-body">
+            <form id="create_form" class="form-group" action="{% url 'create' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+            </form>
+            <div class="text-right">
+                <button type="submit" form="create_form" class="btn btn-primary col-md-2">List Product</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

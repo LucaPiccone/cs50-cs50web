@@ -1,0 +1,27 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2 class="text-center">Active Listings</h2>
+
+    <div class="index_container">
+        {% for listing in listings %}
+            <a class="grid_template mb-3" href="{% url 'listing' listing_id=listing.id  %}">
+                    <div class="listing_image">
+                        <img src="{{ listing.image }}" width="265px" height="265px" alt="{{ listing.title }}">
+                    </div>
+
+                    <div class="listing_text">
+                        {{ listing.title }} 
+                        <p>{{ listing.description }}</p>
+                    </div>
+                    <br>
+                    <div class="listing_price">
+                        <span>$</span>{{ listing.effective_price }} {{ currency }}
+                    </div>
+            </a>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

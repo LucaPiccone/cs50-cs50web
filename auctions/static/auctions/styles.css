@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 10px;
+    overflow-x: hidden;
+    background-color: whitesmoke !important;
+
+}
+
+.left_listing {
+    margin-right: 13px;
+}
+
+
+/* Index Styles  */
+
+.index_container {
+    display: grid;
+    grid-template-columns: 265px 265px 265px 265px;
+    justify-content: space-between;
+    align-items: center;
+    width: 1247px;
+    height: 354px;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.grid_template {
+    width: 265px;
+    position: relative;
+    font-weight: bold;
+    display: grid;
+    grid-template-rows: 265px 50px auto;
+}
+
+.index_container a {
+    color: black;
+    text-decoration: none;
+}
+
+.listing_image img {
+    border-radius: 10%;
+}
+
+.listing_text {
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 54px;
+}
+
+.listing_text p {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+.listing_text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.listing_price {
+    width: 100%;
+    text-align: left;
+    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+}
+
+
+/* Create Styles  */
+
+.create_container {
+    margin: 0 auto;
+    /* width: 956px !important; */
+}
+
+.create_container div:nth-of-type(1) {
+    margin-top: 0;
+}
+
+.create_container div {
+    margin-top: 12px;
+}
+
+
+@media only screen and (min-width: 900px) {
+    .create_container {
+        width: 956px !important;
+    }
+}
+
+/* Listing CSS*/
+.indent_text {
+    text-indent: 2em;
+}
+
+.alert-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 1000; /* Adjust as needed */
+    margin-top: 70px; /* Adjust to create space for the alert */
+  }
+
+hr {
+    width: 100% !important;
+}
+
+.row {
+    --bs-gutter-x: 0px !important;
+}
+
+
+
+.review_rating {
+    width: 100px !important;
+    margin: 0 auto;
+}
+
+.review_comment {
+    width: 400px !important;
+    height: 150px !important;
+    margin: 0 auto;
+}
