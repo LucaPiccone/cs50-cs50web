@@ -1,0 +1,46 @@
+textarea {
+    min-height: 400px;
+}
+
+.emailSnippetContainer {
+    border: 1px solid black;
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.emailSnippetChild1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.emailSnippetChild1_left {
+    font-weight: bold;
+}
+
+.emailSnippetChild1_right, .emailSnippetChild2 {
+    color: rgb(86, 86, 86);
+}
+
+.emailSubject {
+    color: darkgrey;
+}
+
+/* Email Styles */
+
+.emailContainer {
+    border: 1px solid black;
+    padding: 10px 20px;
+    border-radius: 24px;
+    
+}
+
+.emailButtons {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.emailLeftButton, .emailMiddleButton {
+    margin-right: 10px;
+}
